@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="nfo-modificator" default="help" basedir="." >
+
+   <property name="src" location="src"/>
+   <property name="build" location="build"/>
+   <property name="classes" location="build/classes"/>
+   <property name="doc" location="doc"/>
+   <property name="lib" location="lib"/>
+   <property name="res" location="res"/>
+   <property name="txt" location="res/text"/>
+   <property name="nfo" location="res/nfo"/>
+   <property name="out" location="res/out"/>
+   <property name="reports" location="build/reports"/>
+   <property name="reportsHtml" location="build/reports/html"/>
+   <property name="launchClass" value="Main"/>
+   <property name="launchName" value="Main"/>
+
+   <path id="classpath">
+      <pathelement location="${classes}" />
+      <pathelement location="${lib}" />
+   </path>
+
+   <target name="help">
+      <echo message="Help message here"/>
+   </target>
+
+   <target name="init" description="creation of directories" >
+      <tstamp/>
+      <mkdir dir="${src}"/>
+      <mkdir dir="${build}"/>
+      <mkdir dir="${classes}"/>
+      <mkdir dir="${doc}"/>
+      <mkdir dir="${lib}"/>
+      <mkdir dir="${res}"/>
+      <mkdir dir="${txt}"/>
+      <mkdir dir="${nfo}"/>
+      <mkdir dir="${out}"/>
+      <mkdir dir="${reports}"/>
+      <mkdir dir="${reportsHtml}"/>
+   </target>
+
+   <target depends="init" name="compile" description="compiles all the sources" >
+      <javac destdir="${classes}" debug="true" verbose="false" encoding="UTF-8" includeantruntime="false">
+	 <compilerarg value="-Xlint"/>
+	 <classpath refid="classpath"/>
+	 <src path="${src}"/>
+      </javac>
+   </target>
+
+   <target name="run" depends="jar" description="executes application" >
+      <java jar="${build}/${launchClass}.jar" fork="true">
+	 <classpath refid="classpath"/>
+      </java>
+   </target>
+
+   <target name="jar" depends="compile" description="creates a .jar" >
+      <jar destfile="${build}/${launchName}.jar">
+	 <manifest>
+	    <attribute name="Main-Class" value="${launchClass}"/>
+	 </manifest>
+	 <fileset dir="${classes}">
+	    <include name="**/*.class"/>
+	 </fileset>
+	 <fileset dir="${lib}">
+	    <include name="**/*.jar"/>
+	 </fileset>
+	 <fileset dir="${res}">
+	    <include name="**/*.txt"/>
+	    <include name="**/*.nfo"/>
+	 </fileset>
+      </jar>
+   </target>
+
+   <target name="doc" depends="compile" description="build javaDoc documentation" >
+      <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
+	 <fileset dir="${src}" defaultexcludes="yes">
+	    <exclude name="**/.*.sw*, #*#, .*, *Test*.java"/>
+	    <include name="**/*.java"/>
+	 </fileset>
+	 <classpath refid="classpath"/>
+      </javadoc>
+   </target>
+
+   <target name="distrib" depends="jar" description="creates distribution archive" >
+      <tar tarfile="${build}/${launchName}.tgz" compression="gzip">
+	 <tarfileset dir="${build}">
+	    <include name="${launchName}.jar"/>
+	 </tarfileset>
+	 <tarfileset prefix="pda/" dir=".">
+	    <include name="ant/**"/>
+	    <include name="data/**"/>
+	    <include name="build/distrib/*.jar"/>
+	    <include name="build/doc/**"/>
+	    <include name="build/reports/**"/>
+	    <include name="src/**"/>
+	    <include name="lib/**"/>
+	    <include name="ww"/>
+	 </tarfileset>
+      </tar>
+   </target>
+
+   <target name="nbLines">
+      <echo>Number of code lines in ${ant.project.name} :	</echo>
+      <exec executable="bash">
+	 <arg value="-c"/>
+	 <arg value="cat ${src}/**/*.java | wc -l"/>
+      </exec>
+   </target>
+
+   <target name="clean" description="Clean the compiled classes directory">
+      <delete dir="${classes}" includes="**/*.class"/>
+   </target>
+
+   <target name="cleanReports" description="Clean the reports directory">
+      <delete dir="${reportsHtml}" includes="**/*.html"/>
+      <delete dir="${reports}" includes="*.xml"/>
+   </target>
+
+   <target name="JUnitTest" depends="compile" description="run the junit test classes">
+      <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes">
+	 <classpath refid="classpath"/>
+	 <formatter type="xml"/>
+	 <batchtest fork="yes" todir="${reports}">
+	    <fileset dir="${src}" includes="${src}/**/*Test.java"/>
+	 </batchtest>
+      </junit>
+
+      <junitreport todir="${reports}">
+	 <fileset dir="${reports}">
+	    <include name="TEST-*.xml"/>
+	 </fileset>
+	 <report format="frames" todir="${reportsHtml}"/>
+      </junitreport>
+   </target>
+</project>
