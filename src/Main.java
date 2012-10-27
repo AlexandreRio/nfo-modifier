@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import view.NfoView;
 
 /**
  * Exemple : read a nfo file, converts it in unicode(utf-8) then
@@ -9,12 +10,6 @@ import java.util.ArrayList;
 public class Main {
 
    public static void main (String[] args) {
-      ArrayList<String> list = RWFile.readNfoFile("res/nfo/exemple.nfo");
-      try {
-	 RWFile.writeNfoFile(list, "res/out/sortie.nfo");
-      }
-      catch (Exception e) {
-	 System.err.println("Unsuported char !");
-      }
+      NfoView nfoView = new NfoView();
    }
 }

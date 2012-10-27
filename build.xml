@@ -13,7 +13,7 @@
    <property name="reports" location="build/reports"/>
    <property name="reportsHtml" location="build/reports/html"/>
    <property name="launchClass" value="Main"/>
-   <property name="launchName" value="Main"/>
+   <property name="launchName" value="nfo-modifier"/>
 
    <path id="classpath">
       <pathelement location="${classes}" />
@@ -24,7 +24,7 @@
       <echo message="Help message here"/>
    </target>
 
-   <target name="init" description="creation of directories" >
+   <target name="init" description="Creates all directories." >
       <tstamp/>
       <mkdir dir="${src}"/>
       <mkdir dir="${build}"/>
@@ -39,7 +39,7 @@
       <mkdir dir="${reportsHtml}"/>
    </target>
 
-   <target depends="init" name="compile" description="compiles all the sources" >
+   <target depends="init" name="compile" description="Compiles all the sources." >
       <javac destdir="${classes}" debug="true" verbose="false" encoding="UTF-8" includeantruntime="false">
 	 <compilerarg value="-Xlint"/>
 	 <classpath refid="classpath"/>
@@ -47,13 +47,13 @@
       </javac>
    </target>
 
-   <target name="run" depends="jar" description="executes application" >
-      <java jar="${build}/${launchClass}.jar" fork="true">
+   <target name="run" depends="jar" description="Executes nfo-modifier." >
+      <java jar="${build}/${launchName}.jar" fork="true">
 	 <classpath refid="classpath"/>
       </java>
    </target>
 
-   <target name="jar" depends="compile" description="creates a .jar" >
+   <target name="jar" depends="compile" description="Creates an executable .jar" >
       <jar destfile="${build}/${launchName}.jar">
 	 <manifest>
 	    <attribute name="Main-Class" value="${launchClass}"/>
@@ -71,7 +71,7 @@
       </jar>
    </target>
 
-   <target name="doc" depends="compile" description="build javaDoc documentation" >
+   <target name="doc" depends="compile" description="Build JavaDoc documentation." >
       <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
 	 <fileset dir="${src}" defaultexcludes="yes">
 	    <exclude name="**/.*.sw*, #*#, .*, *Test*.java"/>
@@ -81,42 +81,42 @@
       </javadoc>
    </target>
 
-   <target name="distrib" depends="jar" description="creates distribution archive" >
+   <target name="distrib" depends="jar" description="Creates distribution archive." >
       <tar tarfile="${build}/${launchName}.tgz" compression="gzip">
 	 <tarfileset dir="${build}">
 	    <include name="${launchName}.jar"/>
 	 </tarfileset>
-	 <tarfileset prefix="pda/" dir=".">
-	    <include name="ant/**"/>
-	    <include name="data/**"/>
-	    <include name="build/distrib/*.jar"/>
-	    <include name="build/doc/**"/>
-	    <include name="build/reports/**"/>
-	    <include name="src/**"/>
-	    <include name="lib/**"/>
-	    <include name="ww"/>
+	 <tarfileset dir=".">
+	    <include name="${res}/**"/>
+	    <include name="${build}/*.jar"/>
+	    <include name="${doc}"/>
+	    <include name="${reports}/**"/>
+	    <include name="${src}/**"/>
+	    <exclude name="${src}/**/*.swp"/>
+	    <include name="${lib}/**"/>
 	 </tarfileset>
       </tar>
    </target>
 
-   <target name="nbLines">
-      <echo>Number of code lines in ${ant.project.name} :	</echo>
+   <target name="nbLines" description="Displays the number of code lines.">
+      <echo>Number of code lines in ${ant.project.name} :</echo>
       <exec executable="bash">
 	 <arg value="-c"/>
 	 <arg value="cat ${src}/**/*.java | wc -l"/>
       </exec>
    </target>
 
-   <target name="clean" description="Clean the compiled classes directory">
+   <target name="clean" description="Clean the compiled classes directory.">
       <delete dir="${classes}" includes="**/*.class"/>
+      <delete dir="${build}" includes="**/*.jar"/>
    </target>
 
-   <target name="cleanReports" description="Clean the reports directory">
+   <target name="cleanReports" description="Clean the reports directory.">
       <delete dir="${reportsHtml}" includes="**/*.html"/>
       <delete dir="${reports}" includes="*.xml"/>
    </target>
 
-   <target name="JUnitTest" depends="compile" description="run the junit test classes">
+   <target name="JUnitTest" depends="compile" description="Run the junit test classes.">
       <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes">
 	 <classpath refid="classpath"/>
 	 <formatter type="xml"/>
