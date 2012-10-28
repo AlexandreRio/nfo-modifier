@@ -9,14 +9,14 @@ For the record I have to do with the `exemple.nfo` file, I just picked it with g
 
 Usage
 -------
-   $ ant compile
+    $ ant compile
 
 Recompile all the sources
 
-   $ ant -p
+    $ ant -p
 
 Displays all the allowed tasks.
 
-   $ ant help
+    $ ant help
 
 Displays the help

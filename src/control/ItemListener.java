@@ -1,12 +1,14 @@
 package control;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 import data.*;
 import view.NfoView;
+import view.ConfirmView;
 
 /**
  * Handle menu item reactions.
@@ -15,7 +17,15 @@ import view.NfoView;
  */
 public class ItemListener implements ActionListener {
 
+   /** Frame containing the Component having listener. */
    private NfoView theView;
+
+   /**
+    * Text displayed if the text area is not empty and have to be cleared.
+    */
+   private static String confirmText = "<html><h3><b>Continue without saving"
+      + " ?</b></h3> <br />If you don't save, changes will be permanently"
+      + " lost.</html>";
 
    /**
     * Create an ItemListener to handle events on the menu items.
@@ -56,33 +66,68 @@ public class ItemListener implements ActionListener {
       System.out.println("Save as action");
    }
 
+   /**
+    * Open a file and display it, if a file is already displayed ask to confirm
+    * the action.
+    */
    private void openAction() {
-      ArrayList<String> list = RWFile.readNfoFile("res/nfo/exemple.nfo");
+      JFileChooser chooser;
+      FileNameExtensionFilter filter;
+      int returnVal;
+      ArrayList<String> lineList;
       JTextArea textArea = theView.getTextArea();
+      int confirm = JOptionPane.YES_OPTION;
+
       if (! textArea.getText().equals(""))
-	 System.out.println("pop-up confirmation");
-      for (String line : list) {
-	 textArea.append(line);
+	 confirm = JOptionPane.showConfirmDialog (null, confirmText);
+
+      if (confirm == JOptionPane.YES_OPTION) {
+	 textArea.setText("");
+	 chooser = new JFileChooser();
+	 filter = new FileNameExtensionFilter("NFO Files", "nfo");
+	 chooser.setFileFilter(filter);
+	 returnVal = chooser.showOpenDialog(theView);
+	 if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    System.out.println(chooser.getSelectedFile().getAbsolutePath());
+	    lineList = RWFile.readNfoFile(chooser.getSelectedFile().getAbsolutePath());
+	    for (String line : lineList) {
+	       textArea.append(line);
+	    }
+	 }
       }
-      System.out.println("open action");
    }
 
+   /**
+    * Clear the text area after confirmation if the text area is not empty.
+    */
    private void clearAction() {
       JTextArea textArea = theView.getTextArea();
+      int confirm = JOptionPane.YES_OPTION;
+
       if (! textArea.getText().equals(""))
-	 System.out.println("pop-up confirmation");
-      textArea.setText("");
-      System.out.println("clear action");
+	 confirm = JOptionPane.showConfirmDialog (null, confirmText);
+
+      if (confirm == JOptionPane.YES_OPTION)
+	 textArea.setText("");
    }
 
+   /**
+    * Exit the application after confirmation if the text area is not empty.
+    */
    private void quitAction() {
       System.out.println("Quit action");
    }
 
+   /**
+    * Display help window.
+    */
    private void helpAction() {
       System.out.println("Help action");
    }
 
+   /**
+    * Display about window.
+    */
    private void aboutAction() {
       System.out.println("About action");
    }

@@ -14,34 +14,41 @@ public class NfoView extends JFrame {
    private JPanel panel;
 
    // Menu bar
-   /** */
+   /** Menu bar of the frame. */
    private JMenuBar menuBar;
 
    // File menu
-   /** */
+   /** File menu in the menu bar. */
    private JMenu fileMenu;
-   /** */
+   /** New item in the menu bar. */
    private JMenuItem itemNew;
-   /** */
+   /** Save as item in the menu bar. */
    private JMenuItem itemSaveAs;
-   /** */
+   /** Open item in the menu bar. */
    private JMenuItem itemOpen;
-   /** */
+   /** Clear item in the menu bar. */
    private JMenuItem itemClear;
-   /** */
+   /** Quit item in the menu bar. */
    private JMenuItem itemQuit;
 
    // Help menu
-   /** */
+   /** Help menu in the menu bar. */
    private JMenu helpMenu;
-   /** */
+   /** Help item in the menu bar. */
    private JMenuItem itemHelp;
-   /** */
+   /** About item in the menu bar. */
    private JMenuItem itemAbout;
 
+   // Content of the frame
+   /** Text area, to view and edit file. */
    private JTextArea textArea;
+   /** Used to handle a scroll bar. */
    private JScrollPane scrollPane;
 
+   /**
+    * Constuctor of the frame, create elements and attach the reaction.
+    *
+    */
    public NfoView() {
       super("Nfo-modifier");
       this.createInterface();
