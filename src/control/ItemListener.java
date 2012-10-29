@@ -5,6 +5,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.io.File;
 
 import data.*;
 import view.NfoView;
@@ -54,16 +55,57 @@ public class ItemListener implements ActionListener {
    }
 
    private void newAction() {
-      System.out.println("new action");
+      int confirm = JOptionPane.YES_OPTION;
+      JTextArea textArea = theView.getTextArea();
 
+      if (RWFile.getModified())
+	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+
+      if (confirm == JOptionPane.YES_OPTION) {
+	 textArea.setText("");
+	 RWFile.setCurrentFile(null);
+	 RWFile.setModified(false);
+	 theView.setTitle("Nfo-modifier");
+      }
    }
 
-   private void saveAction() {
-      System.out.println("Save action");
-   }
-
+   /**
+    *
+    */
    private void saveAsAction() {
-      System.out.println("Save as action");
+      File file = null;
+      JFileChooser chooser;
+      FileNameExtensionFilter filter;
+      int returnVal;
+      String text;
+      String[] lines;
+      ArrayList<String> list;
+
+      if (RWFile.getCurrentFile() == null) {
+	 chooser = new JFileChooser();
+	 filter = new FileNameExtensionFilter("NFO Files", "nfo");
+	 chooser.setFileFilter(filter);
+	 returnVal = chooser.showOpenDialog(theView);
+	 if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    file = chooser.getSelectedFile();
+	    RWFile.setCurrentFile(file.getPath());
+	    RWFile.setModified(false);
+	    theView.setTitle("Nfo-modifier : " + file.getName());
+	 }
+      }
+      else
+	 file = new File(RWFile.getCurrentFile());
+
+      if (file != null) {
+	 // Creates an ArrayList from the JTextArea
+	 list = new ArrayList<String>();
+	 text = theView.getTextArea().getText();
+	 lines = text.split("\n");
+	 for (int i=0; i<lines.length; i++)
+	    list.add(lines[i] + "\n");
+
+	 RWFile.writeNfoFile(list, file.getPath());
+      }
    }
 
    /**
@@ -79,7 +121,7 @@ public class ItemListener implements ActionListener {
       int confirm = JOptionPane.YES_OPTION;
 
       if (! textArea.getText().equals(""))
-	 confirm = JOptionPane.showConfirmDialog (null, confirmText);
+	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
       if (confirm == JOptionPane.YES_OPTION) {
 	 textArea.setText("");
@@ -88,11 +130,13 @@ public class ItemListener implements ActionListener {
 	 chooser.setFileFilter(filter);
 	 returnVal = chooser.showOpenDialog(theView);
 	 if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    System.out.println(chooser.getSelectedFile().getAbsolutePath());
 	    lineList = RWFile.readNfoFile(chooser.getSelectedFile().getAbsolutePath());
 	    for (String line : lineList) {
 	       textArea.append(line);
 	    }
+	    RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
+	    RWFile.setModified(false);
+	    theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
 	 }
       }
    }
@@ -105,17 +149,25 @@ public class ItemListener implements ActionListener {
       int confirm = JOptionPane.YES_OPTION;
 
       if (! textArea.getText().equals(""))
-	 confirm = JOptionPane.showConfirmDialog (null, confirmText);
+	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
-      if (confirm == JOptionPane.YES_OPTION)
+      if (confirm == JOptionPane.YES_OPTION) {
 	 textArea.setText("");
+	 RWFile.setModified(true);
+      }
    }
 
    /**
     * Exit the application after confirmation if the text area is not empty.
     */
    private void quitAction() {
-      System.out.println("Quit action");
+      int confirm = JOptionPane.YES_OPTION;
+
+      if (RWFile.getModified())
+	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+
+      if (confirm == JOptionPane.YES_OPTION)
+	 theView.dispose();
    }
 
    /**

@@ -18,11 +18,19 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
+ * Create a new RWFile object, allow to read / write nfo file and prevent
+ * not wanted overwriting.
  *
  * @author Rio Alexandre
  * @version 0.1
  */
-public abstract class RWFile {
+public class RWFile {
+
+   /** Path of the current. */
+   private static String currentFile;
+
+   /** True if the file has been modified, used to ask to save. */
+   private static boolean modified;
 
    /**
     * Reads a nfo file (i.e. encoded in cp437) and creates a list of each
@@ -81,10 +89,45 @@ public abstract class RWFile {
 	       fos.write(convertedBytes);
 	    }
 	 }
-	 System.out.println("End of writing : " + file);
       }
       catch (IOException e) {
 	 System.err.println("IO Exception.");
       }
+   }
+
+   /**
+    * Get currentFile.
+    *
+    * @return currentFile as String.
+    */
+   public static String getCurrentFile() {
+      return currentFile;
+   }
+
+   /**
+    * Set currentFile.
+    *
+    * @param currentFile the value to set.
+    */
+   public static void setCurrentFile(String currentFile) {
+      RWFile.currentFile = currentFile;
+   }
+
+   /**
+    * Get modified.
+    *
+    * @return modified as boolean.
+    */
+   public static boolean getModified() {
+      return modified;
+   }
+
+   /**
+    * Set modified.
+    *
+    * @param modified the value to set.
+    */
+   public static void setModified(boolean modified) {
+      RWFile.modified = modified;
    }
 }
