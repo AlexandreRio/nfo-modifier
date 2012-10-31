@@ -1,9 +1,21 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JMenuItem;
+import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
 
 import control.ItemListener;
+import control.TextAreaListener;
 
 public class NfoView extends JFrame {
 
@@ -22,6 +34,8 @@ public class NfoView extends JFrame {
    private JMenu fileMenu;
    /** New item in the menu bar. */
    private JMenuItem itemNew;
+   /** Save item in the menu bar. */
+   private JMenuItem itemSave;
    /** Save as item in the menu bar. */
    private JMenuItem itemSaveAs;
    /** Open item in the menu bar. */
@@ -53,7 +67,6 @@ public class NfoView extends JFrame {
       super("Nfo-modifier");
       this.createInterface();
       this.attachReactions();
-      //this.setSize(600,600);
       this.pack();
       this.setVisible(true);
       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -73,12 +86,14 @@ public class NfoView extends JFrame {
 
       itemNew = new JMenuItem("New");
       itemOpen = new JMenuItem("Open…");
+      itemSave = new JMenuItem("Save");
       itemSaveAs = new JMenuItem("Save as…");
       itemClear = new JMenuItem("Clear");
       itemQuit = new JMenuItem("Quit");
       fileMenu.add(itemNew);
       fileMenu.add(new JSeparator());
       fileMenu.add(itemOpen);
+      fileMenu.add(itemSave);
       fileMenu.add(itemSaveAs);
       fileMenu.add(itemClear);
       fileMenu.add(new JSeparator());
@@ -107,12 +122,15 @@ public class NfoView extends JFrame {
     */
    private void attachReactions() {
       itemNew.addActionListener(new ItemListener(this));
+      itemSave.addActionListener(new ItemListener(this));
       itemSaveAs.addActionListener(new ItemListener(this));
       itemOpen.addActionListener(new ItemListener(this));
       itemClear.addActionListener(new ItemListener(this));
       itemQuit.addActionListener(new ItemListener(this));
       itemHelp.addActionListener(new ItemListener(this));
       itemAbout.addActionListener(new ItemListener(this));
+
+      textArea.getDocument().addDocumentListener(new TextAreaListener(this));
    }
 
 
@@ -221,6 +239,24 @@ public class NfoView extends JFrame {
     * @return textArea as JTextArea.
     */
    public JTextArea getTextArea() {
-       return textArea;
+      return textArea;
+   }
+
+   /**
+    * Get itemSave.
+    *
+    * @return itemSave as JMenuItem.
+    */
+   public JMenuItem getItemSave() {
+      return itemSave;
+   }
+
+   /**
+    * Set itemSave.
+    *
+    * @param itemSave the value to set.
+    */
+   public void setItemSave(JMenuItem itemSave) {
+      this.itemSave = itemSave;
    }
 }

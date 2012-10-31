@@ -1,15 +1,18 @@
 package control;
 
-import javax.swing.*;
+import javax.swing.JMenuItem;
+import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import java.util.ArrayList;
 import java.io.File;
 
-import data.*;
+import data.RWFile;
 import view.NfoView;
-import view.ConfirmView;
 
 /**
  * Handle menu item reactions.
@@ -40,6 +43,8 @@ public class ItemListener implements ActionListener {
       JMenuItem src = (JMenuItem) e.getSource();
       if (src == theView.getItemNew())
 	 this.newAction();
+      else if (src == theView.getItemSave())
+	 this.saveAction();
       else if ( src == theView.getItemSaveAs())
 	 this.saveAsAction();
       else if ( src == theView.getItemOpen())
@@ -58,53 +63,71 @@ public class ItemListener implements ActionListener {
       int confirm = JOptionPane.YES_OPTION;
       JTextArea textArea = theView.getTextArea();
 
-      if (RWFile.getModified())
+      if (RWFile.getIsModified())
 	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
       if (confirm == JOptionPane.YES_OPTION) {
 	 textArea.setText("");
 	 RWFile.setCurrentFile(null);
-	 RWFile.setModified(false);
+	 RWFile.setIsModified(false);
 	 theView.setTitle("Nfo-modifier");
       }
    }
 
    /**
-    *
+    * Write the content of the text area in the current file, if its not
+    * defined call saveAsAction()
+    */
+   private void saveAction() {
+      File file;
+      if (RWFile.getCurrentFile() == null)
+	 this.saveAsAction();
+      else {
+	 this.save();
+	 RWFile.setIsModified(false);
+	 file = new File(RWFile.getCurrentFile());
+	 theView.setTitle("Nfo-modifier : " + file.getName());
+      }
+   }
+
+   /**
+    * Ask to choose the name of the file to save.
     */
    private void saveAsAction() {
       File file = null;
       JFileChooser chooser;
       FileNameExtensionFilter filter;
       int returnVal;
+
+      chooser = new JFileChooser();
+      filter = new FileNameExtensionFilter("NFO Files", "nfo");
+      chooser.setFileFilter(filter);
+      returnVal = chooser.showOpenDialog(theView);
+      if(returnVal == JFileChooser.APPROVE_OPTION) {
+	 file = chooser.getSelectedFile();
+	 RWFile.setCurrentFile(file.getPath());
+	 RWFile.setIsModified(false);
+	 theView.setTitle("Nfo-modifier : " + file.getName());
+	 this.save();
+      }
+
+   }
+
+   /**
+    * Write the content of the textArea in the currentFile.
+    */
+   private void save() {
       String text;
       String[] lines;
       ArrayList<String> list;
 
-      if (RWFile.getCurrentFile() == null) {
-	 chooser = new JFileChooser();
-	 filter = new FileNameExtensionFilter("NFO Files", "nfo");
-	 chooser.setFileFilter(filter);
-	 returnVal = chooser.showOpenDialog(theView);
-	 if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    file = chooser.getSelectedFile();
-	    RWFile.setCurrentFile(file.getPath());
-	    RWFile.setModified(false);
-	    theView.setTitle("Nfo-modifier : " + file.getName());
-	 }
-      }
-      else
-	 file = new File(RWFile.getCurrentFile());
-
-      if (file != null) {
-	 // Creates an ArrayList from the JTextArea
+      if (RWFile.getCurrentFile() != null) {
 	 list = new ArrayList<String>();
 	 text = theView.getTextArea().getText();
 	 lines = text.split("\n");
 	 for (int i=0; i<lines.length; i++)
 	    list.add(lines[i] + "\n");
-
-	 RWFile.writeNfoFile(list, file.getPath());
+	 RWFile.writeNfoFile(list, RWFile.getCurrentFile());
       }
    }
 
@@ -119,6 +142,7 @@ public class ItemListener implements ActionListener {
       ArrayList<String> lineList;
       JTextArea textArea = theView.getTextArea();
       int confirm = JOptionPane.YES_OPTION;
+      int longestLine = 0;
 
       if (! textArea.getText().equals(""))
 	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
@@ -132,10 +156,17 @@ public class ItemListener implements ActionListener {
 	 if(returnVal == JFileChooser.APPROVE_OPTION) {
 	    lineList = RWFile.readNfoFile(chooser.getSelectedFile().getAbsolutePath());
 	    for (String line : lineList) {
+	       if (line.length() > longestLine)
+		  longestLine = line.length();
 	       textArea.append(line);
 	    }
+	    if (longestLine > 80) {
+	       textArea.setColumns(longestLine);
+	       theView.pack();
+	       // pop-up
+	    }
 	    RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
-	    RWFile.setModified(false);
+	    RWFile.setIsModified(false);
 	    theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
 	 }
       }
@@ -148,12 +179,12 @@ public class ItemListener implements ActionListener {
       JTextArea textArea = theView.getTextArea();
       int confirm = JOptionPane.YES_OPTION;
 
-      if (! textArea.getText().equals(""))
+      if (RWFile.getIsModified())
 	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
       if (confirm == JOptionPane.YES_OPTION) {
 	 textArea.setText("");
-	 RWFile.setModified(true);
+	 RWFile.setIsModified(true);
       }
    }
 
@@ -163,7 +194,7 @@ public class ItemListener implements ActionListener {
    private void quitAction() {
       int confirm = JOptionPane.YES_OPTION;
 
-      if (RWFile.getModified())
+      if (RWFile.getIsModified())
 	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
       if (confirm == JOptionPane.YES_OPTION)

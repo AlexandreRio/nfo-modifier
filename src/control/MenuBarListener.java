@@ -1,6 +1,7 @@
 package control;
 
-import java.awt.event.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 public class MenuBarListener implements MouseListener {
 

@@ -30,7 +30,7 @@ public class RWFile {
    private static String currentFile;
 
    /** True if the file has been modified, used to ask to save. */
-   private static boolean modified;
+   private static boolean isModified;
 
    /**
     * Reads a nfo file (i.e. encoded in cp437) and creates a list of each
@@ -118,8 +118,8 @@ public class RWFile {
     *
     * @return modified as boolean.
     */
-   public static boolean getModified() {
-      return modified;
+   public static boolean getIsModified() {
+      return isModified;
    }
 
    /**
@@ -127,7 +127,7 @@ public class RWFile {
     *
     * @param modified the value to set.
     */
-   public static void setModified(boolean modified) {
-      RWFile.modified = modified;
+   public static void setIsModified(boolean modified) {
+      RWFile.isModified = modified;
    }
 }
