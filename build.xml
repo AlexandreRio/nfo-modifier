@@ -21,7 +21,12 @@
    </path>
 
    <target name="help">
-      <echo message="Help message here"/>
+      <echo>Usage :
+	 * ant run Launch the application.
+	 * ant compile Build the application.
+	 * ant clean Remove all the compiled files.
+	 * ant -p Display a list of all the available tasks.
+      </echo>
    </target>
 
    <target name="init" description="Creates all directories." >
@@ -40,8 +45,7 @@
    </target>
 
    <target depends="init" name="compile" description="Compiles all the sources." >
-      <javac destdir="${classes}" debug="true" verbose="false" encoding="UTF-8" includeantruntime="false">
-	 <compilerarg value="-Xlint"/>
+      <javac source="1.6"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
 	 <classpath refid="classpath"/>
 	 <src path="${src}"/>
       </javac>
@@ -49,7 +53,7 @@
 
    <target name="run" depends="jar" description="Executes nfo-modifier." >
       <java jar="${build}/${launchName}.jar" fork="true">
-	 <classpath refid="classpath"/>
+	 <!--<classpath refid="classpath"/>-->
       </java>
    </target>
 
@@ -61,12 +65,12 @@
 	 <fileset dir="${classes}">
 	    <include name="**/*.class"/>
 	 </fileset>
-	 <fileset dir="${lib}">
-	    <include name="**/*.jar"/>
-	 </fileset>
-	 <fileset dir="${res}">
+	 <fileset dir=".">
+	    <include name="${lib}/**/*.jar"/>
 	    <include name="**/*.txt"/>
 	    <include name="**/*.nfo"/>
+	    <include name="**/*.jpg"/>
+	    <include name="**/*.png"/>
 	 </fileset>
       </jar>
    </target>
@@ -92,8 +96,10 @@
 	    <include name="${doc}"/>
 	    <include name="${reports}/**"/>
 	    <include name="${src}/**"/>
-	    <exclude name="${src}/**/*.swp"/>
 	    <include name="${lib}/**"/>
+
+	    <exclude name="${src}/**/*.swp"/>
+	    <exclude name="${src}/**/*~"/>
 	 </tarfileset>
       </tar>
    </target>
@@ -109,6 +115,7 @@
    <target name="clean" description="Clean the compiled classes directory.">
       <delete dir="${classes}" includes="**/*.class"/>
       <delete dir="${build}" includes="**/*.jar"/>
+      <delete dir="${doc}" includes="**/*.html"/>
    </target>
 
    <target name="cleanReports" description="Clean the reports directory.">

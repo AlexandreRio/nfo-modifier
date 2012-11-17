@@ -32,8 +32,27 @@ public class ItemListener implements ActionListener {
       + " lost.</html>";
 
    /**
+    * Text displayed if the file lines are longer than 80 columns ( this is
+    * deprecated).
+    */
+   private static String sizeWarningText = "<html><h2>Warning</h2><p>The text"
+      + " contains line longer than 80 columns, this is deprecated.</p></html>";
+
+   /**
+    * Text displayed in the about dialog, after clicking on about in the menu
+    * bar.
+    */
+   private static String aboutText = "";
+
+   /**
+    * Text displayed in the help dialog, after clicking on help in the menu
+    * bar.
+    */
+   private static String helptext = "";
+
+   /**
     * Create an ItemListener to handle events on the menu items.
-    * @param view
+    * @param view Frame where the items are.
     */
    public ItemListener(NfoView view) {
       this.theView = view;
@@ -68,6 +87,8 @@ public class ItemListener implements ActionListener {
 
       if (confirm == JOptionPane.YES_OPTION) {
 	 textArea.setText("");
+	 textArea.setColumns(80);
+	 theView.pack();
 	 RWFile.setCurrentFile(null);
 	 RWFile.setIsModified(false);
 	 theView.setTitle("Nfo-modifier");
@@ -163,7 +184,7 @@ public class ItemListener implements ActionListener {
 	    if (longestLine > 80) {
 	       textArea.setColumns(longestLine);
 	       theView.pack();
-	       // pop-up
+	       JOptionPane.showMessageDialog(theView, sizeWarningText);
 	    }
 	    RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
 	    RWFile.setIsModified(false);
@@ -197,8 +218,10 @@ public class ItemListener implements ActionListener {
       if (RWFile.getIsModified())
 	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
-      if (confirm == JOptionPane.YES_OPTION)
+      if (confirm == JOptionPane.YES_OPTION) {
 	 theView.dispose();
+	 System.exit(0);
+      }
    }
 
    /**

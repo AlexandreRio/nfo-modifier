@@ -10,9 +10,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+
+import java.net.URL;
 
 import control.ItemListener;
 import control.TextAreaListener;
@@ -67,6 +70,10 @@ public class NfoView extends JFrame {
       super("Nfo-modifier");
       this.createInterface();
       this.attachReactions();
+
+      ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
+      this.setIconImage(img.getImage());
+
       this.pack();
       this.setVisible(true);
       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
