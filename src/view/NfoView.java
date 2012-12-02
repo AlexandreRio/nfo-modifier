@@ -108,15 +108,15 @@ public class NfoView extends JFrame {
 
       itemHelp = new JMenuItem("Help");
       itemAbout = new JMenuItem("About");
-      helpMenu.add(itemHelp);
-      helpMenu.add(new JSeparator());
+      //helpMenu.add(itemHelp);
+      //helpMenu.add(new JSeparator());
       helpMenu.add(itemAbout);
 
       textArea = new JTextArea("", 40, 80);
       textArea.setLineWrap(true);
       textArea.setFont(new Font("MonoSpaced", Font.PLAIN, 12));
       scrollPane = new JScrollPane(textArea);
-      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
       panel.add(scrollPane);
       menuBar.add(fileMenu);

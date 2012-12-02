@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="nfo-modificator" default="help" basedir="." >
+<project name="nfo-modifier" default="help" basedir="." >
 
    <property name="src" location="src"/>
    <property name="build" location="build"/>

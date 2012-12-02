@@ -26,11 +26,20 @@ Displays all the allowed tasks.
 
     $ ant help
 
-Displays the help
+Displays the help.
+
+    $ java -jar nfo-modifier
+
+Launch the application with an empty text area.
+
+    $ java -jar nfo-modifier file.nfo
+
+Launch the application and display the file : `file.nfo`.
 
 TODO list
 -------
-* Templates generator,
+
+* Template generator,
 * Profile manager with defined file header,
 * Sort of status bar with : current longest line, number of lines,
 * Tools for text manipulation, move a text of a column towards the right/left,

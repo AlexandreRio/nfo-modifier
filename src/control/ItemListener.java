@@ -235,6 +235,7 @@ public class ItemListener implements ActionListener {
     * Display about window.
     */
    private void aboutAction() {
+      JOptionPane.showMessageDialog(theView,aboutText);
       System.out.println("About action");
    }
 }
