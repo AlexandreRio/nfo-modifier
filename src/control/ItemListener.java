@@ -3,6 +3,8 @@ package control;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionListener;
@@ -42,7 +44,11 @@ public class ItemListener implements ActionListener {
     * Text displayed in the about dialog, after clicking on about in the menu
     * bar.
     */
-   private static String aboutText = "";
+   private static String aboutText = "<html><center><p><b>nfo-modifier</p></b><br \\>" +
+      "<p>0.1</p><br \\><p>nfo-modifier is a small and lightweiqht nfo editor written" +
+      " in Java</p><p>See the project page at <a href=''>www.github.com/AlexandreRio/" +
+      "nfo-modifier</a></p><br \\><p>This program comes with ABSOLUTELY NO WARRANTY" +
+      "</p></center></html>";
 
    /**
     * Text displayed in the help dialog, after clicking on help in the menu
@@ -235,7 +241,9 @@ public class ItemListener implements ActionListener {
     * Display about window.
     */
    private void aboutAction() {
-      JOptionPane.showMessageDialog(theView,aboutText);
-      System.out.println("About action");
+      JPanel aboutPanel = new JPanel();
+      JLabel aboutLabel = new JLabel(aboutText);
+      aboutPanel.add(aboutLabel);
+      JOptionPane.showMessageDialog(theView,aboutPanel);
    }
 }
