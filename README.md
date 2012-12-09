@@ -7,6 +7,8 @@ You can have a look at the documentation : `doc/index.html`.
 
 For the record I have nothing to do with the `exemple.nfo` file, I just picked it with google.
 
+<img src="http://pix.kegtux.org/images/2012/12/09/Vxa8G.png" alt="exemple.nfo file"/>
+
 Usage
 -------
 
@@ -28,13 +30,20 @@ Displays all the allowed tasks.
 
 Displays the help.
 
-    $ java -jar nfo-modifier
+    $ java -jar nfo-modifier.jar
 
 Launch the application with an empty text area.
 
-    $ java -jar nfo-modifier file.nfo
+    $ java -jar nfo-modifier.jar file.nfo
 
 Launch the application and display the file : `file.nfo`.
+
+Special Thanks
+-------
+
+Thanks to [tips4java](to http://tips4java.wordpress.com/) for the text line
+number under a really permissive license.
+
 
 TODO list
 -------

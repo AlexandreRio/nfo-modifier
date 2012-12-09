@@ -10,12 +10,18 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
 
 import java.net.URL;
+
+import view.TextLineNumber;
 
 import control.ItemListener;
 import control.TextAreaListener;
@@ -25,8 +31,11 @@ public class NfoView extends JFrame {
    /** */
    private static final long serialVersionUID = 42L;
 
-   /** */
+   /** Panel for text area. */
    private JPanel panel;
+
+   /** Panel for the tools button part. */
+   private JPanel buttonPanel;
 
    // Menu bar
    /** Menu bar of the frame. */
@@ -61,6 +70,12 @@ public class NfoView extends JFrame {
    private JTextArea textArea;
    /** Used to handle a scroll bar. */
    private JScrollPane scrollPane;
+   /** Line number area. */
+   private TextLineNumber tln;
+
+   // Tools bar
+   /** */
+   private JButton previewButton;
 
    /**
     * Constuctor of the frame, create elements and attach the reaction.
@@ -85,7 +100,11 @@ public class NfoView extends JFrame {
    private void createInterface() {
       this.setLayout(new BorderLayout());
       panel = new JPanel();
+      buttonPanel = new JPanel();
       this.add(panel, BorderLayout.CENTER);
+      JButton preview = new JButton("preview");
+      buttonPanel.add(preview);
+      //this.add(buttonPanel, BorderLayout.NORTH);
 
       menuBar = new JMenuBar();
       fileMenu = new JMenu("File");
@@ -115,8 +134,15 @@ public class NfoView extends JFrame {
       textArea = new JTextArea("", 40, 80);
       textArea.setLineWrap(true);
       textArea.setFont(new Font("MonoSpaced", Font.PLAIN, 12));
+
+      MutableAttributeSet set = new SimpleAttributeSet();
+      StyleConstants.setLineSpacing(set, 1.0f);
+
       scrollPane = new JScrollPane(textArea);
       scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+      tln = new TextLineNumber(textArea);
+      scrollPane.setRowHeaderView(tln);
 
       panel.add(scrollPane);
       menuBar.add(fileMenu);
@@ -265,5 +291,23 @@ public class NfoView extends JFrame {
     */
    public void setItemSave(JMenuItem itemSave) {
       this.itemSave = itemSave;
+   }
+
+   /**
+    * Get buttonPanel.
+    *
+    * @return buttonPanel as JPanel.
+    */
+   public JPanel getButtonPanel() {
+       return buttonPanel;
+   }
+
+   /**
+    * Set buttonPanel.
+    *
+    * @param buttonPanel the value to set.
+    */
+   public void setButtonPanel(JPanel buttonPanel) {
+       this.buttonPanel = buttonPanel;
    }
 }
