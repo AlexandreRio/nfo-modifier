@@ -1,0 +1,71 @@
+commit 5db9c0f8fb2d65bbfe9b5eb0280353afed8657ca
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Wed Feb 13 10:30:49 2013 +0100
+
+    First sketch of the profile system
+
+commit e517f00387a4de39be94a5880d7717c891d53d32
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Dec 9 23:45:07 2012 +0100
+
+    Add text line number, improve readme
+
+commit 5b36c5a4ccb15e33f48f7779d05dfec3f3bd0dbe
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Dec 2 22:24:41 2012 +0100
+
+    Add minimalist about dialog
+
+commit 67d52ebe3c9bc244e89f9886f03a7298c730e6d1
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Dec 2 21:20:03 2012 +0100
+
+    Modify launcher, correct some graphic stuff, re-generate documentation ( real commit)
+
+commit 5a54f06ea7670f521395d2cd8cebdc303ba08ba2
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Dec 2 21:17:07 2012 +0100
+
+    Modify launcher, correct some graphic stuff, re-generate documentation
+
+commit 246179adca41ed83c78500464402e225096c3a1b
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Nov 17 21:48:04 2012 +0100
+
+    Update doc/readme, fix jar links issues
+
+commit ab4f8e269c61ac633d77ef54aeff534f21b5fd49
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Thu Nov 1 00:32:55 2012 +0100
+
+    add features, clean code, reduce lib size
+
+commit 4b85cfd59e5404a3651ac051edb5be136aceb829
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Mon Oct 29 23:46:22 2012 +0100
+
+    Save function and confirm dialog
+
+commit cc7cda97edc4687594e35d3a5e5cb4c87a2b8a8a
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Oct 28 20:36:02 2012 +0100
+
+    Add open, clear function
+
+commit 694c1de3fc6eeb0fc79b4a3edeae46e23a6d4648
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Oct 27 13:21:28 2012 +0200
+
+    add UI and some events
+
+commit a36b4a5a9b2ec8811827f619f228916067eeeb24
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Oct 14 15:40:49 2012 +0200
+
+    Fix typo
+
+commit 2ca9930de4c6e3425e83afa3a790f2366aa4373b
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Oct 14 15:34:10 2012 +0200
+
+    Initial commit, command line only

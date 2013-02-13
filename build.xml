@@ -10,6 +10,7 @@
    <property name="txt" location="res/text"/>
    <property name="nfo" location="res/nfo"/>
    <property name="out" location="res/out"/>
+   <property name="save" location="res/save"/>
    <property name="reports" location="build/reports"/>
    <property name="reportsHtml" location="build/reports/html"/>
    <property name="launchClass" value="Main"/>
@@ -40,6 +41,7 @@
       <mkdir dir="${txt}"/>
       <mkdir dir="${nfo}"/>
       <mkdir dir="${out}"/>
+      <mkdir dir="${save}"/>
       <mkdir dir="${reports}"/>
       <mkdir dir="${reportsHtml}"/>
    </target>
@@ -71,6 +73,7 @@
 	    <include name="**/*.nfo"/>
 	    <include name="**/*.jpg"/>
 	    <include name="**/*.png"/>
+	    <include name="**/*.data"/>
 	 </fileset>
       </jar>
    </target>
