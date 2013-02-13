@@ -39,7 +39,7 @@ public abstract class CreationEvent {
 	    }
 	    RWFile.setCurrentFile(file.getAbsolutePath());
 	    RWFile.setIsModified(false);
-	    theView.setTitle("Nfo-modifier : " + file.getName());
+	    theView.setTitle("Nfo-modifier : " + file.getName());
 	 }
       }
    }

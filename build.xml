@@ -45,7 +45,7 @@
    </target>
 
    <target depends="init" name="compile" description="Compiles all the sources." >
-      <javac source="1.6"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
+      <javac source="1.7"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
 	 <classpath refid="classpath"/>
 	 <src path="${src}"/>
       </javac>

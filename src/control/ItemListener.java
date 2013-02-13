@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.io.File;
 
 import data.RWFile;
+import data.ProfileList;
 import view.NfoView;
+import view.ProfileManager;
 
 /**
  * Handle menu item reactions.
@@ -78,6 +80,12 @@ public class ItemListener implements ActionListener {
 	 this.clearAction();
       else if ( src == theView.getItemQuit())
 	 this.quitAction();
+      else if ( src == theView.getItemManage())
+	 this.manageAction();
+      else if (src == theView.getItemSaveProfiles())
+	 this.saveProfilesAction();
+      else if (src == theView.getItemLoadProfiles())
+	 this.loadProfilesAction();
       else if ( src == theView.getItemHelp())
 	 this.helpAction();
       else if ( src == theView.getItemAbout())
@@ -228,6 +236,49 @@ public class ItemListener implements ActionListener {
 	 theView.dispose();
 	 System.exit(0);
       }
+   }
+
+   /**
+    *
+    */
+   private void manageAction() {
+      System.out.println("manage");
+      ProfileManager pm = new ProfileManager(theView);
+   }
+
+   /**
+    *
+    */
+   private void saveProfilesAction() {
+      System.out.println("save");
+      JFileChooser chooser;
+      FileNameExtensionFilter filter;
+      int returnVal;
+      boolean write = true;
+
+      if (ProfileList.getFile()==null) {
+	 System.out.println("markup");
+	 chooser = new JFileChooser();
+	 filter = new FileNameExtensionFilter("Data Files", "data");
+	 chooser.setFileFilter(filter);
+	 returnVal = chooser.showOpenDialog(theView);
+	 if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    ProfileList.setFile(chooser.getSelectedFile().getAbsolutePath());
+	 }
+	 else
+	    write = false;
+      }
+
+      if (write)
+	 System.out.println("write");
+//      ProfileList.writeData();
+   }
+
+   /**
+    *
+    */
+   private void loadProfilesAction() {
+      System.out.println("load");
    }
 
    /**

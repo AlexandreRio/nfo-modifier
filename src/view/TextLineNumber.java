@@ -169,7 +169,7 @@ public class TextLineNumber extends JPanel implements CaretListener, DocumentLis
     *  <li>TextLineNumber.CENTER
     *  <li>TextLineNumber.RIGHT (default)
     *	</ul>
-    *  @param currentLineForeground  the Color used to render the current line
+    *  @param digitAlignment Horizontal alignemt of the digits.
     */
    public void setDigitAlignment(float digitAlignment)
    {

@@ -54,12 +54,15 @@ public class RWFile {
       }
       catch (UnsupportedEncodingException e) {
 	 System.err.println("Encoding error.");
+	 e.printStackTrace();
       }
       catch (FileNotFoundException e) {
 	 System.err.println("File not found.");
+	 e.printStackTrace();
       }
       catch (IOException e) {
 	 System.err.println("IO Exception.");
+	 e.printStackTrace();
       }
       return list;
    }
@@ -92,6 +95,7 @@ public class RWFile {
       }
       catch (IOException e) {
 	 System.err.println("IO Exception.");
+	 e.printStackTrace();
       }
    }
 

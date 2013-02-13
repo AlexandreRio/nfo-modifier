@@ -19,8 +19,6 @@ import javax.swing.text.StyleConstants;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
-import java.net.URL;
-
 import view.TextLineNumber;
 
 import control.ItemListener;
@@ -57,6 +55,16 @@ public class NfoView extends JFrame {
    /** Quit item in the menu bar. */
    private JMenuItem itemQuit;
 
+   // Profile menu
+   /** Profile menu in the menu bar. */
+   private JMenu profileMenu;
+   /** Manage item in the profile menu. */
+   private JMenuItem itemManage;
+   /** Load Profiles item in the profile menu.*/
+   private JMenuItem itemLoadProfiles;
+   /** Save Profiles item in the profile menu.*/
+   private JMenuItem itemSaveProfiles;
+
    // Help menu
    /** Help menu in the menu bar. */
    private JMenu helpMenu;
@@ -87,6 +95,7 @@ public class NfoView extends JFrame {
       this.attachReactions();
 
       ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
+      System.out.println(getClass().getResource("/res/img/ico.png"));
       this.setIconImage(img.getImage());
 
       this.pack();
@@ -95,7 +104,7 @@ public class NfoView extends JFrame {
    }
 
    /**
-    * Create the user interface.
+    * Create the graphical interface.
     */
    private void createInterface() {
       this.setLayout(new BorderLayout());
@@ -108,6 +117,7 @@ public class NfoView extends JFrame {
 
       menuBar = new JMenuBar();
       fileMenu = new JMenu("File");
+      profileMenu = new JMenu("Profile");
       helpMenu = new JMenu("?");
 
       itemNew = new JMenuItem("New");
@@ -124,6 +134,14 @@ public class NfoView extends JFrame {
       fileMenu.add(itemClear);
       fileMenu.add(new JSeparator());
       fileMenu.add(itemQuit);
+
+      itemManage = new JMenuItem("Manage");
+      itemSaveProfiles = new JMenuItem("Save Profiles");
+      itemLoadProfiles = new JMenuItem("Load Profiles");
+      profileMenu.add(itemManage);
+      profileMenu.add(new JSeparator());
+      profileMenu.add(itemSaveProfiles);
+      profileMenu.add(itemLoadProfiles);
 
       itemHelp = new JMenuItem("Help");
       itemAbout = new JMenuItem("About");
@@ -146,6 +164,7 @@ public class NfoView extends JFrame {
 
       panel.add(scrollPane);
       menuBar.add(fileMenu);
+      menuBar.add(profileMenu);
       menuBar.add(helpMenu);
       setJMenuBar(menuBar);
    }
@@ -160,6 +179,11 @@ public class NfoView extends JFrame {
       itemOpen.addActionListener(new ItemListener(this));
       itemClear.addActionListener(new ItemListener(this));
       itemQuit.addActionListener(new ItemListener(this));
+
+      itemManage.addActionListener(new ItemListener(this));
+      itemSaveProfiles.addActionListener(new ItemListener(this));
+      itemLoadProfiles.addActionListener(new ItemListener(this));
+
       itemHelp.addActionListener(new ItemListener(this));
       itemAbout.addActionListener(new ItemListener(this));
 
@@ -299,7 +323,7 @@ public class NfoView extends JFrame {
     * @return buttonPanel as JPanel.
     */
    public JPanel getButtonPanel() {
-       return buttonPanel;
+      return buttonPanel;
    }
 
    /**
@@ -308,6 +332,78 @@ public class NfoView extends JFrame {
     * @param buttonPanel the value to set.
     */
    public void setButtonPanel(JPanel buttonPanel) {
-       this.buttonPanel = buttonPanel;
+      this.buttonPanel = buttonPanel;
+   }
+
+   /**
+    * Get profileMenu.
+    *
+    * @return profileMenu as JMenu.
+    */
+   public JMenu getProfileMenu() {
+      return profileMenu;
+   }
+
+   /**
+    * Set profileMenu.
+    *
+    * @param profileMenu the value to set.
+    */
+   public void setProfileMenu(JMenu profileMenu) {
+      this.profileMenu = profileMenu;
+   }
+
+   /**
+    * Get itemManage.
+    *
+    * @return itemManage as JMenuItem.
+    */
+   public JMenuItem getItemManage() {
+      return itemManage;
+   }
+
+   /**
+    * Set itemManage.
+    *
+    * @param itemManage the value to set.
+    */
+   public void setItemManage(JMenuItem itemManage) {
+      this.itemManage = itemManage;
+   }
+
+   /**
+    * Get itemSaveProfiles.
+    *
+    * @return itemSaveProfiles as JMenuItem.
+    */
+   public JMenuItem getItemSaveProfiles() {
+      return itemSaveProfiles;
+   }
+
+   /**
+    * Set itemSaveProfiles.
+    *
+    * @param itemSaveProfiles the value to set.
+    */
+   public void setItemSaveProfiles(JMenuItem itemSaveProfiles) {
+      this.itemSaveProfiles = itemSaveProfiles;
+   }
+
+   /**
+    * Get itemLoadProfiles.
+    *
+    * @return itemLoadProfiles as JMenuItem.
+    */
+   public JMenuItem getItemLoadProfiles() {
+      return itemLoadProfiles;
+   }
+
+   /**
+    * Set itemLoadProfiles.
+    *
+    * @param itemLoadProfiles the value to set.
+    */
+   public void setItemLoadProfiles(JMenuItem itemLoadProfiles) {
+      this.itemLoadProfiles = itemLoadProfiles;
    }
 }

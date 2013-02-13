@@ -41,7 +41,7 @@ Launch the application and display the file : `file.nfo`.
 Special Thanks
 -------
 
-Thanks to [tips4java](to http://tips4java.wordpress.com/) for the text line
+Thanks to [tips4java](http://tips4java.wordpress.com/) for the text line
 number under a really permissive license.
 
 
