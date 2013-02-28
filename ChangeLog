@@ -1,3 +1,9 @@
+commit a7cdea6b9ea772b38eeabc6c5205a8c864afabe2
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Wed Feb 13 11:11:08 2013 +0100
+
+    Add command line support, add changelog file, update the documentation
+
 commit 5db9c0f8fb2d65bbfe9b5eb0280353afed8657ca
 Author: Alexandre Rio <orbital.project42@gmail.com>
 Date:   Wed Feb 13 10:30:49 2013 +0100

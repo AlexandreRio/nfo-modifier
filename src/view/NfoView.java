@@ -21,13 +21,13 @@ import java.awt.Font;
 
 import view.TextLineNumber;
 
-import control.ItemListener;
-import control.TextAreaListener;
-
 public class NfoView extends JFrame {
 
    /** */
    private static final long serialVersionUID = 42L;
+
+   /** Self reference */
+   private static NfoView selfRef;
 
    /** Panel for text area. */
    private JPanel panel;
@@ -92,7 +92,7 @@ public class NfoView extends JFrame {
    public NfoView() {
       super("Nfo-modifier");
       this.createInterface();
-      this.attachReactions();
+      //this.attachReactions();
 
       ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
       System.out.println(getClass().getResource("/res/img/ico.png"));
@@ -101,6 +101,17 @@ public class NfoView extends JFrame {
       this.pack();
       this.setVisible(true);
       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+   }
+
+   /**
+    * Get the instance of the view, if it doesn't exist a new instance is
+    * created.
+    * @return The instance of the NfoView.
+    */
+   public static NfoView getInstance() {
+      if (selfRef == null)
+	 selfRef = new NfoView();
+      return selfRef;
    }
 
    /**
@@ -168,28 +179,6 @@ public class NfoView extends JFrame {
       menuBar.add(helpMenu);
       setJMenuBar(menuBar);
    }
-
-   /**
-    * Attach the reactions on the interface components.
-    */
-   private void attachReactions() {
-      itemNew.addActionListener(new ItemListener(this));
-      itemSave.addActionListener(new ItemListener(this));
-      itemSaveAs.addActionListener(new ItemListener(this));
-      itemOpen.addActionListener(new ItemListener(this));
-      itemClear.addActionListener(new ItemListener(this));
-      itemQuit.addActionListener(new ItemListener(this));
-
-      itemManage.addActionListener(new ItemListener(this));
-      itemSaveProfiles.addActionListener(new ItemListener(this));
-      itemLoadProfiles.addActionListener(new ItemListener(this));
-
-      itemHelp.addActionListener(new ItemListener(this));
-      itemAbout.addActionListener(new ItemListener(this));
-
-      textArea.getDocument().addDocumentListener(new TextAreaListener(this));
-   }
-
 
    /**
     * Get panel.

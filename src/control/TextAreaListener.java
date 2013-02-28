@@ -1,7 +1,7 @@
 package control;
 
-import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import data.RWFile;
 import view.NfoView;
@@ -10,8 +10,16 @@ public class TextAreaListener implements DocumentListener {
 
    private NfoView theView;
 
-   public TextAreaListener(NfoView view) {
-      theView = view;
+   private static TextAreaListener selfRef;
+
+   public static TextAreaListener getInstance() {
+      if (selfRef == null)
+	       selfRef = new TextAreaListener();
+      return selfRef;
+   }
+
+   public TextAreaListener() {
+      theView = NfoView.getInstance();
    }
 
    public void changedUpdate(DocumentEvent e) { }

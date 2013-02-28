@@ -17,9 +17,9 @@ public abstract class CreationEvent {
    /**
     * Open and display a file, without asking for saving.
     * @param filePath Path of the file.
-    * @param theView NfoView instance, text will be displayed in its text area.
     */
-   public static void openSpecifiedFileCreation(String filePath, NfoView theView) {
+   public static void openSpecifiedFileCreation(String filePath) {
+      NfoView theView = NfoView.getInstance();
       JTextArea textArea = theView.getTextArea();
       File file;
       ArrayList<String> lineList;

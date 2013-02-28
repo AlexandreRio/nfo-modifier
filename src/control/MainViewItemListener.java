@@ -23,10 +23,12 @@ import view.ProfileManager;
  * @author Rio Alexandre
  * @version 0.1
  */
-public class ItemListener implements ActionListener {
+public class MainViewItemListener implements ActionListener {
 
    /** Frame containing the Component having listener. */
    private NfoView theView;
+
+   private static MainViewItemListener selfRef;
 
    /**
     * Text displayed if the text area is not empty and have to be cleared.
@@ -60,10 +62,20 @@ public class ItemListener implements ActionListener {
 
    /**
     * Create an ItemListener to handle events on the menu items.
-    * @param view Frame where the items are.
     */
-   public ItemListener(NfoView view) {
-      this.theView = view;
+   public MainViewItemListener() {
+      this.theView = NfoView.getInstance();
+   }
+
+   /**
+    * Get the instance of the listener, if it doesn't exist a new instance is
+    * created.
+    * @return The instance of the MainViewItemListener.
+    */
+   public static MainViewItemListener getInstance() {
+      if (selfRef == null)
+	       selfRef = new MainViewItemListener();
+      return selfRef;
    }
 
    public void actionPerformed(ActionEvent e) {
@@ -243,7 +255,7 @@ public class ItemListener implements ActionListener {
     */
    private void manageAction() {
       System.out.println("manage");
-      ProfileManager pm = new ProfileManager(theView);
+      ProfileManager.getInstance().setVisible(true);
    }
 
    /**
@@ -271,7 +283,7 @@ public class ItemListener implements ActionListener {
 
       if (write)
 	 System.out.println("write");
-//      ProfileList.writeData();
+      //      ProfileList.writeData();
    }
 
    /**

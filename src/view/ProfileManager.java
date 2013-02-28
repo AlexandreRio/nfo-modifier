@@ -15,6 +15,8 @@ public class ProfileManager extends JFrame {
 
    private static final long serialVersionUID = 42L;
 
+   private static ProfileManager selfref;
+
    /** Main Panel of the frame. */
    private JPanel mainPanel;
 
@@ -35,9 +37,8 @@ public class ProfileManager extends JFrame {
 
    /**
     * Create a new profile manager frame.
-    * @param view Parent view.
     */
-   public ProfileManager(JFrame view) {
+   public ProfileManager() {
       super("profile manager");
       this.createInterface();
       this.attachReactions();
@@ -47,8 +48,13 @@ public class ProfileManager extends JFrame {
 
       //this.pack();
       this.setSize(300,200);
-      this.setVisible(true);
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+   }
+
+   public static ProfileManager getInstance() {
+      if (selfref == null)
+	       selfref = new ProfileManager();
+      return selfref;
    }
 
    /**
