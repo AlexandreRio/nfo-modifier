@@ -1,3 +1,16 @@
+commit cfa7aedb103a111e2e82454c03ac836c89f2862e
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Fri Mar 22 23:10:23 2013 +0100
+
+    Update some GUI and add a spec file for packaging.
+
+commit 34ab26044636e3231294da6bf3ba165a080d3a2f
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Thu Feb 28 18:45:53 2013 +0100
+
+    Re-arrange the project to match the MVC (Model View Controller) pattern
+    specification, also implement Singleton pattern on classes.
+
 commit a7cdea6b9ea772b38eeabc6c5205a8c864afabe2
 Author: Alexandre Rio <orbital.project42@gmail.com>
 Date:   Wed Feb 13 11:11:08 2013 +0100

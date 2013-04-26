@@ -21,7 +21,7 @@ public class NfoModifier {
       NfoModifier nfo = new NfoModifier();
 
       if ( args.length == 1)
-	       CreationEvent.openSpecifiedFileCreation(args[0]);
+	 CreationEvent.openSpecifiedFileCreation(args[0]);
    }
 
    /**
@@ -46,16 +46,23 @@ public class NfoModifier {
       view.getItemClear().addActionListener(mainViewItemListener);
       view.getItemQuit().addActionListener(mainViewItemListener);
 
+      view.getItemCreateFromProfile().addActionListener(mainViewItemListener);
       view.getItemManage().addActionListener(mainViewItemListener);
-	    view.getItemSaveProfiles().addActionListener(mainViewItemListener);
-	    view.getItemLoadProfiles().addActionListener(mainViewItemListener);
+      view.getItemSaveProfiles().addActionListener(mainViewItemListener);
+      view.getItemLoadProfiles().addActionListener(mainViewItemListener);
 
-	    view.getItemHelp().addActionListener(mainViewItemListener);
-	    view.getItemAbout().addActionListener(mainViewItemListener);
+      view.getItemHelp().addActionListener(mainViewItemListener);
+      view.getItemAbout().addActionListener(mainViewItemListener);
 
-	    view.getTextArea().getDocument().addDocumentListener(textAreaListener);
+      view.getTextArea().getDocument().addDocumentListener(textAreaListener);
+
+      ProfileManagerButtonListener pmbl = ProfileManagerButtonListener.getInstance();
 
       ProfileManager profileManager = ProfileManager.getInstance();
+      profileManager.getCreateButton().addActionListener(pmbl);
+      profileManager.getEditButton().addActionListener(pmbl);
+      profileManager.getDeleteButton().addActionListener(pmbl);
+      profileManager.getCancelButton().addActionListener(pmbl);
 
       view.setVisible(true);
    }

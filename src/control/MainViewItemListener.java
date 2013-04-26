@@ -25,288 +25,306 @@ import view.ProfileManager;
  */
 public class MainViewItemListener implements ActionListener {
 
-   /** Frame containing the Component having listener. */
-   private NfoView theView;
+  /** Frame containing the Component having listener. */
+  private NfoView theView;
 
-   private static MainViewItemListener selfRef;
+  private static MainViewItemListener selfRef;
 
-   /**
-    * Text displayed if the text area is not empty and have to be cleared.
-    */
-   private static String confirmText = "<html><h3><b>Continue without saving"
-      + " ?</b></h3> <br />If you don't save, changes will be permanently"
-      + " lost.</html>";
+  /**
+   * Text displayed if the text area is not empty and have to be cleared.
+   */
+  private static String confirmText = "<html><h3><b>Continue without saving"
+    + " ?</b></h3> <br />If you don't save, changes will be permanently"
+    + " lost.</html>";
 
-   /**
-    * Text displayed if the file lines are longer than 80 columns ( this is
-    * deprecated).
-    */
-   private static String sizeWarningText = "<html><h2>Warning</h2><p>The text"
-      + " contains line longer than 80 columns, this is deprecated.</p></html>";
+  /**
+   * Text displayed if the file lines are longer than 80 columns ( this is
+   * deprecated).
+   */
+  private static String sizeWarningText = "<html><h2>Warning</h2><p>The text"
+    + " contains line longer than 80 columns, this is deprecated.</p></html>";
 
-   /**
-    * Text displayed in the about dialog, after clicking on about in the menu
-    * bar.
-    */
-   private static String aboutText = "<html><center><p><b>nfo-modifier</p></b><br \\>" +
-      "<p>0.1</p><br \\><p>nfo-modifier is a small and lightweiqht nfo editor written" +
-      " in Java</p><p>See the project page at <a href=''>www.github.com/AlexandreRio/" +
-      "nfo-modifier</a></p><br \\><p>This program comes with ABSOLUTELY NO WARRANTY" +
-      "</p></center></html>";
+  /**
+   * Text displayed in the about dialog, after clicking on about in the menu
+   * bar.
+   */
+  private static String aboutText = "<html><center><p><b>nfo-modifier</p></b><br \\>" +
+    "<p>0.1</p><br \\><p>nfo-modifier is a small and lightweiqht nfo editor written" +
+    " in Java</p><p>See the project page at <a href=''>www.github.com/AlexandreRio/" +
+    "nfo-modifier</a></p><br \\><p>This program comes with ABSOLUTELY NO WARRANTY" +
+    "</p></center></html>";
 
-   /**
-    * Text displayed in the help dialog, after clicking on help in the menu
-    * bar.
-    */
-   private static String helptext = "";
+  /**
+   * Text displayed in the help dialog, after clicking on help in the menu
+   * bar.
+   */
+  private static String helptext = "";
 
-   /**
-    * Create an ItemListener to handle events on the menu items.
-    */
-   public MainViewItemListener() {
-      this.theView = NfoView.getInstance();
-   }
+  /**
+   * Create an ItemListener to handle events on the menu items.
+   */
+  public MainViewItemListener() {
+    this.theView = NfoView.getInstance();
+  }
 
-   /**
-    * Get the instance of the listener, if it doesn't exist a new instance is
-    * created.
-    * @return The instance of the MainViewItemListener.
-    */
-   public static MainViewItemListener getInstance() {
-      if (selfRef == null)
-	       selfRef = new MainViewItemListener();
-      return selfRef;
-   }
+  /**
+   * Get the instance of the listener, if it doesn't exist a new instance is
+   * created.
+   * @return The instance of the MainViewItemListener.
+   */
+  public static MainViewItemListener getInstance() {
+    if (selfRef == null)
+      selfRef = new MainViewItemListener();
+    return selfRef;
+  }
 
-   public void actionPerformed(ActionEvent e) {
-      JMenuItem src = (JMenuItem) e.getSource();
-      if (src == theView.getItemNew())
-	 this.newAction();
-      else if (src == theView.getItemSave())
-	 this.saveAction();
-      else if ( src == theView.getItemSaveAs())
-	 this.saveAsAction();
-      else if ( src == theView.getItemOpen())
-	 this.openAction();
-      else if ( src == theView.getItemClear())
-	 this.clearAction();
-      else if ( src == theView.getItemQuit())
-	 this.quitAction();
-      else if ( src == theView.getItemManage())
-	 this.manageAction();
-      else if (src == theView.getItemSaveProfiles())
-	 this.saveProfilesAction();
-      else if (src == theView.getItemLoadProfiles())
-	 this.loadProfilesAction();
-      else if ( src == theView.getItemHelp())
-	 this.helpAction();
-      else if ( src == theView.getItemAbout())
-	 this.aboutAction();
-   }
+  public void actionPerformed(ActionEvent e) {
+    JMenuItem src = (JMenuItem) e.getSource();
+    if (src == theView.getItemNew())
+      this.newAction();
+    else if (src == theView.getItemSave())
+      this.saveAction();
+    else if ( src == theView.getItemSaveAs())
+      this.saveAsAction();
+    else if ( src == theView.getItemOpen())
+      this.openAction();
+    else if ( src == theView.getItemClear())
+      this.clearAction();
+    else if ( src == theView.getItemQuit())
+      this.quitAction();
+    else if ( src == theView.getItemCreateFromProfile())
+      this.createFromProfileAction();
+    else if ( src == theView.getItemCreateProfile())
+      this.createProfile();
+    else if ( src == theView.getItemManage())
+      this.manageAction();
+    else if (src == theView.getItemSaveProfiles())
+      this.saveProfilesAction();
+    else if (src == theView.getItemLoadProfiles())
+      this.loadProfilesAction();
+    else if ( src == theView.getItemHelp())
+      this.helpAction();
+    else if ( src == theView.getItemAbout())
+      this.aboutAction();
+  }
 
-   private void newAction() {
-      int confirm = JOptionPane.YES_OPTION;
-      JTextArea textArea = theView.getTextArea();
+  private void newAction() {
+    int confirm = JOptionPane.YES_OPTION;
+    JTextArea textArea = theView.getTextArea();
 
-      if (RWFile.getIsModified())
-	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+    if (RWFile.getIsModified())
+      confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
-      if (confirm == JOptionPane.YES_OPTION) {
-	 textArea.setText("");
-	 textArea.setColumns(80);
-	 theView.pack();
-	 RWFile.setCurrentFile(null);
-	 RWFile.setIsModified(false);
-	 theView.setTitle("Nfo-modifier");
-      }
-   }
+    if (confirm == JOptionPane.YES_OPTION) {
+      textArea.setText("");
+      textArea.setColumns(80);
+      theView.pack();
+      RWFile.setCurrentFile(null);
+      RWFile.setIsModified(false);
+      theView.setTitle("Nfo-modifier");
+    }
+  }
 
-   /**
-    * Write the content of the text area in the current file, if its not
-    * defined call saveAsAction()
-    */
-   private void saveAction() {
-      File file;
-      if (RWFile.getCurrentFile() == null)
-	 this.saveAsAction();
-      else {
-	 this.save();
-	 RWFile.setIsModified(false);
-	 file = new File(RWFile.getCurrentFile());
-	 theView.setTitle("Nfo-modifier : " + file.getName());
-      }
-   }
+  /**
+   * Write the content of the text area in the current file, if its not
+   * defined call saveAsAction()
+   */
+  private void saveAction() {
+    File file;
+    if (RWFile.getCurrentFile() == null)
+      this.saveAsAction();
+    else {
+      this.save();
+      RWFile.setIsModified(false);
+      file = new File(RWFile.getCurrentFile());
+      theView.setTitle("Nfo-modifier : " + file.getName());
+    }
+  }
 
-   /**
-    * Ask to choose the name of the file to save.
-    */
-   private void saveAsAction() {
-      File file = null;
-      JFileChooser chooser;
-      FileNameExtensionFilter filter;
-      int returnVal;
+  /**
+   * Ask to choose the name of the file to save.
+   */
+  private void saveAsAction() {
+    File file = null;
+    JFileChooser chooser;
+    FileNameExtensionFilter filter;
+    int returnVal;
 
+    chooser = new JFileChooser();
+    filter = new FileNameExtensionFilter("NFO Files", "nfo");
+    chooser.setFileFilter(filter);
+    returnVal = chooser.showOpenDialog(theView);
+    if(returnVal == JFileChooser.APPROVE_OPTION) {
+      file = chooser.getSelectedFile();
+      RWFile.setCurrentFile(file.getPath());
+      RWFile.setIsModified(false);
+      theView.setTitle("Nfo-modifier : " + file.getName());
+      this.save();
+    }
+
+  }
+
+  /**
+   * Write the content of the textArea in the currentFile.
+   */
+  private void save() {
+    String text;
+    String[] lines;
+    ArrayList<String> list;
+
+    if (RWFile.getCurrentFile() != null) {
+      list = new ArrayList<String>();
+      text = theView.getTextArea().getText();
+      lines = text.split("\n");
+      for (int i=0; i<lines.length; i++)
+        list.add(lines[i] + "\n");
+      RWFile.writeNfoFile(list, RWFile.getCurrentFile());
+    }
+  }
+
+  /**
+   * Open a file and display it, if a file is already displayed ask to confirm
+   * the action.
+   */
+  private void openAction() {
+    JFileChooser chooser;
+    FileNameExtensionFilter filter;
+    int returnVal;
+    ArrayList<String> lineList;
+    JTextArea textArea = theView.getTextArea();
+    int confirm = JOptionPane.YES_OPTION;
+    int longestLine = 0;
+
+    if (! textArea.getText().equals(""))
+      confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+
+    if (confirm == JOptionPane.YES_OPTION) {
+      textArea.setText("");
       chooser = new JFileChooser();
       filter = new FileNameExtensionFilter("NFO Files", "nfo");
       chooser.setFileFilter(filter);
       returnVal = chooser.showOpenDialog(theView);
       if(returnVal == JFileChooser.APPROVE_OPTION) {
-	 file = chooser.getSelectedFile();
-	 RWFile.setCurrentFile(file.getPath());
-	 RWFile.setIsModified(false);
-	 theView.setTitle("Nfo-modifier : " + file.getName());
-	 this.save();
+        lineList = RWFile.readNfoFile(chooser.getSelectedFile().getAbsolutePath());
+        for (String line : lineList) {
+          if (line.length() > longestLine)
+            longestLine = line.length();
+          textArea.append(line);
+        }
+        if (longestLine > 80) {
+          textArea.setColumns(longestLine);
+          theView.pack();
+          JOptionPane.showMessageDialog(theView, sizeWarningText);
+        }
+        RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
+        RWFile.setIsModified(false);
+        theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
       }
+    }
+  }
 
-   }
+  /**
+   * Clear the text area after confirmation if the text area is not empty.
+   */
+  private void clearAction() {
+    JTextArea textArea = theView.getTextArea();
+    int confirm = JOptionPane.YES_OPTION;
 
-   /**
-    * Write the content of the textArea in the currentFile.
-    */
-   private void save() {
-      String text;
-      String[] lines;
-      ArrayList<String> list;
+    if (RWFile.getIsModified())
+      confirm = JOptionPane.showConfirmDialog (theView, confirmText);
 
-      if (RWFile.getCurrentFile() != null) {
-	 list = new ArrayList<String>();
-	 text = theView.getTextArea().getText();
-	 lines = text.split("\n");
-	 for (int i=0; i<lines.length; i++)
-	    list.add(lines[i] + "\n");
-	 RWFile.writeNfoFile(list, RWFile.getCurrentFile());
+    if (confirm == JOptionPane.YES_OPTION) {
+      textArea.setText("");
+      RWFile.setIsModified(true);
+    }
+  }
+
+  /**
+   * Exit the application after confirmation if the text area is not empty.
+   */
+  private void quitAction() {
+    int confirm = JOptionPane.YES_OPTION;
+
+    if (RWFile.getIsModified())
+      confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+
+    if (confirm == JOptionPane.YES_OPTION) {
+      theView.dispose();
+      System.exit(0);
+    }
+  }
+
+  /**
+   *
+   */
+  private void createFromProfileAction() {
+    //TODO
+  }
+
+  /**
+   * Create a new profile from the current text area.
+   */
+  private void createProfile() {
+
+  }
+
+  /**
+   *
+   */
+  private void manageAction() {
+    System.out.println("manage");
+    ProfileManager.getInstance().setVisible(true);
+  }
+
+  /**
+   * Ask for a location for saving all the loaded profiles.
+   */
+  private void saveProfilesAction() {
+    System.out.println("save");
+    JFileChooser chooser;
+    FileNameExtensionFilter filter;
+    int returnVal;
+    boolean write = true;
+
+    if (ProfileList.getFile()==null) {
+      System.out.println("markup");
+      chooser = new JFileChooser();
+      filter = new FileNameExtensionFilter("Data Files", "data");
+      chooser.setFileFilter(filter);
+      returnVal = chooser.showOpenDialog(theView);
+      if(returnVal == JFileChooser.APPROVE_OPTION) {
+        ProfileList.setFile(chooser.getSelectedFile().getAbsolutePath());
       }
-   }
+      else
+        write = false;
+    }
 
-   /**
-    * Open a file and display it, if a file is already displayed ask to confirm
-    * the action.
-    */
-   private void openAction() {
-      JFileChooser chooser;
-      FileNameExtensionFilter filter;
-      int returnVal;
-      ArrayList<String> lineList;
-      JTextArea textArea = theView.getTextArea();
-      int confirm = JOptionPane.YES_OPTION;
-      int longestLine = 0;
+    if (write)
+      System.out.println("write");
+    //      ProfileList.writeData();
+  }
 
-      if (! textArea.getText().equals(""))
-	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
+  /**
+   * Load the profiles from the file choosen by the user.
+   */
+  private void loadProfilesAction() {
+    System.out.println("load");
+  }
 
-      if (confirm == JOptionPane.YES_OPTION) {
-	 textArea.setText("");
-	 chooser = new JFileChooser();
-	 filter = new FileNameExtensionFilter("NFO Files", "nfo");
-	 chooser.setFileFilter(filter);
-	 returnVal = chooser.showOpenDialog(theView);
-	 if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    lineList = RWFile.readNfoFile(chooser.getSelectedFile().getAbsolutePath());
-	    for (String line : lineList) {
-	       if (line.length() > longestLine)
-		  longestLine = line.length();
-	       textArea.append(line);
-	    }
-	    if (longestLine > 80) {
-	       textArea.setColumns(longestLine);
-	       theView.pack();
-	       JOptionPane.showMessageDialog(theView, sizeWarningText);
-	    }
-	    RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
-	    RWFile.setIsModified(false);
-	    theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
-	 }
-      }
-   }
+  /**
+   * Display help window.
+   */
+  private void helpAction() {
+    System.out.println("Help action");
+  }
 
-   /**
-    * Clear the text area after confirmation if the text area is not empty.
-    */
-   private void clearAction() {
-      JTextArea textArea = theView.getTextArea();
-      int confirm = JOptionPane.YES_OPTION;
-
-      if (RWFile.getIsModified())
-	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
-
-      if (confirm == JOptionPane.YES_OPTION) {
-	 textArea.setText("");
-	 RWFile.setIsModified(true);
-      }
-   }
-
-   /**
-    * Exit the application after confirmation if the text area is not empty.
-    */
-   private void quitAction() {
-      int confirm = JOptionPane.YES_OPTION;
-
-      if (RWFile.getIsModified())
-	 confirm = JOptionPane.showConfirmDialog (theView, confirmText);
-
-      if (confirm == JOptionPane.YES_OPTION) {
-	 theView.dispose();
-	 System.exit(0);
-      }
-   }
-
-   /**
-    *
-    */
-   private void manageAction() {
-      System.out.println("manage");
-      ProfileManager.getInstance().setVisible(true);
-   }
-
-   /**
-    *
-    */
-   private void saveProfilesAction() {
-      System.out.println("save");
-      JFileChooser chooser;
-      FileNameExtensionFilter filter;
-      int returnVal;
-      boolean write = true;
-
-      if (ProfileList.getFile()==null) {
-	 System.out.println("markup");
-	 chooser = new JFileChooser();
-	 filter = new FileNameExtensionFilter("Data Files", "data");
-	 chooser.setFileFilter(filter);
-	 returnVal = chooser.showOpenDialog(theView);
-	 if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    ProfileList.setFile(chooser.getSelectedFile().getAbsolutePath());
-	 }
-	 else
-	    write = false;
-      }
-
-      if (write)
-	 System.out.println("write");
-      //      ProfileList.writeData();
-   }
-
-   /**
-    *
-    */
-   private void loadProfilesAction() {
-      System.out.println("load");
-   }
-
-   /**
-    * Display help window.
-    */
-   private void helpAction() {
-      System.out.println("Help action");
-   }
-
-   /**
-    * Display about window.
-    */
-   private void aboutAction() {
-      JPanel aboutPanel = new JPanel();
-      JLabel aboutLabel = new JLabel(aboutText);
-      aboutPanel.add(aboutLabel);
-      JOptionPane.showMessageDialog(theView,aboutPanel);
-   }
+  /**
+   * Display about window.
+   */
+  private void aboutAction() {
+    JPanel aboutPanel = new JPanel();
+    JLabel aboutLabel = new JLabel(aboutText);
+    aboutPanel.add(aboutLabel);
+    JOptionPane.showMessageDialog(theView,aboutPanel);
+  }
 }

@@ -1,145 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="nfo-modifier" default="help" basedir="." >
 
-   <property name="src" location="src"/>
-   <property name="build" location="build"/>
-   <property name="classes" location="build/classes"/>
-   <property name="doc" location="doc"/>
-   <property name="lib" location="lib"/>
-   <property name="res" location="res"/>
-   <property name="txt" location="res/text"/>
-   <property name="nfo" location="res/nfo"/>
-   <property name="out" location="res/out"/>
-   <property name="save" location="res/save"/>
-   <property name="reports" location="build/reports"/>
-   <property name="reportsHtml" location="build/reports/html"/>
-   <property name="launchClass" value="control.NfoModifier"/>
-   <property name="launchName" value="nfo-modifier"/>
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="classes" location="build/classes"/>
+  <property name="doc" location="doc"/>
+  <property name="lib" location="lib"/>
+  <property name="res" location="res"/>
+  <property name="txt" location="res/text"/>
+  <property name="nfo" location="res/nfo"/>
+  <property name="out" location="res/out"/>
+  <property name="save" location="res/save"/>
+  <property name="reports" location="build/reports"/>
+  <property name="reportsHtml" location="build/reports/html"/>
+  <property name="launchClass" value="control.NfoModifier"/>
+  <property name="launchName" value="nfo-modifier"/>
 
-   <path id="classpath">
-      <pathelement location="${classes}" />
-      <pathelement location="${lib}" />
-   </path>
+  <path id="classpath">
+    <pathelement location="${classes}" />
+    <pathelement location="${lib}" />
+  </path>
 
-   <target name="help">
-      <echo>Usage :
-	 * ant run Launch the application.
-	 * ant compile Build the application.
-	 * ant clean Remove all the compiled files.
-	 * ant -p Display a list of all the available tasks.
-      </echo>
-   </target>
+  <target name="help">
+    <echo>Usage :
+      * ant run Launch the application.
+      * ant compile Build the application.
+      * ant clean Remove all the compiled files.
+      * ant -p Display a list of all the available tasks.
+    </echo>
+  </target>
 
-   <target name="init" description="Creates all directories." >
-      <tstamp/>
-      <mkdir dir="${src}"/>
-      <mkdir dir="${build}"/>
-      <mkdir dir="${classes}"/>
-      <mkdir dir="${doc}"/>
-      <mkdir dir="${lib}"/>
-      <mkdir dir="${res}"/>
-      <mkdir dir="${txt}"/>
-      <mkdir dir="${nfo}"/>
-      <mkdir dir="${out}"/>
-      <mkdir dir="${save}"/>
-      <mkdir dir="${reports}"/>
-      <mkdir dir="${reportsHtml}"/>
-   </target>
+  <target name="init" description="Creates all directories." >
+    <tstamp/>
+    <mkdir dir="${src}"/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${doc}"/>
+    <mkdir dir="${lib}"/>
+    <mkdir dir="${res}"/>
+    <mkdir dir="${txt}"/>
+    <mkdir dir="${nfo}"/>
+    <mkdir dir="${out}"/>
+    <mkdir dir="${save}"/>
+    <mkdir dir="${reports}"/>
+    <mkdir dir="${reportsHtml}"/>
+  </target>
 
-   <target depends="init" name="compile" description="Compiles all the sources." >
-      <javac source="1.7"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
-	 <classpath refid="classpath"/>
-	 <src path="${src}"/>
-      </javac>
-   </target>
+  <target depends="init" name="compile" description="Compiles all the sources." >
+    <javac source="1.7"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
+      <classpath refid="classpath"/>
+      <src path="${src}"/>
+    </javac>
+  </target>
 
-   <target name="run" depends="jar" description="Executes nfo-modifier." >
-      <java jar="${build}/${launchName}.jar" fork="true">
-	 <!--<classpath refid="classpath"/>-->
-      </java>
-   </target>
+  <target name="run" depends="jar" description="Executes nfo-modifier." >
+    <java jar="${build}/${launchName}.jar" fork="true">
+      <!--<classpath refid="classpath"/>-->
+    </java>
+  </target>
 
-   <target name="jar" depends="compile" description="Creates an executable .jar" >
-      <jar destfile="${build}/${launchName}.jar">
-	 <manifest>
-	    <attribute name="Main-Class" value="${launchClass}"/>
-	 </manifest>
-	 <fileset dir="${classes}">
-	    <include name="**/*.class"/>
-	 </fileset>
-	 <fileset dir=".">
-	    <include name="${lib}/**/*.jar"/>
-	    <include name="**/*.txt"/>
-	    <include name="**/*.nfo"/>
-	    <include name="**/*.jpg"/>
-	    <include name="**/*.png"/>
-	    <include name="**/*.data"/>
-	 </fileset>
-      </jar>
-   </target>
+  <target name="jar" depends="compile" description="Creates an executable .jar" >
+    <jar destfile="${build}/${launchName}.jar">
+      <manifest>
+        <attribute name="Main-Class" value="${launchClass}"/>
+      </manifest>
+      <fileset dir="${classes}">
+        <include name="**/*.class"/>
+      </fileset>
+      <fileset dir=".">
+        <include name="${lib}/**/*.jar"/>
+        <include name="**/*.txt"/>
+        <include name="**/*.nfo"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.png"/>
+        <include name="**/*.data"/>
+      </fileset>
+    </jar>
+  </target>
 
-   <target name="doc" depends="compile" description="Build JavaDoc documentation." >
-      <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
-	 <fileset dir="${src}" defaultexcludes="yes">
-	    <exclude name="**/.*.sw*, #*#, .*, *Test*.java"/>
-	    <include name="**/*.java"/>
-	 </fileset>
-	 <classpath refid="classpath"/>
-      </javadoc>
-   </target>
+  <target name="doc" depends="compile" description="Build JavaDoc documentation." >
+    <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
+      <fileset dir="${src}" defaultexcludes="yes">
+        <exclude name="**/.*.sw*, #*#, .*, *Test*.java"/>
+        <include name="**/*.java"/>
+      </fileset>
+      <classpath refid="classpath"/>
+    </javadoc>
+  </target>
 
-   <target name="distrib" depends="jar" description="Creates distribution archive." >
-      <tar tarfile="${build}/${launchName}.tgz" compression="gzip">
-	 <tarfileset dir="${build}">
-	    <include name="${launchName}.jar"/>
-	 </tarfileset>
-	 <tarfileset dir=".">
-	    <include name="${res}/**"/>
-	    <include name="${build}/*.jar"/>
-	    <include name="${doc}"/>
-	    <include name="${reports}/**"/>
-	    <include name="${src}/**"/>
-	    <include name="${lib}/**"/>
-
-	    <exclude name="${src}/**/*.swp"/>
-	    <exclude name="${src}/**/*~"/>
-	 </tarfileset>
+  <target name="distrib" depends="clean, jar, doc" description="Creates distribution archive." >
+    <tar destfile="${build}/${launchName}.tgz" compression="gzip">
+      <tarfileset dir="${res}">
+        <include name="**"/>
+      </tarfileset>
+      <tarfileset dir="${doc}">
+        <include name="**"/>
+      </tarfileset>
+      <tarfileset dir="${reports}">
+        <include name="**"/>
+      </tarfileset>
+      <tarfileset dir="${lib}">
+        <include name="**"/>
+      </tarfileset>
+      <tarfileset dir="${build}">
+        <include name="${classes}/**"/>
+      </tarfileset>
+      <tarfileset dir="${build}">
+        <include name="*.jar"/>
+      </tarfileset>
+    </tar>
+    <tar destfile="${build}/${launchName}-src.tgz" compression="gzip" >
+        <tarfileset dir="${res}" prefix="res">
+          <include name="**"/>
+        </tarfileset>
+        <tarfileset dir="${doc}" prefix="doc">
+          <include name="**"/>
+        </tarfileset>
+        <tarfileset dir="${reports}">
+          <include name="**"/>
+        </tarfileset>
+        <tarfileset dir="${lib}" prefix="lib">
+          <include name="**"/>
+        </tarfileset>
+        <tarfileset dir="${src}" prefix="src">
+          <include name="**"/>
+          <exclude name="**/*.swp"/>
+          <exclude name="**/*~"/>
+        </tarfileset>
       </tar>
-   </target>
+    </target>
 
-   <target name="nbLines" description="Displays the number of code lines.">
+    <target name="nbLines" description="Displays the number of code lines.">
       <echo>Number of code lines in ${ant.project.name} :</echo>
       <exec executable="bash">
-	 <arg value="-c"/>
-	 <arg value="cat ${src}/**/*.java | wc -l"/>
+        <arg value="-c"/>
+        <arg value="find ${src} -name *.java | xargs wc -l"/>
       </exec>
-   </target>
+    </target>
 
-   <target name="clean" description="Clean the compiled classes directory.">
-      <delete dir="${classes}" includes="**/*.class"/>
-      <delete dir="${build}" includes="**/*.jar"/>
-      <delete dir="${doc}" includes="**/*.html"/>
-   </target>
+    <target name="clean" description="Clean the compiled classes directory.">
+      <delete dir="${build}"/>
+      <delete dir="${doc}"/>
 
-   <target name="cleanReports" description="Clean the reports directory.">
+      <mkdir dir="${doc}"/>
+      <mkdir dir="${build}"/>
+      <mkdir dir="${classes}"/>
+    </target>
+
+    <target name="cleanReports" description="Clean the reports directory.">
       <delete dir="${reportsHtml}" includes="**/*.html"/>
       <delete dir="${reports}" includes="*.xml"/>
-   </target>
+    </target>
 
-   <target name="JUnitTest" depends="compile" description="Run the junit test classes.">
+    <target name="JUnitTest" depends="compile" description="Run the junit test classes.">
       <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes">
-	 <classpath refid="classpath"/>
-	 <formatter type="xml"/>
-	 <batchtest fork="yes" todir="${reports}">
-	    <fileset dir="${src}" includes="${src}/**/*Test.java"/>
-	 </batchtest>
+        <classpath refid="classpath"/>
+        <formatter type="xml"/>
+        <batchtest fork="yes" todir="${reports}">
+          <fileset dir="${src}" includes="${src}/**/*Test.java"/>
+        </batchtest>
       </junit>
 
       <junitreport todir="${reports}">
-	 <fileset dir="${reports}">
-	    <include name="TEST-*.xml"/>
-	 </fileset>
-	 <report format="frames" todir="${reportsHtml}"/>
+        <fileset dir="${reports}">
+          <include name="TEST-*.xml"/>
+        </fileset>
+        <report format="frames" todir="${reportsHtml}"/>
       </junitreport>
-   </target>
-</project>
+    </target>
+  </project>

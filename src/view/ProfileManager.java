@@ -13,83 +13,144 @@ import java.awt.Dimension;
 
 public class ProfileManager extends JFrame {
 
-   private static final long serialVersionUID = 42L;
+  private static final long serialVersionUID = 42L;
 
-   private static ProfileManager selfref;
+  private static ProfileManager selfref;
 
-   /** Main Panel of the frame. */
-   private JPanel mainPanel;
+  /** Main Panel of the frame. */
+  private JPanel mainPanel;
 
-   /** List of all the saved profile. */
-   private JComboBox profileList;
+  /** List of all the saved profile. */
+  private JComboBox profileList;
 
-   /** Panel of the bottom buttons. */
-   private JPanel buttonPanel;
+  /** Panel of the bottom buttons. */
+  private JPanel buttonPanel;
 
-   /** Edit button in the button panel. */
-   private JButton editButton;
+  /** Create a new NFO from a profile. */
+  private JButton createButton;
 
-   /** Delete button in the button panel. */
-   private JButton deleteButton;
+  /** Edit button in the button panel. */
+  private JButton editButton;
 
-   /** Cancel button in the button panel. */
-   private JButton cancelButton;
+  /** Delete button in the button panel. */
+  private JButton deleteButton;
 
-   /**
-    * Create a new profile manager frame.
-    */
-   public ProfileManager() {
-      super("profile manager");
-      this.createInterface();
-      this.attachReactions();
+  /** Cancel button in the button panel. */
+  private JButton cancelButton;
 
-      ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
-      this.setIconImage(img.getImage());
+  /**
+   * Create a new profile manager frame.
+   */
+  public ProfileManager()
+  {
+    super("Nfo-modifier : profile manager");
+    this.createInterface();
 
-      //this.pack();
-      this.setSize(300,200);
-      this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-   }
+    ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
+    this.setIconImage(img.getImage());
 
-   public static ProfileManager getInstance() {
-      if (selfref == null)
-	       selfref = new ProfileManager();
-      return selfref;
-   }
+    this.setSize(500,200);
+    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+  }
 
-   /**
-    * Create the graphical interface.
-    */
-   private void createInterface() {
-      this.mainPanel = new JPanel();
-      this.mainPanel.setLayout(new BoxLayout(this.mainPanel, BoxLayout.Y_AXIS));
+  public static ProfileManager getInstance()
+  {
+    if (selfref == null)
+      selfref = new ProfileManager();
+    return selfref;
+  }
+
+  /**
+   * Create the graphical interface.
+   */
+  private void createInterface()
+  {
+    this.mainPanel = new JPanel();
+    this.mainPanel.setLayout(new BoxLayout(this.mainPanel, BoxLayout.Y_AXIS));
 
 
-      profileList = new JComboBox();
+    profileList = new JComboBox();
 
-      buttonPanel = new JPanel();
-      buttonPanel.setLayout(new GridLayout(0,3));
+    buttonPanel = new JPanel();
+    buttonPanel.setLayout(new GridLayout(0,4));
 
-      editButton = new JButton("Edit");
-      deleteButton = new JButton("Delete");
-      cancelButton = new JButton("Cancel");
+    createButton = new JButton("Create NFO");
+    editButton   = new JButton("Edit");
+    deleteButton = new JButton("Delete");
+    cancelButton = new JButton("Cancel");
 
-      buttonPanel.add(editButton);
-      buttonPanel.add(deleteButton);
-      buttonPanel.add(cancelButton);
+    buttonPanel.add(createButton);
+    buttonPanel.add(editButton);
+    buttonPanel.add(deleteButton);
+    buttonPanel.add(cancelButton);
 
-      this.profileList.setMaximumSize(new Dimension(250,35));
-      this.buttonPanel.setMaximumSize(new Dimension(250,35));
-      this.mainPanel.add(Box.createVerticalStrut(30));
-      this.mainPanel.add(profileList, this.mainPanel.CENTER_ALIGNMENT);
-      this.mainPanel.add(Box.createVerticalStrut(30));
-      this.mainPanel.add(buttonPanel, this.mainPanel.CENTER_ALIGNMENT);
-      this.add(mainPanel);
-   }
+    this.profileList.setMaximumSize(new Dimension(250,35));
+    this.buttonPanel.setMaximumSize(new Dimension(480,35));
+    this.mainPanel.add(Box.createVerticalStrut(30));
+    this.mainPanel.add(profileList, this.mainPanel.CENTER_ALIGNMENT);
+    this.mainPanel.add(Box.createVerticalStrut(30));
+    this.mainPanel.add(buttonPanel, this.mainPanel.CENTER_ALIGNMENT);
+    this.add(mainPanel);
+  }
 
-   /**
-    * Attach the reactions on the interface components.
-    */
-   private void attachReactions() {
-   }
+
+  /**
+   * Get profileList.
+   *
+   * @return profileList as JComboBox.
+   */
+  public JComboBox getProfileList()
+  {
+    return profileList;
+  }
+
+  /**
+   * Get buttonPanel.
+   *
+   * @return buttonPanel as JPanel.
+   */
+  public JPanel getButtonPanel()
+  {
+    return buttonPanel;
+  }
+
+  /**
+   * Get createButton.
+   *
+   * @return createButton as JButton.
+   */
+  public JButton getCreateButton()
+  {
+    return createButton;
+  }
+
+  /**
+   * Get editButton.
+   *
+   * @return editButton as JButton.
+   */
+  public JButton getEditButton()
+  {
+    return editButton;
+  }
+
+  /**
+   * Get deleteButton.
+   *
+   * @return deleteButton as JButton.
+   */
+  public JButton getDeleteButton()
+  {
+    return deleteButton;
+  }
+
+  /**
+   * Get cancelButton.
+   *
+   * @return cancelButton as JButton.
+   */
+  public JButton getCancelButton()
+  {
+    return cancelButton;
+  }
 }
