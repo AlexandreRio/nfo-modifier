@@ -18,8 +18,11 @@ import javax.swing.text.StyleConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.WindowListener;
 
 import view.TextLineNumber;
+
+import control.CloseWindowListener;
 
 public class NfoView extends JFrame {
 
@@ -104,7 +107,9 @@ public class NfoView extends JFrame {
 
     this.pack();
     this.setVisible(true);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    WindowListener exitListener = new CloseWindowListener();
+    this.addWindowListener(exitListener);
   }
 
   /**
@@ -150,7 +155,7 @@ public class NfoView extends JFrame {
     fileMenu.add(new JSeparator());
     fileMenu.add(itemQuit);
 
-    itemCreateFromProfile = new JMenuItem("Create nfo from Profile");
+    itemCreateFromProfile = new JMenuItem("Create profile");
     itemCreateProfile     = new JMenuItem("Create profile");
     itemManage            = new JMenuItem("Manage");
     itemSaveProfiles      = new JMenuItem("Save Profiles");
@@ -636,7 +641,7 @@ public class NfoView extends JFrame {
    */
   public JMenuItem getItemCreateProfile()
   {
-      return itemCreateProfile;
+    return itemCreateProfile;
   }
 
   /**
@@ -646,6 +651,6 @@ public class NfoView extends JFrame {
    */
   public void setItemCreateProfile(JMenuItem itemCreateProfile)
   {
-      this.itemCreateProfile = itemCreateProfile;
+    this.itemCreateProfile = itemCreateProfile;
   }
 }

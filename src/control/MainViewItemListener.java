@@ -242,7 +242,7 @@ public class MainViewItemListener implements ActionListener {
   /**
    * Exit the application after confirmation if the text area is not empty.
    */
-  private void quitAction() {
+  public void quitAction() {
     int confirm = JOptionPane.YES_OPTION;
 
     if (RWFile.getIsModified())
