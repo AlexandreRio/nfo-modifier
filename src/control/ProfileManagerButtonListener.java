@@ -58,7 +58,6 @@ public class ProfileManagerButtonListener implements ActionListener {
    * Create a new NFO from a profile.
    */
   private void createAction() {
-    System.out.println("create");
     ProfileManager.getInstance().setVisible(false);
     ProfileCreationView.getInstance().setVisible(true);
   }
@@ -68,7 +67,6 @@ public class ProfileManagerButtonListener implements ActionListener {
    * list.
    */
   private void cancelAction() {
-    //TODO: see if something have to be reset
     theView.setVisible(false);
   }
 
