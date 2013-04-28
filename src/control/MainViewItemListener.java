@@ -17,6 +17,7 @@ import data.RWFile;
 import data.ProfileList;
 import view.NfoView;
 import view.ProfileManager;
+import view.ProfileCreationView;
 
 /**
  * Handle menu item reactions.
@@ -92,8 +93,6 @@ public class MainViewItemListener implements ActionListener {
       this.clearAction();
     else if ( src == theView.getItemQuit())
       this.quitAction();
-    else if ( src == theView.getItemCreateFromProfile())
-      this.createFromProfileAction();
     else if ( src == theView.getItemCreateProfile())
       this.createProfile();
     else if ( src == theView.getItemManage())
@@ -258,14 +257,14 @@ public class MainViewItemListener implements ActionListener {
    *
    */
   private void createFromProfileAction() {
-    //TODO
+
   }
 
   /**
    * Create a new profile from the current text area.
    */
   private void createProfile() {
-
+    ProfileCreationView.getInstance().setVisible(true);
   }
 
   /**

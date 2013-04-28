@@ -59,7 +59,7 @@ public class ProfileManagerButtonListener implements ActionListener {
    */
   private void createAction() {
     ProfileManager.getInstance().setVisible(false);
-    ProfileCreationView.getInstance().setVisible(true);
+    //TODO fill main text editor area with template.
   }
 
   /**
@@ -77,6 +77,7 @@ public class ProfileManagerButtonListener implements ActionListener {
     System.out.println("edit action");
     ProfileManager.getInstance().setVisible(false);
     ProfileCreationView.getInstance().setVisible(true);
+    ProfileCreationView.getInstance().getProfileNameField().setEditable(false);
     //TODO: fill the profile creation form
   }
 

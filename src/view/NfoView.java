@@ -61,8 +61,6 @@ public class NfoView extends JFrame {
   // Profile menu
   /** Profile menu in the menu bar. */
   private JMenu profileMenu;
-  /** Create file item in the profile menu. */
-  private JMenuItem itemCreateFromProfile;
   /** Create a new profile from current text area. */
   private JMenuItem itemCreateProfile;
   /** Manage item in the profile menu. */
@@ -155,12 +153,11 @@ public class NfoView extends JFrame {
     fileMenu.add(new JSeparator());
     fileMenu.add(itemQuit);
 
-    itemCreateFromProfile = new JMenuItem("Create profile");
     itemCreateProfile     = new JMenuItem("Create profile");
     itemManage            = new JMenuItem("Manage");
     itemSaveProfiles      = new JMenuItem("Save Profiles");
     itemLoadProfiles      = new JMenuItem("Load Profiles");
-    profileMenu.add(itemCreateFromProfile);
+    profileMenu.add(itemCreateProfile);
     profileMenu.add(new JSeparator());
     profileMenu.add(itemManage);
     profileMenu.add(new JSeparator());
@@ -415,23 +412,23 @@ public class NfoView extends JFrame {
   }
 
   /**
-   * Get itemCreateFromProfile.
+   * Get itemCreateProfile.
    *
-   * @return itemCreateFromProfile as JMenuItem.
+   * @return itemCreateProfile as JMenuItem.
    */
-  public JMenuItem getItemCreateFromProfile()
+  public JMenuItem getItemCreateProfile()
   {
-    return itemCreateFromProfile;
+    return itemCreateProfile;
   }
 
   /**
-   * Set itemCreateFromProfile.
+   * Set itemCreateProfile.
    *
-   * @param itemCreateFromProfile the value to set.
+   * @param itemCreateProfile the value to set.
    */
-  public void setItemCreateFromProfile(JMenuItem itemCreateFromProfile)
+  public void setItemCreateProfile(JMenuItem itemCreateProfile)
   {
-    this.itemCreateFromProfile = itemCreateFromProfile;
+    this.itemCreateProfile = itemCreateProfile;
   }
 
   /**
@@ -634,23 +631,4 @@ public class NfoView extends JFrame {
     this.previewButton = previewButton;
   }
 
-  /**
-   * Get itemCreateProfile.
-   *
-   * @return itemCreateProfile as JMenuItem.
-   */
-  public JMenuItem getItemCreateProfile()
-  {
-    return itemCreateProfile;
-  }
-
-  /**
-   * Set itemCreateProfile.
-   *
-   * @param itemCreateProfile the value to set.
-   */
-  public void setItemCreateProfile(JMenuItem itemCreateProfile)
-  {
-    this.itemCreateProfile = itemCreateProfile;
-  }
 }

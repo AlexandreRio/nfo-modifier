@@ -4,6 +4,7 @@ import javax.swing.event.DocumentListener;
 
 import view.NfoView;
 import view.ProfileManager;
+import view.ProfileCreationView;
 
 /**
  * Main controller of the application, create the view, the controller and
@@ -46,7 +47,7 @@ public class NfoModifier {
       view.getItemClear().addActionListener(mainViewItemListener);
       view.getItemQuit().addActionListener(mainViewItemListener);
 
-      view.getItemCreateFromProfile().addActionListener(mainViewItemListener);
+      view.getItemCreateProfile().addActionListener(mainViewItemListener);
       view.getItemManage().addActionListener(mainViewItemListener);
       view.getItemSaveProfiles().addActionListener(mainViewItemListener);
       view.getItemLoadProfiles().addActionListener(mainViewItemListener);
@@ -63,6 +64,12 @@ public class NfoModifier {
       profileManager.getEditButton().addActionListener(pmbl);
       profileManager.getDeleteButton().addActionListener(pmbl);
       profileManager.getCancelButton().addActionListener(pmbl);
+
+      ProfileCreationButtonListener pcbl = ProfileCreationButtonListener.getInstance();
+
+      ProfileCreationView profileCreation = ProfileCreationView.getInstance();
+      profileCreation.getValidateButton().addActionListener(pcbl);
+      profileCreation.getCancelButton().addActionListener(pcbl);
 
       view.setVisible(true);
    }

@@ -35,9 +35,6 @@ public abstract class ProfileList implements Serializable {
    * launch it creates an empty save file otherwise it loads the saved data.
    */
   public ProfileList() {
-    System.out.println("Creation of the profile list.");
-    profileList = new ArrayList<Profile>();
-    saveFileLocation = null;
   }
 
   /**
