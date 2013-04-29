@@ -55,6 +55,20 @@ public abstract class ProfileList implements Serializable {
     return null;
   }
 
+  /**
+   * Check the list contains a profile with the given name.
+   *
+   * @param profileName Name of the profile to look for.
+   * @return True if the profile name already exists in the list.
+   */
+  public static boolean contains(String profileName) {
+    for (Profile profile : profileList) {
+      if (profileName.equals(profile.getProfileName()) )
+        return true;
+    }
+    return false;
+  }
+
   public static boolean removeItem(Object item) {
     return profileList.remove(item);
   }

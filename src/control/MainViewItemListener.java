@@ -264,6 +264,7 @@ public class MainViewItemListener implements ActionListener {
    * Create a new profile from the current text area.
    */
   private void createProfile() {
+    ProfileCreationView.getInstance().getProfileNameField().setEditable(true);
     ProfileCreationView.getInstance().setVisible(true);
   }
 

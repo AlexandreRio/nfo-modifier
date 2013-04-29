@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
-import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;

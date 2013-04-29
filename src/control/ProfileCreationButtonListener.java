@@ -1,11 +1,14 @@
 package control;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import view.ProfileCreationView;
+
+import data.ProfileList;
 
 /**
  * Handle profile creation button reaction.
@@ -18,6 +21,10 @@ public class ProfileCreationButtonListener implements ActionListener {
   private ProfileCreationView theView;
 
   private static ProfileCreationButtonListener selfRef;
+
+  /** Text displayed if the profile name is already used by a different profile. */
+  private static String NAME_TAKEN_MESSAGE = "<html><h2>Warning</h2>This name" +
+    " is already used by another profile, please use a different one.</html>";
 
   /**
    * Default constructor.
@@ -51,8 +58,13 @@ public class ProfileCreationButtonListener implements ActionListener {
     String body   = theView.getBodyArea().getText();
     String border = theView.getBorderArea().getText();
     String footer = theView.getFooterArea().getText();
-    theView.setVisible(false);
-    System.out.println(name + header + body + border + footer);
+    if (ProfileList.contains(name) && !theView.getProfileNameField().isEditable()) {
+      JOptionPane.showMessageDialog(theView, NAME_TAKEN_MESSAGE);
+    }
+    else {
+      System.out.println(name + header + body + border + footer);
+      theView.setVisible(false);
+    }
   }
 
   private void cancelAction() {
