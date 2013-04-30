@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import view.ProfileCreationView;
 
 import data.ProfileList;
+import data.Profile;
 
 /**
  * Handle profile creation button reaction.
@@ -58,11 +59,24 @@ public class ProfileCreationButtonListener implements ActionListener {
     String body   = theView.getBodyArea().getText();
     String border = theView.getBorderArea().getText();
     String footer = theView.getFooterArea().getText();
-    if (ProfileList.contains(name) && !theView.getProfileNameField().isEditable()) {
+    if (ProfileList.contains(name) != -1 && theView.getProfileNameField().
+        isEditable()) { // Creation with taken name
       JOptionPane.showMessageDialog(theView, NAME_TAKEN_MESSAGE);
     }
     else {
       System.out.println(name + header + body + border + footer);
+      Profile profile = new Profile(name, header, body, border, footer);
+
+      if (theView.getProfileNameField().isEditable())
+        ProfileList.add(profile);
+      else
+        ProfileList.update(profile);
+
+      theView.getProfileNameField().setText("");
+      theView.getHeaderArea().setText("");
+      theView.getBodyArea().setText("");
+      theView.getBorderArea().setText("");
+      theView.getFooterArea().setText("");
       theView.setVisible(false);
     }
   }

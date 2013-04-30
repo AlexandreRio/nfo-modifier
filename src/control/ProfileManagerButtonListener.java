@@ -74,18 +74,25 @@ public class ProfileManagerButtonListener implements ActionListener {
    * Edit action
    */
   private void editAction() {
-    System.out.println("edit action");
-    ProfileManager.getInstance().setVisible(false);
-    ProfileCreationView.getInstance().setVisible(true);
-    ProfileCreationView.getInstance().getProfileNameField().setEditable(false);
-    //TODO: fill the profile creation form
+    ProfileCreationView creationView = ProfileCreationView.getInstance();
+    int index = theView.getProfileList().getSelectedIndex();
+    if (index != -1) {
+      ProfileManager.getInstance().setVisible(false);
+      Profile profile = (Profile) theView.getProfileList().getItemAt(index);
+      creationView.getProfileNameField().setEditable(false);
+      creationView.getProfileNameField().setText(profile.getProfileName());
+      creationView.getHeaderArea().setText(profile.getHeader());
+      creationView.getBodyArea().setText(profile.getBody());
+      creationView.getBorderArea().setText(profile.getBorder());
+      creationView.getFooterArea().setText(profile.getFooter());
+      creationView.setVisible(true);
+    }
   }
 
   /**
    * Delete action, remove the selected profile from the list.
    */
   private void deleteAction() {
-    System.out.println("delete action");
     Profile profile;
     JComboBox jCombo = ProfileManager.getInstance().getProfileList();
     int index = jCombo.getSelectedIndex();

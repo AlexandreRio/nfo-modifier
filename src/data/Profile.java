@@ -24,19 +24,24 @@ public class Profile implements Serializable {
   /**
    * Create a profile
    *
+   * @param name Name of the profile.
    * @param header Header of the file.
    * @param body Body of the file.
    * @param border Border of the file.
    * @param footer Footer of the file.
    */
-  public Profile (String header, String body, String border, String footer) {
-    this.header = header;
-    this.body   = body;
-    this.border = border;
-    this.footer = footer;
+  public Profile (String name, String header, String body, String border, String footer) {
+    this.profileName = name;
+    this.header      = header;
+    this.body        = body;
+    this.border      = border;
+    this.footer      = footer;
   }
 
-
+  @Override
+  public String toString() {
+    return this.profileName;
+  }
 
   /**
    * Get profileName.
@@ -46,6 +51,16 @@ public class Profile implements Serializable {
   public String getProfileName()
   {
     return profileName;
+  }
+
+  /**
+   * Get body.
+   *
+   * @return body as String.
+   */
+  public String getBody()
+  {
+    return body;
   }
 
   /**

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JFileChooser;
+import javax.swing.JComboBox;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import java.io.File;
 
 import data.RWFile;
 import data.ProfileList;
+import data.Profile;
 import view.NfoView;
 import view.ProfileManager;
 import view.ProfileCreationView;
@@ -272,7 +274,10 @@ public class MainViewItemListener implements ActionListener {
    *
    */
   private void manageAction() {
-    System.out.println("manage");
+    JComboBox list = ProfileManager.getInstance().getProfileList();
+    list.removeAllItems();
+    for (Profile profile : ProfileList.getElements())
+      list.addItem(profile);
     ProfileManager.getInstance().setVisible(true);
   }
 
@@ -280,35 +285,60 @@ public class MainViewItemListener implements ActionListener {
    * Ask for a location for saving all the loaded profiles.
    */
   private void saveProfilesAction() {
-    System.out.println("save");
     JFileChooser chooser;
     FileNameExtensionFilter filter;
+    String path;
     int returnVal;
     boolean write = true;
 
     if (ProfileList.getFile()==null) {
-      System.out.println("markup");
       chooser = new JFileChooser();
       filter = new FileNameExtensionFilter("Data Files", "data");
       chooser.setFileFilter(filter);
       returnVal = chooser.showOpenDialog(theView);
       if(returnVal == JFileChooser.APPROVE_OPTION) {
-        ProfileList.setFile(chooser.getSelectedFile().getAbsolutePath());
+        path = chooser.getSelectedFile().getAbsolutePath();
+        if (path.endsWith(".data"))
+          path += ".data";
+        ProfileList.setFile(path);
       }
       else
         write = false;
     }
 
     if (write)
-      System.out.println("write");
-    //      ProfileList.writeData();
+      ProfileList.writeData();
   }
 
   /**
    * Load the profiles from the file choosen by the user.
    */
   private void loadProfilesAction() {
-    System.out.println("load");
+    JFileChooser chooser;
+    File file;
+    FileNameExtensionFilter filter;
+    int returnVal;
+    boolean load = false;
+
+    if (ProfileList.getFile()==null) {
+      chooser = new JFileChooser();
+      filter = new FileNameExtensionFilter("Data Files", "data");
+      chooser.setFileFilter(filter);
+      returnVal = chooser.showOpenDialog(theView);
+      if(returnVal == JFileChooser.APPROVE_OPTION) {
+        file = chooser.getSelectedFile();
+        if ( file.exists()) {
+          load = true;
+          ProfileList.setFile(file.getAbsolutePath());
+        }
+      }
+    }
+    else
+      if (ProfileList.getFile().exists())
+        load = true;
+
+    if (load)
+      ProfileList.loadData();
   }
 
   /**

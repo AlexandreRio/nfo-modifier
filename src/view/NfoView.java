@@ -96,10 +96,8 @@ public class NfoView extends JFrame {
   public NfoView() {
     super("Nfo-modifier");
     this.createInterface();
-    //this.attachReactions();
 
     ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
-    System.out.println(getClass().getResource("/res/img/ico.png"));
     this.setIconImage(img.getImage());
 
     this.pack();

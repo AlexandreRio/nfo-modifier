@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-
 /**
  * Handles a list of {@link data.Profile Profile} and read/write method.
  * @author Rio Alexandre
@@ -48,56 +47,60 @@ public abstract class ProfileList implements Serializable {
   /**
    * Get a particular element stored in the list.
    * @param index Index of the profile in the list.
+   * @return the element at the specified position in this list
    */
-  public Profile getElement(int index) {
-    Profile ret = null;
-    //if (profileList.contains)
-    return null;
+  @Deprecated
+    public Profile getElement(int index) {
+      return profileList.get(index);
+    }
+
+  /**
+   * Add a new Profile to the list.
+   *
+   * @param profile The Profile to add.
+   */
+  public static void add(Profile profile) {
+    profileList.add(profile);
+  }
+
+  /**
+   * Update the Profile in the list.
+   *
+   * @param profile Profile to update.
+   */
+  public static void update(Profile profile) {
+    int index = contains(profile.getProfileName());
+    if (index != -1)
+      profileList.set(index, profile);
+  }
+
+  /**
+   * Get the profile list.
+   *
+   * @return The profile list as an ArrayList of Profile.
+   */
+  public static ArrayList<Profile> getElements() {
+    return profileList;
   }
 
   /**
    * Check the list contains a profile with the given name.
    *
    * @param profileName Name of the profile to look for.
-   * @return True if the profile name already exists in the list.
+   * @return The index of the profile in the list, -1 if it's not in it.
    */
-  public static boolean contains(String profileName) {
+  public static int contains(String profileName) {
     for (Profile profile : profileList) {
       if (profileName.equals(profile.getProfileName()) )
-        return true;
+        return profileList.indexOf(profile);
     }
-    return false;
+    return -1;
   }
 
   public static boolean removeItem(Object item) {
     return profileList.remove(item);
   }
 
-  /*
-     public boolean checkFile() {
-     URL url = getClass().getResource(this.saveFileLocation);
-     System.out.println(url);
-     File saveFile = null;
-     boolean retValue = false;
-     try {
-     if ( url != null) {
-     saveFile = new File(url.getFile());
-     System.out.println("–––");
-     System.out.println(saveFile.exists());
-     System.out.println(saveFile.createNewFile());
-     System.out.println(saveFile.exists());
-     System.out.println("–––");
-     }
-     }
-     catch (IOException e) {
-     System.out.println("error");
-     e.getMessage();
-     }
-//if (saveFile != null)
-// retValue = saveFile.exists();
-return retValue;
-     }
-     */
   /**
    * Creates a File instance from the absolute path of the save file located
    * in the jar archive.
@@ -105,10 +108,9 @@ return retValue;
    */
   public static File getFile() {
     File retValue = null;
-    if (saveFileLocation != null)
-      if (retValue.exists())
-        retValue = new File(saveFileLocation);
-    // In case the file has been deleted
+    if (saveFileLocation != null) {
+      retValue = new File(saveFileLocation);
+    }
     return retValue;
   }
 
@@ -117,9 +119,7 @@ return retValue;
    * @param path Path of the save file.
    */
   public static void setFile(String path) {
-    File tmpFile = new File(path);
-    if (!tmpFile.exists())
-      saveFileLocation = path;
+    saveFileLocation = path;
   }
 
   /**

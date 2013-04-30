@@ -11,6 +11,8 @@ import javax.swing.Box;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
+import data.Profile;
+
 public class ProfileManager extends JFrame {
 
   private static final long serialVersionUID = 42L;
@@ -21,7 +23,7 @@ public class ProfileManager extends JFrame {
   private JPanel mainPanel;
 
   /** List of all the saved profile. */
-  private JComboBox profileList;
+  private JComboBox<Profile> profileList;
 
   /** Panel of the bottom buttons. */
   private JPanel buttonPanel;
