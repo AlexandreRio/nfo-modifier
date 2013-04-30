@@ -1,11 +1,13 @@
 package control;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import view.NfoView;
 import view.ProfileManager;
 import view.ProfileCreationView;
 
@@ -58,8 +60,50 @@ public class ProfileManagerButtonListener implements ActionListener {
    * Create a new NFO from a profile.
    */
   private void createAction() {
-    ProfileManager.getInstance().setVisible(false);
-    //TODO fill main text editor area with template.
+    Profile profile;
+    String[] borderRow;
+    String[] bodyRow;
+    String row;
+    String border;
+    int margin = 0;
+    JTextArea textArea = NfoView.getInstance().getTextArea();
+    ProfileCreationView creationView = ProfileCreationView.getInstance();
+    int index = theView.getProfileList().getSelectedIndex();
+    if (index != -1) {
+      ProfileManager.getInstance().setVisible(false);
+      profile = (Profile) theView.getProfileList().getItemAt(index);
+      textArea.append(profile.getHeader());
+      borderRow = profile.getBorder().split("\n");
+      for (int i=0; i<borderRow.length; i++)
+        if (borderRow[i].length() > margin)
+          margin = borderRow[i].length();
+      bodyRow = profile.getBody().split("\n");
+      for (int i=0; i<bodyRow.length; i++) {
+        border = borderRow[i%borderRow.length];
+        row = border;
+        this.appendSpaces(row, margin - border.length());
+        row += bodyRow[i];
+        this.appendSpaces(row, margin - border.length());
+        row += border;
+        textArea.append(row);
+      }
+      textArea.append(profile.getFooter());
+    }
+  }
+
+  /**
+   * Append spaces at the end of a string.
+   *
+   * @param string String to add spaces.
+   * @param num Number of spaces to add.
+   * @return The new formed String.
+   */
+  private String appendSpaces(String string, int num) {
+    if (string == null)
+      string = "";
+    for (int i=0; i<num; i++)
+      string += " ";
+    return string;
   }
 
   /**

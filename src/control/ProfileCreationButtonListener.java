@@ -60,11 +60,11 @@ public class ProfileCreationButtonListener implements ActionListener {
     String border = theView.getBorderArea().getText();
     String footer = theView.getFooterArea().getText();
     if (ProfileList.contains(name) != -1 && theView.getProfileNameField().
-        isEditable()) { // Creation with taken name
+        isEditable()) {
       JOptionPane.showMessageDialog(theView, NAME_TAKEN_MESSAGE);
     }
     else {
-      System.out.println(name + header + body + border + footer);
+      //System.out.println(name + header + body + border + footer);
       Profile profile = new Profile(name, header, body, border, footer);
 
       if (theView.getProfileNameField().isEditable())
