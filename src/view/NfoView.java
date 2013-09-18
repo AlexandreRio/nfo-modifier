@@ -167,7 +167,7 @@ public class NfoView extends JFrame {
     //helpMenu.add(new JSeparator());
     helpMenu.add(itemAbout);
 
-    textArea = new JTextArea("", 40, 80);
+    textArea = new JTextArea("", 40, 120);
     textArea.setLineWrap(true);
     textArea.setFont(new Font("MonoSpaced", Font.PLAIN, 12));
 

@@ -60,7 +60,7 @@ public class ProfileCreationView extends JFrame {
     ImageIcon img = new ImageIcon(getClass().getResource("/res/img/ico.png"));
     this.setIconImage(img.getImage());
 
-    this.setSize(450,600);
+    this.setSize(600,800);
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
@@ -87,13 +87,13 @@ public class ProfileCreationView extends JFrame {
     this.headerPanel = new JPanel();
     this.headerPanel.setLayout(new GridLayout(2,0));
     this.headerLabel = new JLabel("Header: ");
-    this.headerArea = new JTextArea(1, 80);
+    this.headerArea = new JTextArea(1, 120);
     this.headerArea.setLineWrap(true);
     this.headerArea.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
     this.headerScrollPane = new JScrollPane(this.headerArea);
     this.headerPanel.add(this.headerLabel);
     this.headerPanel.add(this.headerScrollPane);
-    this.headerPanel.setMaximumSize(new Dimension(400, 100));
+    this.headerPanel.setMaximumSize(new Dimension(600, 300));
 
     this.bodyPanel = new JPanel();
     this.bodyPanel.setLayout(new GridLayout(2,0));
@@ -104,7 +104,7 @@ public class ProfileCreationView extends JFrame {
     this.bodyScrollPane = new JScrollPane(this.bodyArea);
     this.bodyPanel.add(bodyLabel);
     this.bodyPanel.add(bodyScrollPane);
-    this.bodyPanel.setMaximumSize(new Dimension(400, 200));
+    this.bodyPanel.setMaximumSize(new Dimension(600, 300));
 
     //TODO: add combo box both/left/right
     this.borderPanel = new JPanel();
@@ -116,7 +116,7 @@ public class ProfileCreationView extends JFrame {
     this.borderScrollPane = new JScrollPane(this.borderArea);
     this.borderPanel.add(borderLabel);
     this.borderPanel.add(borderScrollPane);
-    this.borderPanel.setMaximumSize(new Dimension(400, 100));
+    this.borderPanel.setMaximumSize(new Dimension(600, 300));
 
     this.footerPanel = new JPanel();
     this.footerPanel.setLayout(new GridLayout(2,0));
@@ -127,7 +127,7 @@ public class ProfileCreationView extends JFrame {
     this.footerScrollPane = new JScrollPane(this.footerArea);
     this.footerPanel.add(footerLabel);
     this.footerPanel.add(footerScrollPane);
-    this.footerPanel.setMaximumSize(new Dimension(400, 100));
+    this.footerPanel.setMaximumSize(new Dimension(600, 300));
 
     this.buttonPanel = new JPanel();
     this.buttonPanel.setLayout(new GridLayout(0,3));
