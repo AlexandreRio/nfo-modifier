@@ -13,7 +13,7 @@
   <property name="save" location="res/save"/>
   <property name="reports" location="build/reports"/>
   <property name="reportsHtml" location="build/reports/html"/>
-  <property name="launchClass" value="control.NfoModifier"/>
+  <property name="launchClass" value="nfo.control.NfoModifier"/>
   <property name="launchName" value="nfo-modifier"/>
 
   <path id="classpath">
