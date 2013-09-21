@@ -22,7 +22,8 @@ public class NfoModifier {
    */
   public static void main (String[] args) {
     ArgumentParser parser = ArgumentParser.getInstance();
-    parser.setArguments(args);
+    boolean result = parser.setArguments(args);
+
 /*
     if (args.length > 0 && args[0].equals("--no-gui")) {
         System.out.println("Nothing to do");

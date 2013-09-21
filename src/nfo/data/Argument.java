@@ -15,6 +15,9 @@ public class Argument {
   /** List of the alias of the argument. */
   private List<String> alias;
 
+  /** Argument unique identifier. */
+  private static int argumentID;
+
   /** Number of option expected for the argument. */
   private int numberOption;
 
@@ -23,12 +26,14 @@ public class Argument {
    * and the number of expected option for this argument.
    *
    * @param name Full name of the argument, it usually begins with "--"
+   * @param ID Arguement unique ID.
    * @param numberOption Number of option expected.
    * @param alias List of all the alias of the argument. An alias usually
    * begins with "-"
    */
-  public Argument(String name, int numberOption, String... alias) {
+  public Argument(String name, int ID, int numberOption, String... alias) {
     this.alias = new ArrayList<String>();
+    this.argumentID = ID;
 
     if (name != null)
       this.alias.add(name);
@@ -46,6 +51,15 @@ public class Argument {
    */
   public boolean isAValidAlias(String name) {
     return this.alias.contains(name);
+  }
+
+  /**
+   * Get the unique ID of the Argument.
+   *
+   * @return Unique ID of the Argument.
+   */
+  public int getID() {
+    return this.argumentID;
   }
 
   /**

@@ -46,8 +46,8 @@
     <mkdir dir="${reportsHtml}"/>
   </target>
 
-  <target depends="init" name="compile" description="Compiles all the sources." >
-    <javac source="1.7"  target="1.7" destdir="${classes}" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
+  <target name="compile" depends="init" description="Compiles all the sources." >
+    <javac source="1.7"  target="1.7" destdir="${classes}" classpath="${lib}/junit-4.8.2.jar" debug="false" verbose="false" encoding="UTF-8" includeantruntime="true">
       <classpath refid="classpath"/>
       <src path="${src}"/>
     </javac>
@@ -155,9 +155,13 @@
     <target name="JUnitTest" depends="compile" description="Run the junit test classes.">
       <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes">
         <classpath refid="classpath"/>
+
         <formatter type="xml"/>
+
         <batchtest fork="yes" todir="${reports}">
-          <fileset dir="${src}" includes="${src}/**/*Test.java"/>
+          <fileset dir="${src}">
+            <include name="**/*Test.java"/>
+          </fileset>
         </batchtest>
       </junit>
 
