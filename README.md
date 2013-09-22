@@ -8,7 +8,7 @@ You can have a look at the documentation : `doc/index.html`.
 
 For the record I have nothing to do with the `exemple.nfo` file, I just picked it with google.
 
-<img src="http://pix.kegtux.org/images/2012/12/09/Vxa8G.png" alt="exemple.nfo file"/>
+![example.nfo file](https://raw.github.com/AlexandreRio/nfo-modifier/master/interface.png)
 
 Usage
 -------
