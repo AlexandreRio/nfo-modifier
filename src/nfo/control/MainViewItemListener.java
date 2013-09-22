@@ -300,7 +300,7 @@ public class MainViewItemListener implements ActionListener {
       returnVal = chooser.showOpenDialog(theView);
       if(returnVal == JFileChooser.APPROVE_OPTION) {
         path = chooser.getSelectedFile().getAbsolutePath();
-        if (path.endsWith(".data"))
+        if (!path.endsWith(".data"))
           path += ".data";
         ProfileList.setFile(path);
       }

@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 
 /**
  * Handles a list of {@link nfo.data.Profile Profile} and read/write method.
+ *
  * @author Rio Alexandre
  * @version 1.0
  */
@@ -30,17 +31,11 @@ public abstract class ProfileList implements Serializable {
   private static String saveFileLocation = null;
 
   /**
-   * Creates a new instance of ProfileList, if its the first application
-   * launch it creates an empty save file otherwise it loads the saved data.
-   */
-  public ProfileList() {
-  }
-
-  /**
    * Get the number profile stored in the list.
+   *
    * @return The number of profile stored in the list.
    */
-  public int getProfileNumber() {
+  public static int getNumberProfile() {
     return profileList.size();
   }
 
@@ -50,9 +45,9 @@ public abstract class ProfileList implements Serializable {
    * @return the element at the specified position in this list
    */
   @Deprecated
-    public Profile getElement(int index) {
-      return profileList.get(index);
-    }
+  public Profile getElement(int index) {
+    return profileList.get(index);
+  }
 
   /**
    * Add a new Profile to the list.
@@ -108,9 +103,8 @@ public abstract class ProfileList implements Serializable {
    */
   public static File getFile() {
     File retValue = null;
-    if (saveFileLocation != null) {
+    if (saveFileLocation != null)
       retValue = new File(saveFileLocation);
-    }
     return retValue;
   }
 

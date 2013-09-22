@@ -1,5 +1,7 @@
 package nfo.data;
 
+import java.io.File;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -18,10 +20,13 @@ public class ArgumentParser {
    * List of all the available {@link nfo.data.Argument arguments}.
    */
   private final Argument[] arguments = {
-    new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0) ,
-    new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0  , "-v")  ,
-    new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1  , "-lp") ,
-    new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1  , "-o")
+    new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0),
+    new Argument("--silent"       , Settings.ARGUMENT_SILENT       , 0),
+    new Argument("--help"         , Settings.ARGUMENT_HELP         , 0 , "-h"),
+    new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0 , "-v") ,
+    new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1 , "-lp"),
+    new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o"),
+    new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "-ls")
   };
 
   /**
@@ -100,16 +105,28 @@ public class ArgumentParser {
         Settings.verbose = true;
         break;
       case Settings.ARGUMENT_LOAD_PROFILE:
-        String dataFile = options[0];
-        System.out.println("Load data file: " + dataFile);
+        File profileDataFile = new File(options[0]);
+        if (profileDataFile.exists()) {
+          ProfileList.setFile(profileDataFile.getAbsolutePath());
+          ProfileList.loadData();
+        }
+        else
+          System.err.println("Invalid profile data file path.");
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
         String outFile = options[0];
         System.out.println("Output file: " + outFile);
         break;
-      default:
-        System.err.println("Unknown id!");
+      case Settings.ARGUMENT_LIST_PROFILES:
+        if (ProfileList.getNumberProfile() > 0)
+          for(Profile profile : ProfileList.getElements())
+            System.out.println("-" + profile.getProfileName());
+        else
+          System.out.println("Missing profile data files, see --load-profile and --help for more information");
         break;
+      default:
+        throw new RuntimeException("The argument exists but no action has been found !"
+            + "\nArgument id: " + argumentID);
     }
   }
 

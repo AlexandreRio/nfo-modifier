@@ -140,7 +140,7 @@
 
     <target name="clean" description="Clean the compiled classes directory.">
       <delete dir="${build}"/>
-      <delete dir="${doc}"/>
+      <!--<delete dir="${doc}"/> -->
 
       <mkdir dir="${doc}"/>
       <mkdir dir="${build}"/>
@@ -153,7 +153,7 @@
     </target>
 
     <target name="JUnitTest" depends="compile" description="Run the junit test classes.">
-      <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes">
+      <junit printsummary="yes" haltonerror="no" haltonfailure="no" showoutput="yes" fork="yes">
         <classpath refid="classpath"/>
 
         <formatter type="xml"/>
