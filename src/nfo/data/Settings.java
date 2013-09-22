@@ -12,9 +12,11 @@ import java.net.URI;
 public abstract class Settings {
 
   /** If set to false no Graphical User Interface will be created. */
-  private static boolean createGUI = true;
+  public static boolean createGUI = true;
+  /** If set to false minimum number of message will be printed. */
+  public static boolean verbose   = false;
   /** URI of the file to open. */
-  private URI fileToOpen = null;
+  public static URI fileToOpen    = null;
 
   public static final int ARGUMENT_NO_GUI       = 0x0000;
   public static final int ARGUMENT_VERBOSE      = 0x0001;

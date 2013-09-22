@@ -24,9 +24,6 @@ public class ArgumentParser {
     new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1  , "-o")
   };
 
-  /** List of the argument to parse. */
-  private List<String> argumentList;
-
   /**
    * Get the instance of the ArgumentParser, if it doesn't exist a new instance is
    * created.
@@ -43,7 +40,6 @@ public class ArgumentParser {
    * Create a new argument parser with no argument to parse.
    */
   private ArgumentParser() {
-    this.argumentList = new ArrayList<String>();
   }
 
   /**
@@ -98,25 +94,23 @@ public class ArgumentParser {
   private void process(int argumentID, String[] options) {
     switch (argumentID) {
       case Settings.ARGUMENT_NO_GUI:
-        System.out.println("No gui!");
+        Settings.createGUI = false;
         break;
       case Settings.ARGUMENT_VERBOSE:
-        System.out.println("Verbose!");
+        Settings.verbose = true;
+        break;
+      case Settings.ARGUMENT_LOAD_PROFILE:
+        String dataFile = options[0];
+        System.out.println("Load data file: " + dataFile);
+        break;
+      case Settings.ARGUMENT_OUTPUT_FILE:
+        String outFile = options[0];
+        System.out.println("Output file: " + outFile);
         break;
       default:
         System.err.println("Unknown id!");
         break;
     }
-    System.out.println("Process argument: " + argumentID + " with " + options.length + " arguments");
-  }
-
-  /**
-   * Check wether the argument parser got argument to parse.
-   *
-   * @return True if the parser doesn't have argument to parse.
-   */
-  public boolean gotArgument() {
-    return this.argumentList.isEmpty();
   }
 
   /**
@@ -126,12 +120,11 @@ public class ArgumentParser {
    * @return The instance of the argument if the alias exists, null in other
    * case.
    */
-  private Argument getArgument(String argumentName) {
+  protected Argument getArgument(String argumentName) {
     Argument ret = null;
     for(int i=0; i<arguments.length; i++) {
       if (arguments[i].isAValidAlias(argumentName)){
         ret = arguments[i];
-        System.out.println("get arg: " +ret.getID() );
         break;
       }
     }

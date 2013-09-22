@@ -7,6 +7,7 @@ import nfo.view.ProfileManagerView;
 import nfo.view.ProfileCreationView;
 
 import nfo.data.ArgumentParser;
+import nfo.data.Settings;
 
 /**
  * Main controller of the application, create the view, the controller and
@@ -22,18 +23,12 @@ public class NfoModifier {
    */
   public static void main (String[] args) {
     ArgumentParser parser = ArgumentParser.getInstance();
-    boolean result = parser.setArguments(args);
+    parser.setArguments(args);
 
-/*
-    if (args.length > 0 && args[0].equals("--no-gui")) {
-        System.out.println("Nothing to do");
-    for (String argument : args)
-      System.out.println("argument: " + argument);
-    }
-    else {
+    if(Settings.createGUI) {
       NfoModifier nfo = new NfoModifier();
     }
-    */
+
     /*
     if ( args.length == 1)
       CreationEvent.openSpecifiedFileCreation(args[0]);

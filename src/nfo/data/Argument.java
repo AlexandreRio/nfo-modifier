@@ -16,7 +16,7 @@ public class Argument {
   private List<String> alias;
 
   /** Argument unique identifier. */
-  private static int argumentID;
+  private int argumentID;
 
   /** Number of option expected for the argument. */
   private int numberOption;
