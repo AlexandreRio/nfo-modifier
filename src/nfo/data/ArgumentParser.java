@@ -22,11 +22,11 @@ public class ArgumentParser {
   private final Argument[] arguments = {
     new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0),
     new Argument("--silent"       , Settings.ARGUMENT_SILENT       , 0),
-    new Argument("--help"         , Settings.ARGUMENT_HELP         , 0 , "-h"),
-    new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0 , "-v") ,
+    new Argument("--help"         , Settings.ARGUMENT_HELP         , 0 , "-h" ),
+    new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0 , "-v" ),
     new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1 , "-lp"),
-    new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o"),
-    new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "-ls")
+    new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o" ),
+    new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "--list" , "-ls")
   };
 
   /**
@@ -103,6 +103,12 @@ public class ArgumentParser {
         break;
       case Settings.ARGUMENT_VERBOSE:
         Settings.verbose = true;
+        break;
+      case Settings.ARGUMENT_SILENT:
+        Settings.silent = true;
+        break;
+      case Settings.ARGUMENT_HELP:
+        System.out.println("Help message, will need external class logger");
         break;
       case Settings.ARGUMENT_LOAD_PROFILE:
         File profileDataFile = new File(options[0]);

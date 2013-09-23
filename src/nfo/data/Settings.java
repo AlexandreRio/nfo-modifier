@@ -15,15 +15,8 @@ public abstract class Settings {
   public static boolean createGUI = true;
   /** If set to false minimum number of message will be printed. */
   public static boolean verbose   = false;
-
-
-  // Not sure if necessary…
-  /** URI of the file to open. */
-  public static URI fileToOpen    = null;
-  /** URI of the profile data file to open. */
-  public static URI profileDataToOpen = null;
-
-
+  /** If set to true no message will be printed. */
+  public static boolean silent    = false;
 
   public static final int ARGUMENT_NO_GUI        = 0x0000;
   public static final int ARGUMENT_SILENT        = 0x0001;

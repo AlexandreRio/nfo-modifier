@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="hp-laptop" id="0" name="ArgumentTest" package="nfo.data" tests="3" time="0.041" timestamp="2013-09-22T21:10:04">
+  <testsuite errors="0" failures="0" hostname="hp-laptop" id="0" name="ArgumentTest" package="nfo.data" tests="3" time="0.135" timestamp="2013-09-23T16:58:13">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
@@ -18,7 +18,7 @@
 
           <property name="sun.boot.class.path" value="/usr/java/jdk1.7.0_15/jre/lib/resources.jar:/usr/java/jdk1.7.0_15/jre/lib/rt.jar:/usr/java/jdk1.7.0_15/jre/lib/sunrsasign.jar:/usr/java/jdk1.7.0_15/jre/lib/jsse.jar:/usr/java/jdk1.7.0_15/jre/lib/jce.jar:/usr/java/jdk1.7.0_15/jre/lib/charsets.jar:/usr/java/jdk1.7.0_15/jre/lib/jfr.jar:/usr/java/jdk1.7.0_15/jre/classes" />
 
-          <property name="TODAY" value="September 22 2013" />
+          <property name="TODAY" value="September 23 2013" />
 
           <property name="java.vm.specification.vendor" value="Oracle Corporation" />
 
@@ -44,7 +44,7 @@
 
           <property name="ant.project.name" value="nfo-modifier" />
 
-          <property name="DSTAMP" value="20130922" />
+          <property name="DSTAMP" value="20130923" />
 
           <property name="save" value="/home/orbital/dev/java/nfo-modifier/res/save" />
 
@@ -114,13 +114,13 @@
 
           <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ArgumentTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ArgumentTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher6684210237692574462.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit7097397736665870663.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ArgumentTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ArgumentTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher2015523090610608872.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit7896889277492659912.properties" />
 
           <property name="java.class.path" value="/home/orbital/dev/java/nfo-modifier/build/classes:/home/orbital/dev/java/nfo-modifier/lib:/usr/share/java/junit-3.8.2.jar:/usr/share/java/ant-launcher.jar:/usr/share/java/ant.jar:/usr/share/java/ant/ant-junit.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on January 27 2013" />
 
-          <property name="TSTAMP" value="2310" />
+          <property name="TSTAMP" value="1858" />
 
           <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
 
@@ -166,9 +166,9 @@
 
       </properties>
 
-      <testcase classname="nfo.data.ArgumentTest" name="testIsAValidAlias" time="0.002" />
+      <testcase classname="nfo.data.ArgumentTest" name="testIsAValidAlias" time="0.001" />
 
-      <testcase classname="nfo.data.ArgumentTest" name="testGetNumberOption" time="0.0" />
+      <testcase classname="nfo.data.ArgumentTest" name="testGetNumberOption" time="0.001" />
 
       <testcase classname="nfo.data.ArgumentTest" name="testGetID" time="0.0" />
 
@@ -177,7 +177,7 @@
       <system-err />
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="hp-laptop" id="1" name="ParserTest" package="nfo.data" tests="4" time="0.044" timestamp="2013-09-22T21:10:04">
+  <testsuite errors="0" failures="0" hostname="hp-laptop" id="1" name="ParserTest" package="nfo.data" tests="4" time="0.051" timestamp="2013-09-23T16:58:14">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
@@ -195,7 +195,7 @@
 
           <property name="sun.boot.class.path" value="/usr/java/jdk1.7.0_15/jre/lib/resources.jar:/usr/java/jdk1.7.0_15/jre/lib/rt.jar:/usr/java/jdk1.7.0_15/jre/lib/sunrsasign.jar:/usr/java/jdk1.7.0_15/jre/lib/jsse.jar:/usr/java/jdk1.7.0_15/jre/lib/jce.jar:/usr/java/jdk1.7.0_15/jre/lib/charsets.jar:/usr/java/jdk1.7.0_15/jre/lib/jfr.jar:/usr/java/jdk1.7.0_15/jre/classes" />
 
-          <property name="TODAY" value="September 22 2013" />
+          <property name="TODAY" value="September 23 2013" />
 
           <property name="java.vm.specification.vendor" value="Oracle Corporation" />
 
@@ -221,7 +221,7 @@
 
           <property name="ant.project.name" value="nfo-modifier" />
 
-          <property name="DSTAMP" value="20130922" />
+          <property name="DSTAMP" value="20130923" />
 
           <property name="save" value="/home/orbital/dev/java/nfo-modifier/res/save" />
 
@@ -291,13 +291,13 @@
 
           <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ParserTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ParserTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher8201110999689873237.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit5305497620235119460.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ParserTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ParserTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher2809421814333689891.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit4106706736271331445.properties" />
 
           <property name="java.class.path" value="/home/orbital/dev/java/nfo-modifier/build/classes:/home/orbital/dev/java/nfo-modifier/lib:/usr/share/java/junit-3.8.2.jar:/usr/share/java/ant-launcher.jar:/usr/share/java/ant.jar:/usr/share/java/ant/ant-junit.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on January 27 2013" />
 
-          <property name="TSTAMP" value="2310" />
+          <property name="TSTAMP" value="1858" />
 
           <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
 
@@ -343,25 +343,25 @@
 
       </properties>
 
-      <testcase classname="nfo.data.ParserTest" name="testTwoArgumentCommand" time="0.002" />
-
-      <testcase classname="nfo.data.ParserTest" name="testComplexCommand" time="0.001" />
-
-      <testcase classname="nfo.data.ParserTest" name="testGetArgument" time="0.0" />
-
       <testcase classname="nfo.data.ParserTest" name="testOneArgumentCommand" time="0.002" />
+
+      <testcase classname="nfo.data.ParserTest" name="testTwoArgumentCommand" time="0.0" />
+
+      <testcase classname="nfo.data.ParserTest" name="testComplexCommand" time="0.0" />
+
+      <testcase classname="nfo.data.ParserTest" name="testGetArgument" time="0.002" />
 
       <system-out><![CDATA[Output file: ~/out.nfo
 ]]></system-out>
 
-      <system-err><![CDATA[Invalid profile data file path.
-Missing argument, argument: --load-profile expected 1 arguments.
+      <system-err><![CDATA[Missing argument, argument: --load-profile expected 1 arguments.
 Missing argument, argument: --output-file expected 1 arguments.
 Unknown argument used: foo
 Invalid profile data file path.
 Missing argument, argument: --load-profile expected 1 arguments.
 Missing argument, argument: --output-file expected 1 arguments.
 Unknown argument used: foo
+Invalid profile data file path.
 ]]></system-err>
 
   </testsuite>
