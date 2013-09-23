@@ -121,6 +121,8 @@ public class ArgumentParser {
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
         String outFile = options[0];
+        // RWFile.setCurrentFile(options)
+        // but should be combined with a logger
         System.out.println("Output file: " + outFile);
         break;
       case Settings.ARGUMENT_LIST_PROFILES:

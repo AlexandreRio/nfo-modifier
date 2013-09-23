@@ -28,7 +28,7 @@ the jar archive.
 
     $ ant -p
 
-Displays all the allowed tasks.
+Displays all the available tasks.
 
     $ ant help
 
@@ -41,6 +41,32 @@ Launch the application with an empty text area.
     $ java -jar nfo-modifier.jar file.nfo
 
 Launch the application and display the file : `file.nfo`.
+
+Command line interface
+-------
+
+I'm currently working on making available all the features via the command line interface.
+
+The main purpose is to make something like that possible :
+
+    $ java -jar nfo-modifier.jar --no-gui --load-profile profiles.data --profile Wii --content content.txt --output-file coolNFO.nfo
+
+And a short version with the same effect :
+
+    $ java -jar nfo-modifier.jar --no-gui -lp profiles.data -p Wii -c content.txt -o coolNFO.nfo
+
+For now (today is September 23rd) these are the supported argument :
+
+    --no-gui       : do not use the graphical user interface
+    --load-profile : load a previously created profiles data file
+    --list         : List all the profile stored in the loaded profiles data file
+
+And the following argument are going to be supported in the next updates :
+
+    --verbose
+    --silent
+    --output-file
+    --help
 
 Features list
 -------
