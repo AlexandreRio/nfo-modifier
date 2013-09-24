@@ -54,7 +54,7 @@ public abstract class ProfileCreator {
       //if ()
     }
 
-    // TODO if bodyRow[i].length() > space left in tine it will fail
+    // TODO if bodyRow[i].length() > space left in line it will fail
     for (int i=0; i<bodyRow.length; i++) {
       // TODO if the modulo is ≠ 0 it will print a non-complete border pattern, not cool bro !
       border = borderRow[i%borderRow.length];

@@ -120,10 +120,7 @@ public class ArgumentParser {
           System.err.println("Invalid profile data file path.");
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
-        String outFile = options[0];
-        // RWFile.setCurrentFile(options)
-        // but should be combined with a logger
-        System.out.println("Output file: " + outFile);
+        Settings.output = options[0];
         break;
       case Settings.ARGUMENT_LIST_PROFILES:
         if (ProfileList.getNumberProfile() > 0)

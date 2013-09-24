@@ -12,7 +12,8 @@ For the record I have nothing to do with the `exemple.nfo` file, I just picked i
 
 Usage
 -------
-Simply launch nfo-modifier.java with a Java Runtime Environment > 1.7
+
+The source might not be stable, so I recommend to download a stable release [here](https://github.com/AlexandreRio/nfo-modifier/releases), then simply launch nfo-modifier.jar with a Java Runtime Environment > 1.7
 
 If you prefer building from the sources, you will need to use ant.
 

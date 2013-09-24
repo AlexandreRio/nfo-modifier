@@ -17,6 +17,11 @@ public abstract class Settings {
   public static boolean verbose   = false;
   /** If set to true no message will be printed. */
   public static boolean silent    = false;
+  /**
+   * If null the standard output is used, otherwise its interpreted as a path
+   * and the output is streamed in a file.
+   */
+  public static String output     = null;
 
   public static final int ARGUMENT_NO_GUI        = 0x0000;
   public static final int ARGUMENT_SILENT        = 0x0001;
