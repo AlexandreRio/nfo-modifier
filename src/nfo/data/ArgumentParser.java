@@ -25,6 +25,8 @@ public class ArgumentParser {
     new Argument("--help"         , Settings.ARGUMENT_HELP         , 0 , "-h" ),
     new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0 , "-v" ),
     new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1 , "-lp"),
+    new Argument("--profile"      , Settings.ARGUMENT_PROFILE      , 1 , "-p"),
+    new Argument("--content"      , Settings.ARGUMENT_CONTENT      , 1 , "-c"),
     new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o" ),
     new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "--list" , "-ls")
   };
@@ -59,6 +61,8 @@ public class ArgumentParser {
     Argument currentArgument;
     String[] options;
 
+    //TODO it could be good to look for certain argument first, to make possible «reverse order»
+    //like --profile Film --load-profiles file.data
     for (int i=0; i<arguments.length; i++) {
       currentArgument = this.getArgument(arguments[i]);
 
@@ -119,8 +123,21 @@ public class ArgumentParser {
         else
           System.err.println("Invalid profile data file path.");
         break;
+      case Settings.ARGUMENT_PROFILE:
+        int profileIndex = ProfileList.contains(options[0]);
+        if (profileIndex != -1) {
+          Profile p = ProfileList.getElement(profileIndex);
+          System.out.println(ProfileCreator.create(p));
+
+        } else
+          System.err.println("Can't find the profile. Are you using the good profile file ? See --list");
+        break;
       case Settings.ARGUMENT_OUTPUT_FILE:
         Settings.output = options[0];
+        break;
+      case Settings.ARGUMENT_CONTENT:
+        String contentFilePath = options[0];
+        //TODO call ProfileCreator with
         break;
       case Settings.ARGUMENT_LIST_PROFILES:
         if (ProfileList.getNumberProfile() > 0)

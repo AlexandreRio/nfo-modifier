@@ -30,4 +30,6 @@ public abstract class Settings {
   public static final int ARGUMENT_OUTPUT_FILE   = 0x0004;
   public static final int ARGUMENT_LIST_PROFILES = 0x0005;
   public static final int ARGUMENT_HELP          = 0x0006;
+  public static final int ARGUMENT_PROFILE       = 0x0007;
+  public static final int ARGUMENT_CONTENT       = 0x0008;
 }

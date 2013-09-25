@@ -1,5 +1,7 @@
 package nfo.data;
 
+import java.util.ArrayList;
+
 /**
  * Profile manipulator, creates nfo from a template ( profile ) and a content
  *
@@ -18,53 +20,45 @@ public abstract class ProfileCreator {
    * @return String containing the whole nfo
    */
   public static String create(Profile profile) {
-    String[] headerRow;
-    String[] borderRow;
-    String[] bodyRow;
-    String[] bodyRowRaw;
+    String[] headerRow  = profile.getHeader().split("\n");
+    String[] borderRow  = profile.getBorder().split("\n");
+    String[] bodyRow    = profile.getBody().split("\n");
+    int totalWidth  = 0;
+    int bodyWidth   = 0;
+    int borderWidth = 0;
+
     String row;
     String border;
-    int margin     = 0;
-    int totalWidth = 0;
-    int bodyWidth;
-
     String total = "";
 
-    // Start to append text on text area.
     total += profile.getHeader();
-    total += "\n\n";
-    borderRow = profile.getBorder().split("\n");
+    total += "\n";
 
-    headerRow = profile.getHeader().split("\n");
-    // Determine the longest line in the header
-    for (int i=0; i<headerRow.length; i++)
-      if (headerRow[i].length() > totalWidth)
-        totalWidth = headerRow[i].length();
-
-    // Determine the longest line in the border pattern
-    for (int i=0; i<borderRow.length; i++)
-      if (borderRow[i].length() > margin)
-        margin = borderRow[i].length();
+    totalWidth  = determineLongestLine(headerRow);
+    borderWidth = determineLongestLine(borderRow);
 
     // TODO adapt if the border is only on one side
-    bodyWidth = totalWidth - 2*margin - 2*BORDER_CONTENT_MARGIN;
+    // it should be added as an attribute of the Profile object
+    bodyWidth = totalWidth - 2*borderWidth - 2*BORDER_CONTENT_MARGIN;
 
-    bodyRow = profile.getBody().split("\n");
-    for (int i=0; i<bodyRow.length; i++) {
-      //if ()
-    }
+    bodyRow = trimLongLine(bodyRow, bodyWidth);
 
-    // TODO if bodyRow[i].length() > space left in line it will fail
     for (int i=0; i<bodyRow.length; i++) {
-      // TODO if the modulo is ≠ 0 it will print a non-complete border pattern, not cool bro !
-      border = borderRow[i%borderRow.length];
-      row = border;
-      row = appendSpaces(row, margin - border.length() + BORDER_CONTENT_MARGIN);
-      row += bodyRow[i]; // TODO
-      row = appendSpaces(row, totalWidth - 2*margin - row.length());
-      //row = this.appendSpaces(row, margin - border.length());
-      row += border;
-      row += "\n";
+      row = "";
+      if ((bodyRow.length - i) >= borderRow.length) {
+        // TODO if the modulo is ≠ 0 it will print a non-complete border pattern, not cool bro !
+        border = borderRow[i%borderRow.length];
+        row    = border;
+        row    = appendSpaces(row, borderWidth - border.length() + BORDER_CONTENT_MARGIN);
+        row   += bodyRow[i];
+        row    = appendSpaces(row, totalWidth - borderWidth - row.length());
+        row   += border;
+      } else {
+        row  = appendSpaces(row, borderWidth + BORDER_CONTENT_MARGIN);
+        row += bodyRow[i];
+        row  = appendSpaces(row, totalWidth - row.length());
+      }
+      row   += "\n";
       total += row;
     }
     total += "\n" + profile.getFooter();
@@ -73,16 +67,61 @@ public abstract class ProfileCreator {
   }
 
   /**
+   * Determine the longest line in an array of string.
+   *
+   * @param rows Array of string.
+   * @return Number of character in the longest line.
+   */
+  private static int determineLongestLine(String[] rows) {
+    int longestWidth = 0;
+    for (int i=0; i<rows.length; i++)
+      if (rows[i].length() > longestWidth)
+        longestWidth = rows[i].length();
+    return longestWidth;
+  }
+
+  /**
+   * Reduce the line longer than a specific length, split the line in a smaller
+   * one and place the rest as the following line.
+   *
+   * @param rows Array of string to check.
+   * @param maxLength Length of the line to use.
+   * @return An array of string shorter than the specific length.
+   */
+  private static String[] trimLongLine(String[] rows, int maxLength) {
+    String[] ret;
+    int numberRow = 0;
+    int index = 0;
+    for (String row : rows)
+      numberRow += (int)(row.length() / maxLength) + 1;
+    ret = new String[numberRow];
+
+    for (int i=0; i<rows.length; i++) {
+      if (rows[i].length() > maxLength) {
+        ret[index] = rows[i].substring(0, maxLength);
+        rows[i] = rows[i].substring(maxLength+1, rows[i].length());
+        index++;
+        i--;
+      }
+      else {
+        ret[index] = rows[i];
+        index++;
+      }
+    }
+    return ret;
+  }
+
+  /**
    * Append spaces at the end of a string.
    *
    * @param string String to add spaces.
-   * @param num Number of spaces to add.
+   * @param number Number of spaces to add.
    * @return The new formed String.
    */
-  private static String appendSpaces(String string, int num) {
+  private static String appendSpaces(String string, int number) {
     if (string == null)
       string = "";
-    for (int i=0; i<num; i++)
+    for (int i=0; i<number; i++)
       string += " ";
     return string;
   }

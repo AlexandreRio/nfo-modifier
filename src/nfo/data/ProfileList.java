@@ -45,7 +45,7 @@ public abstract class ProfileList implements Serializable {
    * @return the element at the specified position in this list
    */
   @Deprecated
-  public Profile getElement(int index) {
+  public static Profile getElement(int index) {
     return profileList.get(index);
   }
 
