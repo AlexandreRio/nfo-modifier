@@ -134,4 +134,16 @@ public abstract class RWFile {
    public static void setIsModified(boolean modified) {
       RWFile.isModified = modified;
    }
+
+   /**
+    * Read a file line by line.
+    *
+    * @param path Path of the file to read
+    * @return The content of the file in an array, each row of the array contains
+    * a line of the file.
+    */
+   public static String[] readFile(String path) {
+     //TODO
+     return new String[0];
+   }
 }

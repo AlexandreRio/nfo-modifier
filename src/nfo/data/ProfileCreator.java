@@ -17,15 +17,30 @@ public abstract class ProfileCreator {
    * Create a nfo from a profile, the content is still in the profile.
    *
    * @param profile Profile used as a template
+   * @param content Array of String to use as content of the nfo, if null the
+   * attribute of the {@link nfo.data.Profile Profile} is used.
    * @return String containing the whole nfo
    */
-  public static String create(Profile profile) {
+  public static String create(Profile profile, String[] content) {
     String[] headerRow  = profile.getHeader().split("\n");
-    String[] borderRow  = profile.getBorder().split("\n");
-    String[] bodyRow    = profile.getBody().split("\n");
+    String[] bodyRow;
     int totalWidth  = 0;
     int bodyWidth   = 0;
     int borderWidth = 0;
+
+    if (content == null)
+      bodyRow = profile.getBody().split("\n");
+    else
+      bodyRow = content;
+
+    String[] borderRow;
+    String[] borderRowRaw  = profile.getBorder().split("\n");
+    borderRow = new String[borderRowRaw.length + 2];
+    for (int i=0; i<borderRowRaw.length; i++)
+      borderRow[i] = borderRowRaw[i];
+    borderRow[borderRow.length-2] = " ";
+    borderRow[borderRow.length-1] = " ";
+
 
     String row;
     String border;
@@ -45,8 +60,7 @@ public abstract class ProfileCreator {
 
     for (int i=0; i<bodyRow.length; i++) {
       row = "";
-      if ((bodyRow.length - i) >= borderRow.length) {
-        // TODO if the modulo is ≠ 0 it will print a non-complete border pattern, not cool bro !
+      if (((bodyRow.length - i) >= borderRow.length) || (i%borderRow.length != 0)) {
         border = borderRow[i%borderRow.length];
         row    = border;
         row    = appendSpaces(row, borderWidth - border.length() + BORDER_CONTENT_MARGIN);

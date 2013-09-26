@@ -127,7 +127,7 @@ public class ArgumentParser {
         int profileIndex = ProfileList.contains(options[0]);
         if (profileIndex != -1) {
           Profile p = ProfileList.getElement(profileIndex);
-          System.out.println(ProfileCreator.create(p));
+          System.out.println(ProfileCreator.create(p, null));
 
         } else
           System.err.println("Can't find the profile. Are you using the good profile file ? See --list");
@@ -136,7 +136,7 @@ public class ArgumentParser {
         Settings.output = options[0];
         break;
       case Settings.ARGUMENT_CONTENT:
-        String contentFilePath = options[0];
+        String[] lines = RWFile.readFile(options[0]);
         //TODO call ProfileCreator with
         break;
       case Settings.ARGUMENT_LIST_PROFILES:
