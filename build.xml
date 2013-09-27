@@ -81,7 +81,7 @@
   <target name="doc" depends="compile" description="Build JavaDoc documentation." >
     <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
       <fileset dir="${src}" defaultexcludes="yes">
-        <exclude name="**/.*.sw*, #*#, .*, *Test*.java"/>
+        <exclude name="**/*Test*.java"/>
         <include name="**/*.java"/>
       </fileset>
       <classpath refid="classpath"/>
