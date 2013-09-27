@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
+import nfo.control.CreationEvent;
+
 /**
  * Parse the arguments given to the program.
  *
@@ -27,7 +29,9 @@ public class ArgumentParser {
     new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1 , "-lp"),
     new Argument("--profile"      , Settings.ARGUMENT_PROFILE      , 1 , "-p"),
     new Argument("--content"      , Settings.ARGUMENT_CONTENT      , 1 , "-c"),
+    new Argument("--output-log"   , Settings.ARGUMENT_OUTPUT_LOG   , 1),
     new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o" ),
+    new Argument("--file"         , Settings.ARGUMENT_FILE         , 1 , "-f" ),
     new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "--list" , "-ls")
   };
 
@@ -80,13 +84,13 @@ public class ArgumentParser {
           i += optionExpected;
         }
         else {
-          System.err.println("Missing argument, argument: " + arguments[i] + " expected " + optionExpected + " arguments.");
+          Output.print("Missing argument, argument: " + arguments[i] + " expected " + optionExpected + " arguments.");
           ret = false;
         }
 
       }
       else {
-        System.err.println("Unknown argument used: " + arguments[i]);
+        Output.print("Unknown argument used: " + arguments[i]);
         ret = false;
       }
     }
@@ -112,7 +116,7 @@ public class ArgumentParser {
         Settings.silent = true;
         break;
       case Settings.ARGUMENT_HELP:
-        System.out.println("Help message, will need external class logger");
+        Output.print("Help message, will need external class logger");
         break;
       case Settings.ARGUMENT_LOAD_PROFILE:
         File profileDataFile = new File(options[0]);
@@ -121,30 +125,40 @@ public class ArgumentParser {
           ProfileList.loadData();
         }
         else
-          System.err.println("Invalid profile data file path.");
+          Output.print("Invalid profile data file path.");
         break;
       case Settings.ARGUMENT_PROFILE:
         int profileIndex = ProfileList.contains(options[0]);
         if (profileIndex != -1) {
           Profile p = ProfileList.getElement(profileIndex);
-          System.out.println(ProfileCreator.create(p, null));
+          Output.printNFO(ProfileCreator.create(p, null));
 
         } else
-          System.err.println("Can't find the profile. Are you using the good profile file ? See --list");
+          Output.print("Can't find the profile. Are you using the good profile file ? See --list");
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
+        Settings.outputNfo = options[0];
+        break;
+      case Settings.ARGUMENT_OUTPUT_LOG:
         Settings.output = options[0];
         break;
       case Settings.ARGUMENT_CONTENT:
         String[] lines = RWFile.readFile(options[0]);
         //TODO call ProfileCreator with
         break;
+      case Settings.ARGUMENT_FILE:
+        if (Settings.createGUI)
+          CreationEvent.openSpecifiedFileCreation(options[0]);
+        else
+          for (String line : RWFile.readNfoFile(options[0]))
+            System.out.print(line);
+        break;
       case Settings.ARGUMENT_LIST_PROFILES:
         if (ProfileList.getNumberProfile() > 0)
           for(Profile profile : ProfileList.getElements())
-            System.out.println("-" + profile.getProfileName());
+            Output.print("-" + profile.getProfileName());
         else
-          System.out.println("Missing profile data files, see --load-profile and --help for more information");
+          Output.print("Missing profile data files, see --load-profile and --help for more information");
         break;
       default:
         throw new RuntimeException("The argument exists but no action has been found !"

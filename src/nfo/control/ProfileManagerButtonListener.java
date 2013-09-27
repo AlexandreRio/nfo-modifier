@@ -72,7 +72,7 @@ public class ProfileManagerButtonListener implements ActionListener {
       ProfileManagerView.getInstance().setVisible(false);
       profile = (Profile) theView.getProfileList().getItemAt(index);
 
-      textArea.append(ProfileCreator.create(profile));
+      textArea.append(ProfileCreator.create(profile, null));
     }
   }
 

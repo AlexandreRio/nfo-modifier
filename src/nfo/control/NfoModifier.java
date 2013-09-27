@@ -8,6 +8,7 @@ import nfo.view.ProfileCreationView;
 
 import nfo.data.ArgumentParser;
 import nfo.data.Settings;
+import nfo.data.Output;
 
 /**
  * Main controller of the application, create the view, the controller and
@@ -29,10 +30,8 @@ public class NfoModifier {
       NfoModifier nfo = new NfoModifier();
     }
 
-    /*
-    if ( args.length == 1)
-      CreationEvent.openSpecifiedFileCreation(args[0]);
-      */
+    if(! Settings.silent)
+      Output.process();
   }
 
   /**

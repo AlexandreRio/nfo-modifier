@@ -22,6 +22,7 @@ public abstract class Settings {
    * and the output is streamed in a file.
    */
   public static String output     = null;
+  public static String outputNfo  = null;
 
   public static final int ARGUMENT_NO_GUI        = 0x0000;
   public static final int ARGUMENT_SILENT        = 0x0001;
@@ -32,4 +33,6 @@ public abstract class Settings {
   public static final int ARGUMENT_HELP          = 0x0006;
   public static final int ARGUMENT_PROFILE       = 0x0007;
   public static final int ARGUMENT_CONTENT       = 0x0008;
+  public static final int ARGUMENT_FILE          = 0x0009;
+  public static final int ARGUMENT_OUTPUT_LOG    = 0x0010;
 }
