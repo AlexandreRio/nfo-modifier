@@ -1,7 +1,5 @@
 package nfo.data;
 
-import java.net.URI;
-
 /**
  * Enumeration of various settings, the {@link nfo.data.ArgumentParser ArgumentParser}
  * may change these default values, depending on the command line interface arguments.
@@ -21,8 +19,10 @@ public abstract class Settings {
    * If null the standard output is used, otherwise its interpreted as a path
    * and the output is streamed in a file.
    */
-  public static String output     = null;
-  public static String outputNfo  = null;
+  public static String output    = null;
+  public static String outputNfo = null;
+  public static String[] content = null;
+  public static Profile profile  = null;
 
   public static final int ARGUMENT_NO_GUI        = 0x0000;
   public static final int ARGUMENT_SILENT        = 0x0001;

@@ -56,18 +56,20 @@ And a short version with the same effect :
 
     $ java -jar nfo-modifier.jar --no-gui -lp profiles.data -p Wii -c content.txt -o coolNFO.nfo
 
-For now (today is September 23rd) these are the supported argument :
+For now these are the supported argument :
 
     --no-gui       : do not use the graphical user interface
     --load-profile : load a previously created profiles data file
     --list         : List all the profile stored in the loaded profiles data file
+    --profile      : specify the profile to use
+    --content      : specify the content of the nfo, it will be placed in the profile
+    --output-file  : output file to save the nfo, so cp437 coded, if not specified the standard output will be used, in utf8
+    --help         : just say you use the argument --help, will display actual help soon
+    --silent       : don't print any messages
 
-And the following argument are going to be supported in the next updates :
+And the following arguments are going to be supported in the next updates :
 
     --verbose
-    --silent
-    --output-file
-    --help
 
 Features list
 -------

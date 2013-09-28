@@ -7,6 +7,7 @@ import nfo.view.ProfileManagerView;
 import nfo.view.ProfileCreationView;
 
 import nfo.data.ArgumentParser;
+import nfo.data.ProfileCreator;
 import nfo.data.Settings;
 import nfo.data.Output;
 
@@ -29,6 +30,9 @@ public class NfoModifier {
     if(Settings.createGUI) {
       NfoModifier nfo = new NfoModifier();
     }
+
+    if(Settings.profile != null)
+      Output.printNFO(ProfileCreator.create(Settings.profile, Settings.content));
 
     if(! Settings.silent)
       Output.process();

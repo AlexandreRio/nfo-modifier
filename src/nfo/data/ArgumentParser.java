@@ -129,11 +129,9 @@ public class ArgumentParser {
         break;
       case Settings.ARGUMENT_PROFILE:
         int profileIndex = ProfileList.contains(options[0]);
-        if (profileIndex != -1) {
-          Profile p = ProfileList.getElement(profileIndex);
-          Output.printNFO(ProfileCreator.create(p, null));
-
-        } else
+        if (profileIndex != -1)
+          Settings.profile = ProfileList.getElement(profileIndex);
+        else
           Output.print("Can't find the profile. Are you using the good profile file ? See --list");
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
@@ -143,15 +141,14 @@ public class ArgumentParser {
         Settings.output = options[0];
         break;
       case Settings.ARGUMENT_CONTENT:
-        String[] lines = RWFile.readFile(options[0]);
-        //TODO call ProfileCreator with
+        Settings.content = RWFile.readFile(options[0]);
         break;
       case Settings.ARGUMENT_FILE:
         if (Settings.createGUI)
           CreationEvent.openSpecifiedFileCreation(options[0]);
         else
           for (String line : RWFile.readNfoFile(options[0]))
-            System.out.print(line);
+            Output.printNFO(line);
         break;
       case Settings.ARGUMENT_LIST_PROFILES:
         if (ProfileList.getNumberProfile() > 0)
