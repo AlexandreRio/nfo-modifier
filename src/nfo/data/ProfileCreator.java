@@ -33,14 +33,11 @@ public abstract class ProfileCreator {
     else
       bodyRow = content;
 
-    String[] borderRow;
-    String[] borderRowRaw  = profile.getBorder().split("\n");
-    borderRow = new String[borderRowRaw.length + 2];
-    for (int i=0; i<borderRowRaw.length; i++)
-      borderRow[i] = borderRowRaw[i];
-    borderRow[borderRow.length-2] = " ";
-    borderRow[borderRow.length-1] = " ";
-
+    String borderInOneLine = profile.getBorder();
+    // Don't lose empty line when we split
+    if (borderInOneLine.contains("\n\n"))
+      borderInOneLine = borderInOneLine.replaceAll("\n\n", "\n \n \n");
+    String[] borderRow = borderInOneLine.split("\n");
 
     String row;
     String border;

@@ -22,17 +22,19 @@ public class ArgumentParser {
    * List of all the available {@link nfo.data.Argument arguments}.
    */
   private final Argument[] arguments = {
-    new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0),
-    new Argument("--silent"       , Settings.ARGUMENT_SILENT       , 0),
-    new Argument("--help"         , Settings.ARGUMENT_HELP         , 0 , "-h" ),
-    new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0 , "-v" ),
-    new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1 , "-lp"),
-    new Argument("--profile"      , Settings.ARGUMENT_PROFILE      , 1 , "-p"),
-    new Argument("--content"      , Settings.ARGUMENT_CONTENT      , 1 , "-c"),
-    new Argument("--output-log"   , Settings.ARGUMENT_OUTPUT_LOG   , 1),
-    new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1 , "-o" ),
-    new Argument("--file"         , Settings.ARGUMENT_FILE         , 1 , "-f" ),
-    new Argument("--list-profiles", Settings.ARGUMENT_LIST_PROFILES, 0 , "--list" , "-ls")
+    new Argument("--no-gui"         , Settings.ARGUMENT_NO_GUI         , 0),
+    new Argument("--silent"         , Settings.ARGUMENT_SILENT         , 0),
+    new Argument("--help"           , Settings.ARGUMENT_HELP           , 0 , "-h" ),
+    new Argument("--verbose"        , Settings.ARGUMENT_VERBOSE        , 0 , "-v" ),
+    new Argument("--load-profile"   , Settings.ARGUMENT_LOAD_PROFILE   , 1 , "-lp"),
+    new Argument("--create-profile" , Settings.ARGUMENT_CREATE_PROFILE , 5 , "-cp"),
+    new Argument("--delete-profile" , Settings.ARGUMENT_DELETE_PROFILE , 1),
+    new Argument("--profile"        , Settings.ARGUMENT_PROFILE        , 1 , "-p") ,
+    new Argument("--content"        , Settings.ARGUMENT_CONTENT        , 1 , "-c") ,
+    new Argument("--output-log"     , Settings.ARGUMENT_OUTPUT_LOG     , 1),
+    new Argument("--output-file"    , Settings.ARGUMENT_OUTPUT_FILE    , 1 , "-o" ),
+    new Argument("--file"           , Settings.ARGUMENT_FILE           , 1 , "-f" ),
+    new Argument("--list-profiles"  , Settings.ARGUMENT_LIST_PROFILES  , 0 , "--list" , "-ls")
   };
 
   /**
@@ -126,6 +128,43 @@ public class ArgumentParser {
         }
         else
           Output.print("Invalid profile data file path.");
+        break;
+      case Settings.ARGUMENT_CREATE_PROFILE:
+        if(ProfileList.getNumberProfile() >0 ) {
+          if (ProfileList.contains(options[0]) == -1) {
+            String header = RWFile.readFileInString(options[1]);
+            String body   = RWFile.readFileInString(options[2]);
+            String border = RWFile.readFileInString(options[3]);
+            String footer = RWFile.readFileInString(options[4]);
+            System.out.println(border);
+
+            Profile newProfile = new Profile(options[0], header, body, border, footer);
+            ProfileList.add(newProfile);
+            ProfileList.writeData();
+
+            Output.print("Profile: " + options[0] + " successfully created");
+          }
+          else
+            Output.print("Profile name already in use, please choose a different one.");
+        }
+        else
+          Output.print("Missing profile data files, see --load-profile and --help for more information");
+        break;
+      case Settings.ARGUMENT_DELETE_PROFILE:
+        if(ProfileList.getNumberProfile() >0 ) {
+          int index = ProfileList.contains(options[0]);
+          if (index != -1) {
+            Profile profileToDelete = ProfileList.getElements().get(index);
+            if (ProfileList.removeItem(profileToDelete)) {
+              Output.print("Profile successfully deleted !");
+              ProfileList.writeData();
+            }
+          }
+          else
+            Output.print("Profile name not found.");
+        }
+        else
+          Output.print("Missing profile data files, see --load-profile or --help for more information");
         break;
       case Settings.ARGUMENT_PROFILE:
         int profileIndex = ProfileList.contains(options[0]);

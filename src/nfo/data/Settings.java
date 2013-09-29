@@ -24,15 +24,17 @@ public abstract class Settings {
   public static String[] content = null;
   public static Profile profile  = null;
 
-  public static final int ARGUMENT_NO_GUI        = 0x0000;
-  public static final int ARGUMENT_SILENT        = 0x0001;
-  public static final int ARGUMENT_VERBOSE       = 0x0002;
-  public static final int ARGUMENT_LOAD_PROFILE  = 0x0003;
-  public static final int ARGUMENT_OUTPUT_FILE   = 0x0004;
-  public static final int ARGUMENT_LIST_PROFILES = 0x0005;
-  public static final int ARGUMENT_HELP          = 0x0006;
-  public static final int ARGUMENT_PROFILE       = 0x0007;
-  public static final int ARGUMENT_CONTENT       = 0x0008;
-  public static final int ARGUMENT_FILE          = 0x0009;
-  public static final int ARGUMENT_OUTPUT_LOG    = 0x0010;
+  public static final int ARGUMENT_NO_GUI         = 0x0000;
+  public static final int ARGUMENT_SILENT         = 0x0001;
+  public static final int ARGUMENT_VERBOSE        = 0x0002;
+  public static final int ARGUMENT_LOAD_PROFILE   = 0x0003;
+  public static final int ARGUMENT_OUTPUT_FILE    = 0x0004;
+  public static final int ARGUMENT_LIST_PROFILES  = 0x0005;
+  public static final int ARGUMENT_HELP           = 0x0006;
+  public static final int ARGUMENT_PROFILE        = 0x0007;
+  public static final int ARGUMENT_CONTENT        = 0x0008;
+  public static final int ARGUMENT_FILE           = 0x0009;
+  public static final int ARGUMENT_OUTPUT_LOG     = 0x0010;
+  public static final int ARGUMENT_CREATE_PROFILE = 0x0011;
+  public static final int ARGUMENT_DELETE_PROFILE = 0x0012;
 }

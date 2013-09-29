@@ -58,14 +58,16 @@ And a short version with the same effect :
 
 For now these are the supported argument :
 
-    --no-gui       : do not use the graphical user interface
-    --load-profile : load a previously created profiles data file
-    --list         : List all the profile stored in the loaded profiles data file
-    --profile      : specify the profile to use
-    --content      : specify the content of the nfo, it will be placed in the profile
-    --output-file  : output file to save the nfo, so cp437 coded, if not specified the standard output will be used, in utf8
-    --help         : just say you use the argument --help, will display actual help soon
-    --silent       : don't print any messages
+    --no-gui         : do not use the graphical user interface
+    --load-profile   : load a previously created profiles data file
+    --list           : List all the profile stored in the loaded profiles data file
+    --profile        : specify the profile to use
+    --content        : specify the content of the nfo, it will be placed in the profile
+    --output-file    : output file to save the nfo, so cp437 coded, if not specified the standard output will be used, in utf8
+    --help           : just say you use the argument --help, will display actual help soon
+    --silent         : don't print any messages
+    --create-profile : create a new profile with 5 options, like --create-profile MyProfile header.txt border.txt body.txt footer.txt
+    --delete-profile : delete an existing profile
 
 And the following arguments are going to be supported in the next updates :
 

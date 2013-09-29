@@ -183,6 +183,19 @@ public abstract class RWFile {
   }
 
   /**
+   * Read a file and put all its content into one String.
+   *
+   * @param path File to read.
+   * @return The content of a file in one String.
+   */
+  public static String readFileInString(String path) {
+    String ret = "";
+    for(String line : readFile(path))
+      ret += line + "\n";
+    return ret;
+  }
+
+  /**
    * Write list of lines in a file.
    *
    * @param lines List of lines to write in a file.
