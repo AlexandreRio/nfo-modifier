@@ -92,7 +92,7 @@ public class ArgumentParser {
 
       }
       else {
-        Output.print("Unknown argument used: " + arguments[i]);
+        Output.print(Messages.getUnknownArgumentUsed(arguments[i]));
         ret = false;
       }
     }
@@ -127,7 +127,7 @@ public class ArgumentParser {
           ProfileList.loadData();
         }
         else
-          Output.print("Invalid profile data file path.");
+          Output.print(Messages.getInvalidProfileDataPath());
         break;
       case Settings.ARGUMENT_CREATE_PROFILE:
         if(ProfileList.getNumberProfile() >0 ) {
@@ -161,7 +161,7 @@ public class ArgumentParser {
             }
           }
           else
-            Output.print("Profile name not found.");
+            Output.print(Messages.getProfileNameNotFound());
         }
         else
           Output.print("Missing profile data files, see --load-profile or --help for more information");
