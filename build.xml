@@ -66,9 +66,10 @@
       </manifest>
       <fileset dir="${classes}">
         <include name="**/*.class"/>
+        <exclude name="**/*Test.class"/>
       </fileset>
       <fileset dir=".">
-        <include name="${lib}/**/*.jar"/>
+        <include name="${lib}/*.jar"/>
         <include name="**/*.txt"/>
         <include name="**/*.nfo"/>
         <include name="**/*.jpg"/>
