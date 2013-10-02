@@ -140,7 +140,7 @@ public class MainViewItemListener implements ActionListener {
       this.save();
       RWFile.setIsModified(false);
       file = new File(RWFile.getCurrentFile());
-      theView.setTitle("Nfo-modifier : " + file.getName());
+      theView.setTitle("Nfo-modifier : " + file.getName());
     }
   }
 
@@ -221,7 +221,7 @@ public class MainViewItemListener implements ActionListener {
         }
         RWFile.setCurrentFile(chooser.getSelectedFile().getAbsolutePath());
         RWFile.setIsModified(false);
-        theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
+        theView.setTitle("Nfo-modifier : " + chooser.getSelectedFile().getName());
       }
     }
   }
