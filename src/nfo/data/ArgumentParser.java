@@ -86,7 +86,7 @@ public class ArgumentParser {
           i += optionExpected;
         }
         else {
-          Output.print("Missing argument, argument: " + arguments[i] + " expected " + optionExpected + " arguments.");
+          Output.print(Messages.getMissingArgument( arguments[i], optionExpected));
           ret = false;
         }
 
@@ -118,7 +118,7 @@ public class ArgumentParser {
         Settings.silent = true;
         break;
       case Settings.ARGUMENT_HELP:
-        Output.print("Help message, will need external class logger");
+        Output.print(Messages.getGlobalHelp());
         break;
       case Settings.ARGUMENT_LOAD_PROFILE:
         File profileDataFile = new File(options[0]);
@@ -142,13 +142,13 @@ public class ArgumentParser {
             ProfileList.add(newProfile);
             ProfileList.writeData();
 
-            Output.print("Profile: " + options[0] + " successfully created");
+            Output.print(Messages.getProfileCreated(options[0]));
           }
           else
-            Output.print("Profile name already in use, please choose a different one.");
+            Output.print(Messages.getProfileNameTaken());
         }
         else
-          Output.print("Missing profile data files, see --load-profile and --help for more information");
+          Output.print(Messages.getMissingProfileFile());
         break;
       case Settings.ARGUMENT_DELETE_PROFILE:
         if(ProfileList.getNumberProfile() >0 ) {
@@ -156,7 +156,7 @@ public class ArgumentParser {
           if (index != -1) {
             Profile profileToDelete = ProfileList.getElements().get(index);
             if (ProfileList.removeItem(profileToDelete)) {
-              Output.print("Profile successfully deleted !");
+              Output.print(Messages.getProfileDeleted());
               ProfileList.writeData();
             }
           }
@@ -164,14 +164,14 @@ public class ArgumentParser {
             Output.print(Messages.getProfileNameNotFound());
         }
         else
-          Output.print("Missing profile data files, see --load-profile or --help for more information");
+          Output.print(Messages.getMissingProfileFile());
         break;
       case Settings.ARGUMENT_PROFILE:
         int profileIndex = ProfileList.contains(options[0]);
         if (profileIndex != -1)
           Settings.profile = ProfileList.getElement(profileIndex);
         else
-          Output.print("Can't find the profile. Are you using the good profile file ? See --list");
+          Output.print(Messages.getCantFindProfile());
         break;
       case Settings.ARGUMENT_OUTPUT_FILE:
         Settings.outputNfo = options[0];
@@ -194,11 +194,10 @@ public class ArgumentParser {
           for(Profile profile : ProfileList.getElements())
             Output.print("-" + profile.getProfileName());
         else
-          Output.print("Missing profile data files, see --load-profile and --help for more information");
+          Output.print(Messages.getMissingProfileFile());
         break;
       default:
-        throw new RuntimeException("The argument exists but no action has been found !"
-            + "\nArgument id: " + argumentID);
+        throw new RuntimeException(Messages.getNoActionFound(argumentID));
     }
   }
 

@@ -51,7 +51,7 @@ public abstract class RWFile {
 
       String line = null;
       while ((line = br.readLine()) != null )
-        list.add(line + "\n");
+        list.add(line);
       br.close();
       isr.close();
       fis.close();

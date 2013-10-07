@@ -9,6 +9,7 @@ package nfo.data;
  */
 public abstract class Settings {
 
+  public static String version    = "v2.0.0-alpha";
   /** If set to false no Graphical User Interface will be created. */
   public static boolean createGUI = true;
   /** If set to false minimum number of message will be printed. */
@@ -20,8 +21,14 @@ public abstract class Settings {
    * and the output is streamed in a file.
    */
   public static String output    = null;
+  /**
+   * If null the standard output is used, otherwise its interpreted as a path
+   * and the output is streamed in a file using cp437 encoding.
+   */
   public static String outputNfo = null;
+  /** */
   public static String[] content = null;
+  /** Current {@link nfo.data.Profile Profile} in use. */
   public static Profile profile  = null;
 
   public static final int ARGUMENT_NO_GUI         = 0x0000;
