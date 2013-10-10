@@ -16,21 +16,44 @@ public abstract class Messages {
   private static String[] ARGUMENT_MISSING        = {
     new String("Missing argument, argument: "),
     new String(" expected "),
-    new String("arguments.")
+    new String(" arguments.")
   };
-  private static String GLOBAL_HELP = "nfo-modifier. Version: " + Settings.version + " Please report bug!";
   private static String[] PROFILE_CREATED = {
     new String("Pnofile: "),
     new String("successfully created.")
   };
   private static String PROFILE_NAME_TAKEN   = "Profile name already in use, please choose a different one.";
   private static String PROFILE_DELETED      = "Profile successfully deleted !";
-  private static String MISSING_PROFILE_FILE = "Missing profile data files, see --load-profile and --help for more information";
+  private static String DATA_PROFILE_CREATED = "Profile successfully created : ";
+  private static String MISSING_PROFILE_FILE = "Missing profile data files, see --load-data and --help for more information";
   private static String CANT_FIND_PROFILE    = "Can't find the profile. Are you using the good profile file ? See --list";
   private static String NO_ACTION_FOUND      = "The argument exists but no action has been found! \nArgument id: ";
+  private static String GLOBAL_HELP =
+    "nfo-modifier " + Settings.version
+    + "\nProject website: https://github.com/AlexandreRio/nfo-modifier Please report bug!\n"
 
+    + "\nUsage:"
+    + "\n\tnfo-modifier --no-gui [options]"
 
+    + "\n\nTypical scenario:"
+    + "\n\tnfo-modifier --create-data profile.data"
+    + "\n\tnfo-modifier --load-data profile.data --create-profile MyProfile header.txt border.txt body.txt footer.txt"
+    + "\n\tnfo-modifier --load-data profile.data -ls"
+    + "\n\tnfo-modifier -ld profile.data --profile MyProfile --content content.txt --output-file myCoolNFO.nfo"
 
+    + "\nOptions:"
+    + "\n  --file,-f [file]\t\t\t"                   + "Open the specified [file] and display it."
+    + "\n  --create-data, -cd [file]\t\t"            + "Create a new empty profile data file named [file]."
+    + "\n  --load-data, -ld [file]\t\t"              + "Load the profile data file named [file]."
+    + "\n  --profile,-p [option]\t\t\t"              + "Choose the profile to use "
+    + "\n  --create-profile,-cp [option1..5] \t"     + "Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer."
+    + "\n  --delete-profile [option]\t\t"            + ""
+    + "\n  --list-profiles,-ls\t\t"                  + ""
+    + "\n  --output-log [file]\t\t"                  + ""
+    + "\n  --output-file,-o [file]\t\t"              + ""
+    + "\n  --no-gui\t\t\t\t"                         + "Do not create the Graphical User Interface."
+    + "\n  --silent\t\t\t\t"                         + "Turn off messages."
+    ;
 
   /**
    * Get the message displayed when an invalid argument is given to the parser.
@@ -87,24 +110,51 @@ public abstract class Messages {
   }
 
   /**
-   * Get the message displayed when
+   * Get the message displayed when a profile is requested but profile file
+   * has been loaded.
    */
   public static String getMissingProfileFile() {
     return MISSING_PROFILE_FILE;
   }
 
+  /**
+   * Get the message displayed when a profile name doesn't match any Profile
+   * in the loaded profile data file.
+   */
   public static String getCantFindProfile() {
     return CANT_FIND_PROFILE;
   }
 
+  /**
+   * Get the message displayed when a new Profile is successfully created.
+   *
+   * @param profile Name of the profile created.
+   */
   public static String getProfileCreated(String profile) {
     return PROFILE_CREATED[0] + profile + PROFILE_CREATED[1];
   }
 
+  /**
+   * Get the message displayed when no action fit the given argumentID.
+   *
+   * @param argumentID ID of an argument with no action.
+   */
   public static String getNoActionFound(int argumentID) {
     return NO_ACTION_FOUND + argumentID;
   }
 
+  /**
+   * Get the message displayed when a new profile data file is created.
+   *
+   * @param fileName Path of the created file.
+   */
+  public static String getCreateData(String fileName) {
+    return DATA_PROFILE_CREATED + fileName + " !";
+  }
+
+  /**
+   * Get the generic help message.
+   */
   public static String getGlobalHelp() {
     return GLOBAL_HELP;
   }

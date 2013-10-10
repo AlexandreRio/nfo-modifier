@@ -59,7 +59,8 @@ And a short version with the same effect :
 For now these are the supported argument :
 
     --no-gui         : do not use the graphical user interface
-    --load-profile   : load a previously created profiles data file
+    --create-data    : create a new empty data profile file
+    --load-data      : load a previously created profiles data file
     --list           : List all the profile stored in the loaded profiles data file
     --profile        : specify the profile to use
     --content        : specify the content of the nfo, it will be placed in the profile

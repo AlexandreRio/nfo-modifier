@@ -34,7 +34,7 @@ public abstract class CreationEvent {
         for (String line : lineList) {
           if (line.length() > longestLine)
             longestLine = line.length();
-          textArea.append(line);
+          textArea.append(line + "\n");
         }
         if ( longestLine > 80) {
           textArea.setColumns(longestLine);

@@ -26,7 +26,8 @@ public class ArgumentParser {
     new Argument("--silent"         , Settings.ARGUMENT_SILENT         , 0),
     new Argument("--help"           , Settings.ARGUMENT_HELP           , 0 , "-h" ),
     new Argument("--verbose"        , Settings.ARGUMENT_VERBOSE        , 0 , "-v" ),
-    new Argument("--load-profile"   , Settings.ARGUMENT_LOAD_PROFILE   , 1 , "-lp"),
+    new Argument("--create-data"    , Settings.ARGUMENT_CREATE_DATA    , 1 , "-cd"),
+    new Argument("--load-data"      , Settings.ARGUMENT_LOAD_DATA      , 1 , "-ld"),
     new Argument("--create-profile" , Settings.ARGUMENT_CREATE_PROFILE , 5 , "-cp"),
     new Argument("--delete-profile" , Settings.ARGUMENT_DELETE_PROFILE , 1),
     new Argument("--profile"        , Settings.ARGUMENT_PROFILE        , 1 , "-p") ,
@@ -120,7 +121,13 @@ public class ArgumentParser {
       case Settings.ARGUMENT_HELP:
         Output.print(Messages.getGlobalHelp());
         break;
-      case Settings.ARGUMENT_LOAD_PROFILE:
+      case Settings.ARGUMENT_CREATE_DATA:
+        ProfileList.setFile(options[0]);
+        ProfileList.writeData();
+        Output.print(Messages.getCreateData(options[0]));
+        break;
+      case Settings.ARGUMENT_LOAD_DATA:
+        Settings.usingDataFile = true;
         File profileDataFile = new File(options[0]);
         if (profileDataFile.exists()) {
           ProfileList.setFile(profileDataFile.getAbsolutePath());
@@ -130,13 +137,12 @@ public class ArgumentParser {
           Output.print(Messages.getInvalidProfileDataPath());
         break;
       case Settings.ARGUMENT_CREATE_PROFILE:
-        if(ProfileList.getNumberProfile() >0 ) {
+        if(Settings.usingDataFile ) {
           if (ProfileList.contains(options[0]) == -1) {
             String header = RWFile.readFileInString(options[1]);
             String body   = RWFile.readFileInString(options[2]);
             String border = RWFile.readFileInString(options[3]);
             String footer = RWFile.readFileInString(options[4]);
-            System.out.println(border);
 
             Profile newProfile = new Profile(options[0], header, body, border, footer);
             ProfileList.add(newProfile);
