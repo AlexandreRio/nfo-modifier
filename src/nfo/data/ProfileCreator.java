@@ -54,21 +54,24 @@ public abstract class ProfileCreator {
     bodyWidth = totalWidth - 2*borderWidth - 2*BORDER_CONTENT_MARGIN;
 
     bodyRow = trimLongLine(bodyRow, bodyWidth);
+    int endingBlankLine = bodyRow.length%borderRow.length;
+    bodyRow = appendLines(bodyRow, endingBlankLine);
+
+    System.out.println("body row   : " + bodyRow.length);
+    System.out.println("modulo     : " + endingBlankLine);
+    System.out.println("border row : " + borderRow.length);
+//    =========================================================================
 
     for (int i=0; i<bodyRow.length; i++) {
-      row = "";
-      if (((bodyRow.length - i) >= borderRow.length) || (i%borderRow.length != 0)) {
-        border = borderRow[i%borderRow.length];
-        row    = border;
-        row    = appendSpaces(row, borderWidth - border.length() + BORDER_CONTENT_MARGIN);
-        row   += bodyRow[i];
-        row    = appendSpaces(row, totalWidth - borderWidth - row.length());
-        row   += border;
-      } else {
-        row  = appendSpaces(row, borderWidth + BORDER_CONTENT_MARGIN);
-        row += bodyRow[i];
-        row  = appendSpaces(row, totalWidth - row.length());
-      }
+      border = borderRow[i%borderRow.length];
+
+      row    = border;
+      row    = appendSpaces(row, borderWidth - border.length() + BORDER_CONTENT_MARGIN);
+      row   += bodyRow[i];
+      row    = appendSpaces(row, totalWidth - borderWidth - row.length());
+      row   += border;
+//    =======================================================================
+
       row   += "\n";
       total += row;
     }
@@ -83,7 +86,9 @@ public abstract class ProfileCreator {
    * @param rows Array of string.
    * @return Number of character in the longest line.
    */
-  private static int determineLongestLine(String[] rows) {
+  protected static int determineLongestLine(String[] rows) {
+    if (rows == null)
+      return -1;
     int longestWidth = 0;
     for (int i=0; i<rows.length; i++)
       if (rows[i].length() > longestWidth)
@@ -99,7 +104,7 @@ public abstract class ProfileCreator {
    * @param maxLength Length of the line to use.
    * @return An array of string shorter than the specific length.
    */
-  private static String[] trimLongLine(String[] rows, int maxLength) {
+  protected static String[] trimLongLine(String[] rows, int maxLength) {
     String[] ret;
     int numberRow = 0;
     int index = 0;
@@ -110,7 +115,7 @@ public abstract class ProfileCreator {
     for (int i=0; i<rows.length; i++) {
       if (rows[i].length() > maxLength) {
         ret[index] = rows[i].substring(0, maxLength);
-        rows[i] = rows[i].substring(maxLength+1, rows[i].length());
+        rows[i] = rows[i].substring(maxLength, rows[i].length());
         index++;
         i--;
       }
@@ -129,7 +134,7 @@ public abstract class ProfileCreator {
    * @param number Number of spaces to add.
    * @return The new formed String.
    */
-  private static String appendSpaces(String string, int number) {
+  protected static String appendSpaces(String string, int number) {
     if (string == null)
       string = "";
     for (int i=0; i<number; i++)
@@ -137,4 +142,31 @@ public abstract class ProfileCreator {
     return string;
   }
 
+  /**
+   * Append empty lines at the end of a String array and replace null instance
+   * by an empty string.
+   *
+   * @param rows Array of String
+   * @param number Number of empty lines to append.
+   * @return New array with a certain number of empty lines at the end.
+   */
+  protected static String[] appendLines(String[] rows, int number) {
+    String[] ret;
+    if (rows != null && number >= 0) {
+      ret = new String[rows.length + number];
+      for (int i=0; i<rows.length; i++) {
+        //TODO fix calling method, should not use null value
+        if (rows[i] == null)
+          ret[i] = "";
+        else
+          ret[i] = rows[i];
+      }
+      for (int i=rows.length; i<ret.length; i++)
+        ret[i] = "";
+    }
+    else
+      ret = rows;
+    return ret;
+
+  }
 }

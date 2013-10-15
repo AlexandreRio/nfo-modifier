@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="hp-laptop" name="nfo.data.ArgumentTest" tests="3" time="0.139" timestamp="2013-10-15T07:28:06">
+<testsuite errors="0" failures="0" hostname="hp-laptop" name="nfo.data.ProfileCreatorTest" tests="4" time="0.052" timestamp="2013-10-15T07:28:08">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -57,7 +57,7 @@
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ArgumentTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ArgumentTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher7487715463674740210.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit2697727914946533292.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ProfileCreatorTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ProfileCreatorTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher7383006893699078145.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit421975715277803014.properties" />
     <property name="java.class.path" value="/home/orbital/dev/java/nfo-modifier/build/classes:/home/orbital/dev/java/nfo-modifier/lib:/usr/share/java/junit-3.8.2.jar:/usr/share/java/ant-launcher.jar:/usr/share/java/ant.jar:/usr/share/java/ant/ant-junit.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on January 27 2013" />
     <property name="TSTAMP" value="0928" />
@@ -83,9 +83,20 @@
     <property name="java.specification.version" value="1.7" />
     <property name="ant.project.invoked-targets" value="JUnitTest" />
   </properties>
-  <testcase classname="nfo.data.ArgumentTest" name="testGetID" time="0.002" />
-  <testcase classname="nfo.data.ArgumentTest" name="testIsAValidAlias" time="0.0" />
-  <testcase classname="nfo.data.ArgumentTest" name="testGetNumberOption" time="0.0" />
-  <system-out><![CDATA[]]></system-out>
+  <testcase classname="nfo.data.ProfileCreatorTest" name="testTrimLongLine" time="0.002" />
+  <testcase classname="nfo.data.ProfileCreatorTest" name="testDeterminelongestLine" time="0.0" />
+  <testcase classname="nfo.data.ProfileCreatorTest" name="testAppendSpaces" time="0.0" />
+  <testcase classname="nfo.data.ProfileCreatorTest" name="testAppendLines" time="0.002" />
+  <system-out><![CDATA[expectedBlock: @@@@@@@@@
+result:        @@@@@@@@@
+expectedBlock: @@@@@
+result:        @@@@@
+expectedBlock: @@@@@@@@@@@@
+result:        @@@@@@@@@@@@
+expectedBlock: @@@@@@
+result:        @@@@@@
+expectedBlock: @@@@@@@@@@@
+result:        @@@@@@@@@@@
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

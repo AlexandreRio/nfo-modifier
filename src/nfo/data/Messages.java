@@ -45,14 +45,14 @@ public abstract class Messages {
     + "\n  --file,-f [file]\t\t\t"                   + "Open the specified [file] and display it."
     + "\n  --create-data, -cd [file]\t\t"            + "Create a new empty profile data file named [file]."
     + "\n  --load-data, -ld [file]\t\t"              + "Load the profile data file named [file]."
-    + "\n  --profile,-p [option]\t\t\t"              + "Choose the profile to use "
-    + "\n  --create-profile,-cp [option1..5] \t"     + "Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer."
-    + "\n  --delete-profile [option]\t\t"            + ""
-    + "\n  --list-profiles,-ls\t\t"                  + ""
-    + "\n  --output-log [file]\t\t"                  + ""
-    + "\n  --output-file,-o [file]\t\t"              + ""
+    + "\n  --profile,-p [option]\t\t\t"              + "Choose the profile to use."
+    + "\n  --create-profile,-cp [option1..5] \t"     + "Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer. Need to use --load-data before."
+    + "\n  --delete-profile [option]\t\t"            + "Delete a profile matching [option] name. Need to use --load-data before."
+    + "\n  --list-profiles,-ls\t\t"                  + "List all the profile names store. Need to use --load-data before."
+    + "\n  --output-log [file]\t\t"                  + "Specify a [file] to store displayed messages, if not specified the default output is used. For a file to store cp437 data see --output-file"
+    + "\n  --output-file,-o [file]\t\t"              + "Specify a [file] to store cp437 displayed data, if not specified the default output is used with default (readable) encoding."
     + "\n  --no-gui\t\t\t\t"                         + "Do not create the Graphical User Interface."
-    + "\n  --silent\t\t\t\t"                         + "Turn off messages."
+    + "\n  --silent\t\t\t\t"                         + "Turn off messages AND nfo output, you may need --output-log and --output-file."
     ;
 
   /**

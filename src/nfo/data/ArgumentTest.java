@@ -14,7 +14,7 @@ public class ArgumentTest extends TestCase {
   public void testIsAValidAlias() {
     this.noGui       = new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0);
     this.verbose     = new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0  , "-v");
-    this.loadProfile = new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1  , "-lp");
+    this.loadProfile = new Argument("--load-data" , Settings.ARGUMENT_LOAD_DATA , 1  , "-lp");
     this.outputFile  = new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1  , "-o");
     boolean isValidAlias;
 
@@ -30,7 +30,7 @@ public class ArgumentTest extends TestCase {
     isValidAlias = verbose.isAValidAlias("--foo");
     assertFalse(isValidAlias);
 
-    isValidAlias = loadProfile.isAValidAlias("--load-profile");
+    isValidAlias = loadProfile.isAValidAlias("--load-data");
     assertTrue(isValidAlias);
     isValidAlias = loadProfile.isAValidAlias("-lp");
     assertTrue(isValidAlias);
@@ -49,7 +49,7 @@ public class ArgumentTest extends TestCase {
   public void testGetNumberOption() {
     this.noGui       = new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0);
     this.verbose     = new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0  , "-v");
-    this.loadProfile = new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1  , "-lp");
+    this.loadProfile = new Argument("--load-data" , Settings.ARGUMENT_LOAD_DATA , 1  , "-lp");
     this.outputFile  = new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1  , "-o");
     int numberOption;
 
@@ -70,7 +70,7 @@ public class ArgumentTest extends TestCase {
   public void testGetID() {
     this.noGui       = new Argument("--no-gui"       , Settings.ARGUMENT_NO_GUI       , 0);
     this.verbose     = new Argument("--verbose"      , Settings.ARGUMENT_VERBOSE      , 0  , "-v");
-    this.loadProfile = new Argument("--load-profile" , Settings.ARGUMENT_LOAD_PROFILE , 1  , "-lp");
+    this.loadProfile = new Argument("--load-data" , Settings.ARGUMENT_LOAD_DATA , 1  , "-lp");
     this.outputFile  = new Argument("--output-file"  , Settings.ARGUMENT_OUTPUT_FILE  , 1  , "-o");
     int id;
 
@@ -81,7 +81,7 @@ public class ArgumentTest extends TestCase {
     assertEquals(Settings.ARGUMENT_VERBOSE, id);
 
     id = loadProfile.getID();
-    assertEquals(Settings.ARGUMENT_LOAD_PROFILE, id);
+    assertEquals(Settings.ARGUMENT_LOAD_DATA, id);
 
     id = outputFile.getID();
     assertEquals(Settings.ARGUMENT_OUTPUT_FILE, id);

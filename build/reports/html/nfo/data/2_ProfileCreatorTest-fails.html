@@ -1,13 +1,13 @@
 <html xmlns:lxslt="http://xml.apache.org/xslt" xmlns:stringutils="xalan://org.apache.tools.ant.util.StringUtils">
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Unit Test Results: nfo.data.ParserTest</title>
+<title>Unit Test Results: nfo.data.ProfileCreatorTest</title>
 <link rel="stylesheet" type="text/css" title="Style" href="../../stylesheet.css">
 <script type="text/javascript" language="JavaScript">
         var TestCases = new Array();
         var cur;
         
-    cur = TestCases['nfo.data.ParserTest'] = new Array();
+    cur = TestCases['nfo.data.ProfileCreatorTest'] = new Array();
     
         cur['ant.core.lib'] = '/usr/share/java/ant.jar';
     
@@ -144,7 +144,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ParserTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ParserTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher8577950295811418829.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit4736938695950124391.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ProfileCreatorTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ProfileCreatorTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher8985673606931101076.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit1244769801341009757.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -156,7 +156,7 @@
     
         cur['TODAY'] = 'October 15 2013';
     
-        cur['TSTAMP'] = '0928';
+        cur['TSTAMP'] = '0905';
     
         cur['txt'] = '/home/orbital/dev/java/nfo-modifier/res/text';
     
@@ -209,37 +209,36 @@
 </tr>
 </table>
 <hr size="1">
-<h3>Class nfo.data.ParserTest</h3>
+<h3>Class nfo.data.ProfileCreatorTest</h3>
 <table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 <tr valign="top">
 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
 </tr>
-<tr valign="top" class="Pass">
-<td><a title="Display all tests" href="1_ParserTest.html">ParserTest</a></td><td><a title="Display all tests" href="1_ParserTest.html">4</a></td><td>0</td><td>0</td><td>0.052</td><td>2013-10-15T07:28:07</td><td>hp-laptop</td>
+<tr valign="top" class="Failure">
+<td><a title="Display all tests" href="2_ProfileCreatorTest.html">ProfileCreatorTest</a></td><td><a title="Display all tests" href="2_ProfileCreatorTest.html">3</a></td><td>0</td><td><a title="Display only failures" href="2_ProfileCreatorTest-fails.html">1</a></td><td>0.054</td><td>2013-10-15T07:05:49</td><td>hp-laptop</td>
 </tr>
 </table>
-<h2>Tests</h2>
+<h2>Failures</h2>
 <table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 <tr valign="top">
 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
 </tr>
-<tr valign="top" class="TableRowColor">
-<td><a name="testOneArgumentCommand"></a>testOneArgumentCommand</td><td>Success</td><td></td><td>0.003</td>
-</tr>
-<tr valign="top" class="TableRowColor">
-<td><a name="testTwoArgumentCommand"></a>testTwoArgumentCommand</td><td>Success</td><td></td><td>0.000</td>
-</tr>
-<tr valign="top" class="TableRowColor">
-<td><a name="testComplexCommand"></a>testComplexCommand</td><td>Success</td><td></td><td>0.000</td>
-</tr>
-<tr valign="top" class="TableRowColor">
-<td><a name="testGetArgument"></a>testGetArgument</td><td>Success</td><td></td><td>0.002</td>
+<tr valign="top" class="Failure">
+<td><a name="testTrimLongLine"></a>testTrimLongLine</td><td>Failure</td><td>N/A<br>
+<br>
+<code>junit.framework.AssertionFailedError<br>	at nfo.data.ProfileCreatorTest.testTrimLongLine(Unknown Source)<br>
+</code></td><td>0.006</td>
 </tr>
 </table>
 <div class="Properties">
-<a href="javascript:displayProperties('nfo.data.ParserTest');">
+<a href="javascript:displayProperties('nfo.data.ProfileCreatorTest');">
                     Properties &raquo;
                 </a>
+</div>
+<div class="Properties">
+<a href="./2_ProfileCreatorTest-out.html">
+                        System.out &raquo;
+                    </a>
 </div>
 </body>
 </html>

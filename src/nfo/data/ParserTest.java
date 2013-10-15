@@ -27,7 +27,7 @@ public class ParserTest extends TestCase {
     isValidArgument = parser.setArguments(args);
     assertTrue(isValidArgument);
 
-    args[0] = "--load-profile";
+    args[0] = "--load-data";
     isValidArgument = parser.setArguments(args);
     assertFalse(isValidArgument);
 
@@ -51,7 +51,7 @@ public class ParserTest extends TestCase {
     isValidArgument = parser.setArguments(args);
     assertTrue(isValidArgument);
 
-    args[0] = "--load-profile";
+    args[0] = "--load-data";
     args[1] = "~/file.data";
     isValidArgument = parser.setArguments(args);
     assertTrue(isValidArgument);
@@ -62,7 +62,7 @@ public class ParserTest extends TestCase {
     assertTrue(isValidArgument);
 
     args[0] = "--no-gui";
-    args[1] = "--load-profile";
+    args[1] = "--load-data";
     isValidArgument = parser.setArguments(args);
     assertFalse(isValidArgument);
 
@@ -84,7 +84,7 @@ public class ParserTest extends TestCase {
     args    = new String[3];
 
     args[0] = "--no-gui";
-    args[1] = "--load-profile";
+    args[1] = "--load-data";
     args[2] = "~/file.data";
     isValidArgument = parser.setArguments(args);
     assertTrue(isValidArgument);
@@ -112,8 +112,8 @@ public class ParserTest extends TestCase {
       valueReturnedIsNull = false;
     assertTrue(valueReturnedIsNull);
 
-    arg = "--load-profile";
-    if (parser.getArgument("-lp") == parser.getArgument(arg))
+    arg = "--load-data";
+    if (parser.getArgument("-ld") == parser.getArgument(arg))
       valueReturnedIsNull = true;
     else
       valueReturnedIsNull = false;
