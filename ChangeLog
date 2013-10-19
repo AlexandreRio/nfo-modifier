@@ -1,3 +1,184 @@
+commit 53f4be8a7d324aefc032614227f68523dfc25191
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Tue Oct 15 09:57:51 2013 +0200
+
+    Fix several bugs: openning file, wrapping long line
+
+commit 9640dae76c1597b3cb52301ca37970093ab33c07
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Fri Oct 11 00:38:49 2013 +0200
+
+    Fix display of nfo file in graphical mode, add intern documentation
+
+commit d25e667e0b7bcf8466cdd09fc367ae4fb2c79238
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Mon Oct 7 23:04:07 2013 +0200
+
+    Fix multiple carriage return when reading nfo file, add documentation on error message
+
+commit 953db7817771ca2c2657eb81962c83f765f258d7
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Wed Oct 2 21:47:02 2013 +0200
+
+    Add rpm packaging file
+
+commit de4418bfe596959eabe2ba2f1a34b737489c38e6
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Tue Oct 1 17:41:36 2013 +0200
+
+    Remove compiled test classes from final jar
+
+commit e860b9cc34d479338d78f481a7e44faf92e9fb75
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Mon Sep 30 23:30:33 2013 +0200
+
+    Start to separate string messages of the CLI, regenerate the documentation
+
+commit d1679da177a9a6552aadc3ffe48253e32a1d8dd8
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Sun Sep 29 22:20:49 2013 +0200
+
+    Fix border ending carriage return bug, implement --create-profile and --delete-profile. /o/
+
+commit cc0324bd591ea5ea9d201cce4862f66da01fe9a8
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Sat Sep 28 22:22:41 2013 +0200
+
+    Fix some issue with the output and implement --content argument, yay ! \o/
+
+commit 626a2bf2e4244792c738bfe65012cd7a4ad02778
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Sat Sep 28 00:13:41 2013 +0200
+
+    Regenerate documentation
+
+commit f40a6d0b298de1c4f6a6c824cbecf3732c20bd0d
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Sat Sep 28 00:08:37 2013 +0200
+
+    Implement arguments: --help, --output-file, --output-log, --silent, --file
+
+commit 43e3829ccded4590ff5881c2a7a01f48492d159f
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Fri Sep 27 00:51:54 2013 +0200
+
+    Fix border pattern cycle, won't print non complete pattern, start implementing -c argument
+
+commit f85098379cf7f73c55b83463020cc281f73589d8
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Thu Sep 26 01:38:27 2013 +0200
+
+    Improve the general display of a generated nfo, quickly implement an output
+
+commit 03199267b9877cc3f898dacb0160bf63e78c0da5
+Author: Alexandre Rio <contact@alexrio.fr>
+Date:   Tue Sep 24 23:15:57 2013 +0200
+
+    Fix typo, continue a bit with --output-file feature
+
+commit 48c71ec9788a5d4ffc4ede6399c9811e48b05a33
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Mon Sep 23 23:21:17 2013 +0200
+
+    Restructure controller for future logger/output class, update readme for CLI features
+
+commit 051678b35f1fe230be5e63d44ea7d64a33b693b1
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Mon Sep 23 18:58:51 2013 +0200
+
+    Clean useless settings, add argument --silent and --help.
+
+commit 6ee0dad7d1afc02a1d22661eb159f1a56706ec72
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Sep 22 23:19:05 2013 +0200
+
+    fix readme image location
+
+commit 0a69ffa7f9962cd4ee24eb8758de01253bdcf3c2
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Sep 22 23:11:09 2013 +0200
+
+    Add profile data CLI support, fix profile list size bug
+
+commit a1a0d22d9935b0eb97243f693c63dbaf38ba0156
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Sep 22 16:13:03 2013 +0200
+
+    test 2 data classes, fix some bug and start to implement CLI mode
+
+commit f6d19bc002e56be0ea93f210ac66d8da6f6eed6a
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Sep 21 23:46:06 2013 +0200
+
+    Add junit structure for future test case
+
+commit 9a6e5462f8e64fc557def8a2b7d1dd3088d59cb3
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Fri Sep 20 23:56:18 2013 +0200
+
+    Putt all classes in a new package, regenerate documentation, add Settings class and make a first sketch of an argument parser
+
+commit 6ea4c9cf4302d7301ca5853a38cd393ed2c9073c
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Wed Sep 18 23:27:40 2013 +0200
+
+    Fix part of the profile creation, still a bit buggy
+
+commit de756597e9ec7bfe81e0e6e108186fbd4d29c403
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun May 12 17:34:43 2013 +0200
+
+    Add license and update README
+
+commit a564f4c2c2be6904f042ff702d9caaae146f0961
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Tue Apr 30 23:09:08 2013 +0200
+
+    First sketch of the profile creation
+
+commit b47688dfb8120f0051b784a4361c0cd4a733b85a
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Tue Apr 30 11:37:53 2013 +0200
+
+    Add load/write profile events, fix several file location issues.
+
+commit 7973af36aaceaeb0b16bd418389172b39783ab8a
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Mon Apr 29 13:46:23 2013 +0200
+
+    Fix Profile structure, update profile creation listeners.
+
+commit 7b63f4d98d9f50d1246a090675ddc911f475f685
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sun Apr 28 23:47:26 2013 +0200
+
+    Add listener to the profile creation view.
+
+commit e03c422f52451c442840134c27b566122ae3c012
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Apr 27 23:51:59 2013 +0200
+
+    Add profile creation form.
+
+commit 09d84ae67339d0ce2078fc1ce842e773350bd2aa
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Apr 27 12:01:44 2013 +0200
+
+    Set the exit prevention to the Frame close action.
+
+commit 55e73d67ebbd4c2d7c4ea449559cb9ae1aa07ba6
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Apr 27 11:25:06 2013 +0200
+
+    Set the exit prevention to the Frame close action.
+
+commit 27a9b23fd1a13a3d8dd583dd9b3badc8b8e96fef
+Author: Alexandre Rio <orbital.project42@gmail.com>
+Date:   Sat Apr 27 00:20:27 2013 +0200
+
+    Start implementing profile managing system, update documentation and
+    some other stuff.
+
 commit cfa7aedb103a111e2e82454c03ac836c89f2862e
 Author: Alexandre Rio <orbital.project42@gmail.com>
 Date:   Fri Mar 22 23:10:23 2013 +0100

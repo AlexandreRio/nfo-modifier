@@ -43,7 +43,7 @@
     
         cur['doc'] = '/home/orbital/dev/java/nfo-modifier/doc';
     
-        cur['DSTAMP'] = '20131015';
+        cur['DSTAMP'] = '20131019';
     
         cur['file.encoding'] = 'UTF-8';
     
@@ -144,7 +144,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ProfileCreatorTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ProfileCreatorTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher2998355485668544494.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit7673265914586503925.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner nfo.data.ProfileCreatorTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/orbital/dev/java/nfo-modifier/build/reports/TEST-nfo.data.ProfileCreatorTest.xml crashfile=/home/orbital/dev/java/nfo-modifier/junitvmwatcher1005371609225895401.properties propsfile=/home/orbital/dev/java/nfo-modifier/junit1408045203517030601.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -154,9 +154,9 @@
     
         cur['sun.os.patch.level'] = 'unknown';
     
-        cur['TODAY'] = 'October 15 2013';
+        cur['TODAY'] = 'October 19 2013';
     
-        cur['TSTAMP'] = '0846';
+        cur['TSTAMP'] = '1653';
     
         cur['txt'] = '/home/orbital/dev/java/nfo-modifier/res/text';
     
@@ -215,7 +215,7 @@
 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
 </tr>
 <tr valign="top" class="Error">
-<td><a title="Display all tests" href="2_ProfileCreatorTest.html">ProfileCreatorTest</a></td><td><a title="Display all tests" href="2_ProfileCreatorTest.html">3</a></td><td><a title="Display only errors" href="2_ProfileCreatorTest-errors.html">1</a></td><td>0</td><td>0.053</td><td>2013-10-15T06:46:22</td><td>hp-laptop</td>
+<td><a title="Display all tests" href="2_ProfileCreatorTest.html">ProfileCreatorTest</a></td><td><a title="Display all tests" href="2_ProfileCreatorTest.html">4</a></td><td><a title="Display only errors" href="2_ProfileCreatorTest-errors.html">1</a></td><td>0</td><td>0.045</td><td>2013-10-19T14:53:56</td><td>hp-laptop</td>
 </tr>
 </table>
 <h2>Errors</h2>
@@ -224,9 +224,9 @@
 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
 </tr>
 <tr valign="top" class="Error">
-<td><a name="testTrimLongLine"></a>testTrimLongLine</td><td>Error</td><td>N/A<br>
+<td><a name="testTrimLongLine"></a>testTrimLongLine</td><td>Error</td><td>String index out of range: 12<br>
 <br>
-<code>java.lang.NullPointerException<br>	at nfo.data.ProfileCreator.trimLongLine(Unknown Source)<br>	at nfo.data.ProfileCreatorTest.testTrimLongLine(Unknown Source)<br>
+<code>java.lang.StringIndexOutOfBoundsException: String index out of range: 12<br>	at java.lang.String.substring(String.java:1907)<br>	at nfo.data.ProfileCreator.trimLongLine(Unknown Source)<br>	at nfo.data.ProfileCreatorTest.testTrimLongLine(Unknown Source)<br>
 </code></td><td>0.006</td>
 </tr>
 </table>

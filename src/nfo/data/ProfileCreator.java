@@ -54,13 +54,8 @@ public abstract class ProfileCreator {
     bodyWidth = totalWidth - 2*borderWidth - 2*BORDER_CONTENT_MARGIN;
 
     bodyRow = trimLongLine(bodyRow, bodyWidth);
-    int endingBlankLine = bodyRow.length%borderRow.length;
+    int endingBlankLine = borderRow.length - (bodyRow.length%borderRow.length);
     bodyRow = appendLines(bodyRow, endingBlankLine);
-
-    System.out.println("body row   : " + bodyRow.length);
-    System.out.println("modulo     : " + endingBlankLine);
-    System.out.println("border row : " + borderRow.length);
-//    =========================================================================
 
     for (int i=0; i<bodyRow.length; i++) {
       border = borderRow[i%borderRow.length];
@@ -70,12 +65,11 @@ public abstract class ProfileCreator {
       row   += bodyRow[i];
       row    = appendSpaces(row, totalWidth - borderWidth - row.length());
       row   += border;
-//    =======================================================================
-
       row   += "\n";
+
       total += row;
     }
-    total += "\n" + profile.getFooter();
+    total += profile.getFooter();
 
     return total;
   }
@@ -105,26 +99,18 @@ public abstract class ProfileCreator {
    * @return An array of string shorter than the specific length.
    */
   protected static String[] trimLongLine(String[] rows, int maxLength) {
-    String[] ret;
-    int numberRow = 0;
-    int index = 0;
-    for (String row : rows)
-      numberRow += (int)(row.length() / maxLength) + 1;
-    ret = new String[numberRow];
+    ArrayList<String> ret   = new ArrayList<String>();
+    String tmp;
 
-    for (int i=0; i<rows.length; i++) {
-      if (rows[i].length() > maxLength) {
-        ret[index] = rows[i].substring(0, maxLength);
-        rows[i] = rows[i].substring(maxLength, rows[i].length());
-        index++;
-        i--;
+    for (String row : rows) {
+      while (row.length() > maxLength) {
+        ret.add(row.substring(0, maxLength));
+        row = row.substring(maxLength);
       }
-      else {
-        ret[index] = rows[i];
-        index++;
-      }
+      ret.add(row);
     }
-    return ret;
+
+    return ret.toArray(new String[ret.size()]);
   }
 
   /**
@@ -143,8 +129,7 @@ public abstract class ProfileCreator {
   }
 
   /**
-   * Append empty lines at the end of a String array and replace null instance
-   * by an empty string.
+   * Append empty lines at the end of a String array.
    *
    * @param rows Array of String
    * @param number Number of empty lines to append.
@@ -154,19 +139,14 @@ public abstract class ProfileCreator {
     String[] ret;
     if (rows != null && number >= 0) {
       ret = new String[rows.length + number];
-      for (int i=0; i<rows.length; i++) {
-        //TODO fix calling method, should not use null value
-        if (rows[i] == null)
-          ret[i] = "";
-        else
-          ret[i] = rows[i];
-      }
+      for (int i=0; i<rows.length; i++)
+        ret[i] = rows[i];
       for (int i=rows.length; i<ret.length; i++)
         ret[i] = "";
     }
     else
       ret = rows;
     return ret;
-
   }
+
 }

@@ -22,7 +22,7 @@ public class ArgumentParser {
    * List of all the available {@link nfo.data.Argument arguments}.
    */
   private final Argument[] arguments = {
-    new Argument("--no-gui"         , Settings.ARGUMENT_NO_GUI         , 0),
+    new Argument("--no-gui"         , Settings.ARGUMENT_NO_GUI         , 0 , "-ng"),
     new Argument("--silent"         , Settings.ARGUMENT_SILENT         , 0),
     new Argument("--help"           , Settings.ARGUMENT_HELP           , 0 , "-h" ),
     new Argument("--verbose"        , Settings.ARGUMENT_VERBOSE        , 0 , "-v" ),
