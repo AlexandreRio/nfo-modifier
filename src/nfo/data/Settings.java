@@ -9,7 +9,7 @@ package nfo.data;
  */
 public abstract class Settings {
 
-  public static String version    = "v2.0.0-alpha";
+  public static String version    = "v2.0.0";
   /** If set to false no Graphical User Interface will be created. */
   public static boolean createGUI = true;
   /** If set to false minimum number of message will be printed. */
