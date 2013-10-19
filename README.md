@@ -39,7 +39,7 @@ Displays the help.
 
 Launch the application with an empty text area.
 
-    $ java -jar nfo-modifier.jar file.nfo
+    $ java -jar nfo-modifier.jar -f file.nfo
 
 Launch the application and display the file : `file.nfo`.
 
@@ -54,7 +54,7 @@ The main purpose is to make something like that possible :
 
 And a short version with the same effect :
 
-    $ java -jar nfo-modifier.jar --no-gui -lp profiles.data -p Wii -c content.txt -o coolNFO.nfo
+    $ java -jar nfo-modifier.jar -ng -lp profiles.data -p Wii -c content.txt -o coolNFO.nfo
 
 For now these are the supported argument :
 

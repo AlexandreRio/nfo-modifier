@@ -7,6 +7,19 @@ import nfo.control.MainViewItemListener;
 
 public class CloseWindowListener implements WindowListener {
 
+  private static CloseWindowListener selfRef;
+
+  /**
+   * Get the instance of the listener, if it doesn't exist a new instance is
+   * created.
+   * @return The instance of the CloseWindowListener.
+   */
+  public static CloseWindowListener getInstance() {
+    if ( selfRef == null)
+      selfRef = new CloseWindowListener();
+    return selfRef;
+  }
+
   @Override
   public void windowActivated(WindowEvent e) { ; }
 

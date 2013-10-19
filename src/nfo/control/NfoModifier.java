@@ -59,6 +59,7 @@ public class NfoModifier {
     TextAreaListener textAreaListener         = TextAreaListener.getInstance();
     ProfileManagerButtonListener pmbl         = ProfileManagerButtonListener.getInstance();
     ProfileCreationButtonListener pcbl        = ProfileCreationButtonListener.getInstance();
+    CloseWindowListener exitListener          = CloseWindowListener.getInstance();
 
     // Attach all the reaction
     view.getItemNew().addActionListener(mainViewItemListener);
@@ -77,6 +78,8 @@ public class NfoModifier {
     view.getItemAbout().addActionListener(mainViewItemListener);
 
     view.getTextArea().getDocument().addDocumentListener(textAreaListener);
+
+    view.addWindowListener(exitListener);
 
     profileManager.getCreateButton().addActionListener(pmbl);
     profileManager.getEditButton().addActionListener(pmbl);

@@ -17,6 +17,7 @@ import java.io.File;
 import nfo.data.RWFile;
 import nfo.data.ProfileList;
 import nfo.data.Profile;
+import nfo.data.Settings;
 
 import nfo.view.NfoView;
 import nfo.view.ProfileManagerView;
@@ -53,8 +54,8 @@ public class MainViewItemListener implements ActionListener {
    * Text displayed in the about dialog, after clicking on about in the menu
    * bar.
    */
-  private static final String ABOUT_TEXT = "<html><center><p><b>nfo-modifier</p></b><br \\>" +
-    "<p>0.1</p><br \\><p>nfo-modifier is a small and lightweiqht nfo editor written" +
+  private static final String ABOUT_TEXT = "<html><center><p><b>nfo-modifier " + Settings.version +
+    "</p><br \\><p>nfo-modifier is a small and lightweiqht nfo editor written" +
     " in Java</p><p>See the project page at <a href=''>www.github.com/AlexandreRio/" +
     "nfo-modifier</a></p><br \\><p>This program comes with ABSOLUTELY NO WARRANTY" +
     "</p></center></html>";

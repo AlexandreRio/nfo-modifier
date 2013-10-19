@@ -103,9 +103,6 @@ public class NfoView extends JFrame {
     this.pack();
     this.setVisible(true);
     this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-    // TODO Fix this !! Not a MVC pattern
-    WindowListener exitListener = new CloseWindowListener();
-    this.addWindowListener(exitListener);
   }
 
   /**
