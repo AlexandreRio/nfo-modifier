@@ -1,0 +1,41 @@
+.TH NFO-MODIFIER 1 "April 18, 2014"
+.SH NAME
+nfo-modifier \- viewer for NFO files
+.SH SYNOPSIS
+.B nfo-modifier
+[\fIOPTION...\fR]
+
+.B nfo-modifier
+--create-data profile.data
+
+.B nfo-modifier
+--load-data profile.data --create-profile MyProfile header.txt border.txt body.txt footer.txt
+
+.B nfo-modifier
+--load-data profile.data -ls
+
+.B nfo-modifier
+-ld profile.data --profile MyProfile --content content.txt --output-file myCoolNFO.nfo
+
+.SH DESCRIPTION
+.PP
+nfo-modifier is a Java application that allows the modification of .nfo files
+(i.e. encoded in cp437 ) and provides several tools to ease the creation and
+manipulation of nfo.
+
+.PP
+
+Options:
+.I   --file,-f [file]   Open the specified [file] and display it.
+  --create-data, -cd [file]		Create a new empty profile data file named [file].
+  --load-data, -ld [file]		Load the profile data file named [file].
+  --profile,-p [option]			Choose the profile to use.
+  --create-profile,-cp [option1..5] 	Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer. Need to use --load-data before.
+  --delete-profile [option]		Delete a profile matching [option] name. Need to use --load-data before.
+  --list-profiles,-ls		List all the profile names store. Need to use --load-data before.
+  --output-log [file]		Specify a [file] to store displayed messages, if not specified the default output is used. For a file to store cp437 data see --output-file
+  --output-file,-o [file]		Specify a [file] to store cp437 displayed data, if not specified the default output is used with default (readable) encoding.
+  --no-gui				Do not create the Graphical User Interface.
+  --silent				Turn off messages AND nfo output, you may need --output-log and --output-file.
+.SH AUTHOR
+Written by Alexandre Rio <contact@alexrio.fr>.
