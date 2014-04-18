@@ -1,21 +1,9 @@
 .TH NFO-MODIFIER 1 "April 18, 2014"
 .SH NAME
-nfo-modifier \- viewer for NFO files
+nfo-modifier \- view, edit and generate nfo files
 .SH SYNOPSIS
 .B nfo-modifier
 [\fIOPTION...\fR]
-
-.B nfo-modifier
---create-data profile.data
-
-.B nfo-modifier
---load-data profile.data --create-profile MyProfile header.txt border.txt body.txt footer.txt
-
-.B nfo-modifier
---load-data profile.data -ls
-
-.B nfo-modifier
--ld profile.data --profile MyProfile --content content.txt --output-file myCoolNFO.nfo
 
 .SH DESCRIPTION
 .PP
@@ -26,7 +14,8 @@ manipulation of nfo.
 .PP
 
 Options:
-.I   --file,-f [file]   Open the specified [file] and display it.
+
+  --file,-f [file]   Open the specified [file] and display it.
   --create-data, -cd [file]		Create a new empty profile data file named [file].
   --load-data, -ld [file]		Load the profile data file named [file].
   --profile,-p [option]			Choose the profile to use.
@@ -37,5 +26,40 @@ Options:
   --output-file,-o [file]		Specify a [file] to store cp437 displayed data, if not specified the default output is used with default (readable) encoding.
   --no-gui				Do not create the Graphical User Interface.
   --silent				Turn off messages AND nfo output, you may need --output-log and --output-file.
+
+
+.SH EXAMPLES
+
+.B nfo-modifier
+--create-data
+.I profile.data
+
+Create a new empty profile data file named profile.data
+
+.B nfo-modifier
+--load-data
+.I profile.data
+--create-profile MyProfile
+.I header.txt border.txt body.txt footer.txt
+
+Create a new profile named MyProfile into the file profile.data from the given text files.
+
+.B nfo-modifier
+--load-data profile.data -ls
+
+Display a list of all the profiles from the file
+.I profile.data
+.
+
+.B nfo-modifier
+-ld
+.I profile.data
+--profile MyProfile --content content.txt --output-file
+.I myCoolNFO.nfo
+
+.SH BUGS
+
+To report a bug, please visit https://github.com/AlexandreRio/nfo-modifier
+
 .SH AUTHOR
 Written by Alexandre Rio <contact@alexrio.fr>.
