@@ -15,18 +15,64 @@ manipulation of nfo.
 
 Options:
 
-  --file,-f [file]   Open the specified [file] and display it.
-  --create-data, -cd [file]		Create a new empty profile data file named [file].
-  --load-data, -ld [file]		Load the profile data file named [file].
-  --profile,-p [option]			Choose the profile to use.
-  --create-profile,-cp [option1..5] 	Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer. Need to use --load-data before.
-  --delete-profile [option]		Delete a profile matching [option] name. Need to use --load-data before.
-  --list-profiles,-ls		List all the profile names store. Need to use --load-data before.
-  --output-log [file]		Specify a [file] to store displayed messages, if not specified the default output is used. For a file to store cp437 data see --output-file
-  --output-file,-o [file]		Specify a [file] to store cp437 displayed data, if not specified the default output is used with default (readable) encoding.
-  --no-gui				Do not create the Graphical User Interface.
-  --silent				Turn off messages AND nfo output, you may need --output-log and --output-file.
+  --file,-f [file]
 
+  Open the specified [file] and display it.
+
+
+  --create-data, -cd [file]
+
+  Create a new empty profile data file named [file].
+
+
+  --load-data, -ld [file]
+
+  Load the profile data file named [file].
+
+  --profile,-p [option]
+
+  Choose the profile to use, requires
+.B --load-data
+option.
+
+  --create-profile,-cp [option1..5]
+
+  Create a new profile, the first option is the name, followed by 4 files in the following order: header, body, border and footer. Needs to use
+.B --load-data
+before.
+
+  --delete-profile [option]
+
+  Delete a profile matching [option] name. Need to use
+.B --load-data
+before.
+
+  --list-profiles,-ls
+
+  List all the profile names store. Need to use
+.B --load-data
+before.
+
+  --output-log [file]
+
+  Specify a [file] to store displayed messages, if not specified the default output is used. For a file to store cp437 data see
+.B --output-file
+
+  --output-file,-o [file]
+
+  Specify a [file] to store cp437 displayed data, if not specified the default output is used with default (readable) encoding.
+
+  --no-gui, -ng
+
+  Do not create the Graphical User Interface.
+
+  --silent
+
+  Turn off messages AND nfo output, you may need
+.B --output-log
+and
+.B --output-file
+.
 
 .SH EXAMPLES
 
@@ -54,8 +100,20 @@ Display a list of all the profiles from the file
 .B nfo-modifier
 -ld
 .I profile.data
---profile MyProfile --content content.txt --output-file
+--profile MyProfile --content
+.I content.txt
+--output-file
 .I myCoolNFO.nfo
+
+Use the profile
+.I MyProfile
+from the profile data file
+.I profile.data
+and the raw content
+.I content.txt
+to create the nfo file
+.I myCoolNFO.nfo
+
 
 .SH BUGS
 
