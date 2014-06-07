@@ -1,26 +1,18 @@
 Name: nfo-modifier
-Version: 1380642096
-Release: 0
+Version: 2.0.0
+Release: 1
 Summary: GUI editor for nfo files
-BuildRoot: %{_tmppath}/%{name}-v%{version}-%{release}-buildroot
 Group: Applications/Editors
-License: GPLv2+
+License: GPLv3
 URL: https://github.com/AlexandreRio/nfo-modifier
-Source0: %{name}-%{version}.tar.bz2
+Source0: %{name}.tar.gz
 Packager: Alexandre Rio <contact@alexrio.fr>
 
 BuildArch: noarch
 
-%if 0%{?suse_version}
-BuildRequires:java-1_7_0-openjdk
-Requires:     java >= 1.5.0
-%else
-BuildRequires: java-devel >= 1:1.6.0
-Requires: java >= 1:1.6.0
-%endif
-BuildRequires: jpackage-utils
 BuildRequires: ant
 
+Requires: java-headless >= 1:1.6.0
 Requires: jpackage-utils
 
 %description
@@ -37,26 +29,18 @@ This package contains the API documentation for %{name}.
 %prep
 %setup -q
 
-find -name '*.class' -exec rm -f '{}' \;
 
 %build
 ant jar
 ant doc
 
 %install
-echo %{_prefix}
+install -d -m 755 %{buildroot}%{_javadir}
+install -d -m 755 %{buildroot}%{_javadocdir}/%{name}
 
-mkdir -p $RPM_BUILD_ROOT%{_javadir}
-cp -p %{_builddir}/%{name}-%{version}/build/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+install -p -m 644 build/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 
-mkdir -p $RPM_BUILD_ROOT%{_javadocdir}/%{name}
-cp -rp %{_builddir}/%{name}-%{version}/doc $RPM_BUILD_ROOT%{_javadocdir}/%{name}
-mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin/
-cat << EOT > $RPM_BUILD_ROOT%{_prefix}/bin/%{name}
-#! /bin/bash
-java -jar %{_javadir}/%{name}.jar $*
-EOT
-chmod ugo+x $RPM_BUILD_ROOT%{_prefix}/bin/%{name}
+%jpackage_script nfo.control.NfoModifier "" "" %{name} nfo-modifier true
 
 %files
 %{_javadir}/%{name}.jar
@@ -68,9 +52,5 @@ chmod ugo+x $RPM_BUILD_ROOT%{_prefix}/bin/%{name}
 %changelog
 * Wed Oct 02 2013 Alexandre Rio <contact@alexrio.fr> v2.0.0
 - Package v2.0.0 source change versionning number
-* Mon May 26 2012 Alexandre Rio <contact@alexrio.fr> v1.0
+* Mon May 26 2013 Alexandre Rio <contact@alexrio.fr> v1.0
 - First packaging
-
-
-
-
