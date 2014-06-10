@@ -80,7 +80,7 @@
   </target>
 
   <target name="doc" depends="compile" description="Build JavaDoc documentation." >
-    <javadoc destdir="${doc}" author="true" version="true" use="true" private="true">
+    <javadoc destdir="${doc}" author="true" version="true" encoding="UTF-8" use="true" private="true">
       <fileset dir="${src}" defaultexcludes="yes">
         <exclude name="**/*Test*.java"/>
         <include name="**/*.java"/>
